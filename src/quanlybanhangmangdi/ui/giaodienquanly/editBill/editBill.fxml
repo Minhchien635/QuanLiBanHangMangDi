@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="760.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff10" height="203.0" layoutX="499.0" layoutY="423.0" stroke="#96cdf7" strokeType="INSIDE" width="199.0" />
+      <Line endX="136.5" endY="519.0" layoutX="329.0" layoutY="121.0" startX="136.5" startY="-27.0" stroke="#96cdf7" />
+      <Label layoutX="348.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="SỬA ĐƠN HÀNG">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="623.0" layoutY="80.0" text="Danh Sách Món" textFill="#0707d7">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="513.0" layoutY="502.0" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Món" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
+      <Button layoutX="742.0" layoutY="472.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #96cdf7;" stylesheets="@../../StyleSheet/stylesheet.css" text="Thêm món" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="513.0" layoutY="438.0" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
+      <TextField layoutX="54.0" layoutY="333.0" prefHeight="37.0" prefWidth="356.0" promptText="Chiết Khấu (%)" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <ComboBox layoutX="52.0" layoutY="157.0" prefHeight="42.0" prefWidth="199.0" promptText="App" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
+      <TextField layoutX="54.0" layoutY="249.0" prefHeight="37.0" prefWidth="356.0" promptText="Mã Đơn Hàng Trong App" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="54.0" layoutY="458.0" text="Tổng giá">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="147.0" layoutY="80.0" text="Thông tin đơn" textFill="#0707d7">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff31" height="55.0" layoutX="298.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="337.0" />
+      <TextField layoutX="513.0" layoutY="565.0" prefHeight="42.0" prefWidth="172.0" promptText="Số lượng" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Button layoutX="295.0" layoutY="657.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="139.0" text="Save" />
+      <Button layoutX="505.0" layoutY="657.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="139.0" text="Hủy" />
+      <Button layoutX="742.0" layoutY="541.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #96cdf7;" stylesheets="@../../StyleSheet/stylesheet.css" text="Xóa món" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <TableView layoutX="513.0" layoutY="123.0" prefHeight="282.0" prefWidth="374.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

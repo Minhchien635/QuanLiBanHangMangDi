@@ -171,10 +171,24 @@
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
     -fx-background-color:#d5ebfc;
-    -fx-font-size: 16px;
+    -fx-font-size: 30px;
 }
 
 #windows:hover{     
+  -fx-background-color:#55b0f4; 
+  -fx-text-fill:white;
+  -fx-font-weight:bold; 
+}
+
+#windows1{
+    -fx-text-fill: #2e2e2e;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-background-color:#d5ebfc;
+    -fx-font-size: 24px;
+}
+
+#windows1:hover{     
   -fx-background-color:#55b0f4; 
   -fx-text-fill:white;
   -fx-font-weight:bold; 
