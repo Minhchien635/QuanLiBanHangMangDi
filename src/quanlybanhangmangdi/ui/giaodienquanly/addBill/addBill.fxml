@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="761.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="760.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Line endX="136.5" endY="485.0" layoutX="329.0" layoutY="121.0" startX="136.5" startY="-27.0" stroke="#96cdf7" />
       <Label layoutX="329.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="THÊM ĐƠN HÀNG">
