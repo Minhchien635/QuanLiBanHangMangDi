@@ -188,7 +188,7 @@
             </Pane>
             <Pane fx:id="pane_DonHang" layoutX="-2.0" layoutY="7.0" prefHeight="1090.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
                <children>
-                  <TableView fx:id="tableDonHang1" layoutX="32.0" layoutY="394.0" prefHeight="665.0" prefWidth="1322.0" style="-fx-font-size: 16px;">
+                  <TableView fx:id="tableDonHang1" layoutX="47.0" layoutY="394.0" prefHeight="665.0" prefWidth="1322.0" style="-fx-font-size: 16px;">
                      <columns>
                         <TableColumn fx:id="maDon1" prefWidth="179.0" style="-fx-background-color: #d5ebfc; -fx-font-size: 18px;" text="Mã đơn hàng" />
                         <TableColumn fx:id="ngay1" prefWidth="129.0" style="-fx-background-color: #d5ebfc; -fx-font-size: 18px;" text="Ngày Đơn" />
@@ -214,7 +214,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TableView layoutX="330.0" layoutY="120.0" prefHeight="229.0" prefWidth="731.0">
+                  <TableView layoutX="349.0" layoutY="120.0" prefHeight="229.0" prefWidth="731.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Tên món" />
                       <TableColumn prefWidth="75.0" text="Loại món" />
@@ -225,7 +225,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Label layoutX="171.0" layoutY="147.0" prefHeight="25.0" prefWidth="94.0" text="Tổng giá" />
+                  <Label id="tongGiaLabel" fx:id="tongGiaLabel" layoutX="171.0" layoutY="147.0" prefHeight="25.0" prefWidth="94.0" text="Tổng giá" />
                   <ComboBox layoutX="1135.0" layoutY="349.0" prefWidth="150.0" promptText="Bộ lọc" />
                </children>
             </Pane>
