@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.ui.giaodienquanly.MenuModuleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.ui.giaodienquanly.MenuModuleController">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="1078.0" prefWidth="383.0" style="-fx-background-color: d5ebfc;">
          <children>
@@ -171,21 +172,12 @@
                   <Label layoutX="300.0" layoutY="14.0" text="Nhân Viên" />
                </children>
             </Pane>
-            <Pane fx:id="pane_ThuChi" prefHeight="1086.0" prefWidth="1537.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Label layoutX="300.0" layoutY="14.0" text="Thu - Chi" />
-               </children>
-            </Pane>
             <Pane fx:id="pane_BaoCao" prefHeight="1087.0" prefWidth="1539.0" style="-fx-background-color: #fff;">
                <children>
                   <Label layoutX="311.0" layoutY="24.0" text="Báo Cáo" />
                </children>
             </Pane>
-            <Pane fx:id="pane_Menu" prefHeight="618.0" prefWidth="654.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="300.0" layoutY="14.0" text="Menu" />
-               </children>
-            </Pane>
+            <Pane fx:id="pane_Menu" prefHeight="618.0" prefWidth="654.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="pane_DonHang" layoutX="-2.0" layoutY="7.0" prefHeight="1090.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
                <children>
                   <TableView fx:id="tableDonHang1" layoutX="32.0" layoutY="394.0" prefHeight="665.0" prefWidth="1322.0" style="-fx-font-size: 16px;">
@@ -227,6 +219,27 @@
                   </TableView>
                   <Label layoutX="171.0" layoutY="147.0" prefHeight="25.0" prefWidth="94.0" text="Tổng giá" />
                   <ComboBox layoutX="1135.0" layoutY="349.0" prefWidth="150.0" promptText="Bộ lọc" />
+               </children>
+            </Pane>
+            <Pane fx:id="pane_ThuChi" layoutY="-1.0" prefHeight="1086.0" prefWidth="1537.0" style="-fx-background-color: #fff;">
+               <children>
+                  <Label layoutX="600.0" layoutY="-95.0" prefHeight="190.0" prefWidth="320.0" style="-fx-background-color: #084675; -fx-background-radius: 70;" textFill="#f2e8e8" />
+                  <Label layoutX="685.0" layoutY="14.0" text="Báo cáo" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="125.0" layoutY="202.0" prefHeight="800.0" prefWidth="1298.0">
+                    <columns>
+                      <TableColumn prefWidth="104.0" text="Mã nhân viên" />
+                      <TableColumn prefWidth="100.0" text="C2" />
+                        <TableColumn prefWidth="84.0" text="C2" />
+                        <TableColumn prefWidth="12.0" text="C2" />
+                        <TableColumn prefWidth="120.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <ComboBox layoutX="50.0" layoutY="132.0" prefHeight="33.0" prefWidth="196.0" promptText="Thu chi theo tháng" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
+                  <DatePicker layoutX="257.0" layoutY="132.0" prefHeight="34.0" prefWidth="214.0" promptText="Thu chi theo ngày" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
                </children>
             </Pane>
          </children>
