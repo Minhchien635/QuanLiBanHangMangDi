@@ -27,7 +27,7 @@
          </font>
       </Label>
       <ComboBox layoutX="395.0" layoutY="511.0" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
-      <Button layoutX="644.0" layoutY="458.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="151.0" style="-fx-background-color: #96cdf7;" stylesheets="@../../StyleSheet/stylesheet.css" text="Thêm Món" textFill="WHITE">
+      <Button id="windows2" layoutX="644.0" layoutY="458.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="204.0" stylesheets="@../../StyleSheet/stylesheet.css" text="Thêm Món" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -51,7 +51,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="32.0" layoutY="531.0" text="Tổng giá: " textFill="#626264">
+      <Label layoutX="39.0" layoutY="529.0" text="Tổng giá: " textFill="#626264">
          <font>
             <Font size="19.0" />
          </font>
@@ -94,12 +94,12 @@
             <TableColumn prefWidth="88.7685546875" style="-fx-background-color: #96cdf7;" text="Số lượng" />
          </columns>
       </TableView>
-      <Label layoutX="33.0" layoutY="444.0" prefHeight="32.0" prefWidth="159.0" text="Phí dịch vụ: " textFill="#626264">
+      <Label layoutX="39.0" layoutY="442.0" prefHeight="32.0" prefWidth="159.0" text="Phí dịch vụ: " textFill="#626264">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="644.0" layoutY="543.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="151.0" style="-fx-background-color: #96cdf7;" stylesheets="@../../StyleSheet/stylesheet.css" text="Xóa món" textFill="WHITE">
+      <Button id="windows2" layoutX="644.0" layoutY="543.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="204.0" stylesheets="@../../StyleSheet/stylesheet.css" text="Xóa món" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
