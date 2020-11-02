@@ -11,8 +11,9 @@ public class addBillAsisstant extends Application{
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("addBill.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,965,760);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		    primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -24,3 +25,5 @@ public class addBillAsisstant extends Application{
 		launch(args);
 	}
 }
+
+
