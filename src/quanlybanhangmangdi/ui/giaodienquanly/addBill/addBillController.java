@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,12 +16,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import quanlybanhangmangdi.database.connection.jdbc.DataHelper;
 
 public class addBillController implements Initializable{
 
+	
+	
+	
+	
+	ObservableList<MonTrongDanhSach> listMon =  FXCollections.observableArrayList();
+	
     @FXML
     private ComboBox<String> chonMon;
 
@@ -47,8 +57,6 @@ public class addBillController implements Initializable{
     @FXML
     private Button cancelButton;
 
-    @FXML
-    private TableView<?> listMon;
 
     @FXML
     private Button xoaMonButton;
@@ -59,6 +67,22 @@ public class addBillController implements Initializable{
     @FXML
     private Label tongGia;
 
+    
+    @FXML
+    private TableView<MonTrongDanhSach> table;
+
+    @FXML
+    private TableColumn<MonTrongDanhSach, String> maMon;
+
+    @FXML
+    private TableColumn<MonTrongDanhSach, String> tenMon;
+
+    @FXML
+    private TableColumn<MonTrongDanhSach, Integer> donGia;
+
+    @FXML
+    private TableColumn<MonTrongDanhSach, Integer> soLuongColumn;
+    
     
     @FXML
     private void addBill(ActionEvent event) {
@@ -121,6 +145,8 @@ public class addBillController implements Initializable{
     	try {
 			chonLoaiMon.setItems(addLoaiMonComboBox());
 			nguonDon.setItems(addNguonDon());
+			initCol(); // tao column cho bang
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -131,5 +157,37 @@ public class addBillController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setup();
+	}
+	
+	// ham tao column khi khoi chay
+	private void initCol() {
+		maMon.setCellValueFactory(new PropertyValueFactory<MonTrongDanhSach, String>("maMon"));
+		tenMon.setCellValueFactory(new PropertyValueFactory<MonTrongDanhSach, String>("tenMon"));
+		donGia.setCellValueFactory(new PropertyValueFactory<MonTrongDanhSach, Integer>("donGia"));
+		soLuongColumn.setCellValueFactory(new PropertyValueFactory<MonTrongDanhSach, Integer>("soLuong"));
+		table.setItems(listMon);
+	}
+	
+	
+	
+	//bat su kien va tao them mon vao listMon
+	@FXML
+	private void themMon(ActionEvent event) throws SQLException {
+		String mon = chonMon.getValue();
+		String sql = "SELECT ma, tenmon,giaban FROM mon\r\n" + 
+				"WHERE tenMon = " + "\"" + mon + "\"";
+		ResultSet rs = DataHelper.execQuery(sql);
+		String maMon = "";
+		String tenMon ="";
+		Integer donGia = 0;
+		while(rs.next()) {
+			maMon = rs.getString("ma");
+			tenMon = rs.getString("tenmon");
+			donGia = rs.getInt("giaban");
+			MonTrongDanhSach monMoi = new MonTrongDanhSach(maMon, tenMon, donGia, Integer.parseInt(soLuong.getText()));
+			listMon.add(monMoi);
+		}
+		
+		
 	}
 }

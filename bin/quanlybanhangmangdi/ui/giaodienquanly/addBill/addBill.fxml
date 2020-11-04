@@ -26,8 +26,8 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ComboBox fx:id="chonMon" layoutX="395.0" layoutY="511.0" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
-      <Button id="windows2" fx:id="themMonButton" layoutX="644.0" layoutY="458.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="204.0" stylesheets="@../../StyleSheet/stylesheet.css" text="Thêm Món" textFill="WHITE">
+      <ComboBox fx:id="chonMon" layoutX="312.0" layoutY="511.0" prefHeight="42.0" prefWidth="255.0" promptText="Chọn Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
+      <Button id="windows2" fx:id="themMonButton" layoutX="644.0" layoutY="458.0" mnemonicParsing="false" onAction="#themMon" prefHeight="63.0" prefWidth="204.0" stylesheets="@../../StyleSheet/stylesheet.css" text="Thêm Món" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -40,7 +40,7 @@
          </graphic>
       </Button>
       <ComboBox fx:id="nguonDon" layoutX="39.0" layoutY="168.0" prefHeight="42.0" prefWidth="204.0" promptText="Nguồn đơn" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-prompt-text-fill: #ffffff;" />
-      <ComboBox fx:id="chonLoaiMon" layoutX="395.0" layoutY="447.0" onAction="#addMon" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
+      <ComboBox fx:id="chonLoaiMon" layoutX="397.0" layoutY="453.0" onAction="#addMon" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
       <TextField fx:id="chietKhau" layoutX="39.0" layoutY="336.0" prefHeight="37.0" prefWidth="221.0" promptText="Chiết Khấu % (Nếu có)" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
          <font>
             <Font size="16.0" />
@@ -62,7 +62,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a86f230" height="55.0" layoutX="279.0" layoutY="14.0" stroke="#96cdf7" strokeType="INSIDE" width="344.0" />
-      <TextField fx:id="soLuong" layoutX="395.0" layoutY="574.0" prefHeight="42.0" prefWidth="172.0" promptText="Số lượng" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
+      <TextField fx:id="soLuong" layoutX="512.0" layoutY="575.0" prefHeight="42.0" prefWidth="50.0" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;" text="1">
          <font>
             <Font size="16.0" />
          </font>
@@ -86,13 +86,12 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <TableView fx:id="listMon" layoutX="316.0" layoutY="137.0" prefHeight="282.0" prefWidth="605.0" style="-fx-text-fill: white;">
+      <TableView fx:id="table" layoutX="316.0" layoutY="137.0" prefHeight="282.0" prefWidth="605.0" style="-fx-text-fill: white;">
          <columns>
-            <TableColumn prefWidth="75.0" style="-fx-background-color: #96cdf7;" text="Mã món" />
-            <TableColumn prefWidth="275.0" style="-fx-background-color: #d5ebfc;" text="Tên món" />
-            <TableColumn prefWidth="94.0" style="-fx-background-color: #96cdf7;" text="Loại món" />
-            <TableColumn prefWidth="98.0" style="-fx-background-color: #d5ebfc;" text="Đơn Giá" />
-            <TableColumn prefWidth="62.0" style="-fx-background-color: #96cdf7;" text="Số lượng" />
+            <TableColumn fx:id="maMon" prefWidth="106.0" style="-fx-background-color: #96cdf7;" text="Mã món" />
+            <TableColumn fx:id="tenMon" prefWidth="292.0" style="-fx-background-color: #d5ebfc;" text="Tên món" />
+            <TableColumn fx:id="donGia" prefWidth="126.0" style="-fx-background-color: #96cdf7;" text="Đơn Giá(VNĐ)" />
+            <TableColumn fx:id="soLuongColumn" prefWidth="79.0" style="-fx-background-color: #d5ebfc;" text="Số lượng" />
          </columns>
       </TableView>
       <Label layoutX="39.0" layoutY="442.0" prefHeight="32.0" prefWidth="159.0" text="Phí dịch vụ: " textFill="#626264">
@@ -114,5 +113,9 @@
       </Button>
       <Label fx:id="phiDichVu" layoutX="150.0" layoutY="450.0" text="pdv" />
       <Label fx:id="tongGia" layoutX="156.0" layoutY="535.0" text="tt" />
+      <Label layoutX="419.0" layoutY="582.0" prefHeight="28.0" prefWidth="111.0" text="Số lượng">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
    </children>
 </AnchorPane>
