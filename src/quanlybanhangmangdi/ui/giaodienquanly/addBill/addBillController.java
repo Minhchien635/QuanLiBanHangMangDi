@@ -27,7 +27,7 @@ public class addBillController implements Initializable{
     private Button themMonButton;
 
     @FXML
-    private ComboBox<?> nguonDon;
+    private ComboBox<String> nguonDon;
 
     @FXML
     private ComboBox<String> chonLoaiMon;
@@ -70,20 +70,66 @@ public class addBillController implements Initializable{
     	String sql = "SELECT * FROM LoaiMon";
     	ResultSet rs = DataHelper.execQuery(sql);
     	while(rs.next()) {
-    		String tenMon = rs.getString("ten");
-    		cacLoaiMon.add(tenMon);
+    		String tenLoaiMon = rs.getString("ten");
+    		cacLoaiMon.add(tenLoaiMon);
     	}
     	
     	return FXCollections.observableArrayList(cacLoaiMon);
     }
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		try {
+    
+    
+    private ObservableList<String> addMonComboBox() throws SQLException {
+    	ArrayList<String> mon = new ArrayList<String>();
+    	String sql = "SELECT loaimon.ten, mon.tenmon FROM mon\r\n" + 
+    			"JOIN loaimon ON mon.maloaimon = loaimon.ma\r\n" + 
+    			"WHERE loaimon.ten = " + "\"" + chonLoaiMon.getValue()+"\"";
+    	ResultSet rs = DataHelper.execQuery(sql);
+    	
+    	while(rs.next()) {
+    		String tenMon = rs.getString("tenmon");
+    		mon.add(tenMon);
+    	}
+    	
+    	return FXCollections.observableArrayList(mon);
+    }
+    
+    
+    //thuc hien khi da chon mon
+    @FXML
+    private void addMon(ActionEvent event) throws SQLException {
+    	chonMon.setItems(addMonComboBox());
+    }
+    
+    
+    //lay nguon don trong database
+    private ObservableList<String> addNguonDon() throws SQLException {
+    	ArrayList<String> nguonDon = new ArrayList<String>();
+    	String sql = "SELECT ten FROM App";
+    	ResultSet rs = DataHelper.execQuery(sql);
+    	
+    	while(rs.next()) {
+    		String tenApp = rs.getString("ten");
+    		nguonDon.add(tenApp);
+    	}
+    	
+    	return FXCollections.observableArrayList(nguonDon);
+    }
+    
+    
+    // Setup cac combobox cho form
+    private void setup() {
+    	try {
 			chonLoaiMon.setItems(addLoaiMonComboBox());
+			nguonDon.setItems(addNguonDon());
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		setup();
 	}
 }

@@ -40,7 +40,7 @@
          </graphic>
       </Button>
       <ComboBox fx:id="nguonDon" layoutX="39.0" layoutY="168.0" prefHeight="42.0" prefWidth="204.0" promptText="Nguồn đơn" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-prompt-text-fill: #ffffff;" />
-      <ComboBox fx:id="chonLoaiMon" layoutX="395.0" layoutY="447.0" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
+      <ComboBox fx:id="chonLoaiMon" layoutX="395.0" layoutY="447.0" onAction="#addMon" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
       <TextField fx:id="chietKhau" layoutX="39.0" layoutY="336.0" prefHeight="37.0" prefWidth="221.0" promptText="Chiết Khấu % (Nếu có)" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
          <font>
             <Font size="16.0" />

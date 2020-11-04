@@ -31,7 +31,7 @@ public class MySQLConnUtils {
  
      // Cấu trúc URL Connection dành cho Oracle
      // Ví dụ: jdbc:mysql://localhost:3306/simplehr
-     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName + "?autoReconnect=true&useSSL=false";
  
      Connection conn = DriverManager.getConnection(connectionURL, userName,
              password);
