@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -53,7 +56,7 @@ public class addBillController implements Initializable{
     private TextField maDonApp;
 
     @FXML
-    private TextField soLuong;
+    private Label soLuong;
 
     @FXML
     private Button saveButton;
@@ -66,10 +69,13 @@ public class addBillController implements Initializable{
     private Button xoaMonButton;
 
     @FXML
-    private Label phiDichVu;
+    private Label phiDichVuLabel;
 
     @FXML
-    private Label tongGia;
+    private Label tongThuLabel;
+    
+    @FXML
+    private Label tongGiaLabel;
 
     
     @FXML
@@ -93,7 +99,8 @@ public class addBillController implements Initializable{
     @FXML
     private TextField timeLabel;
 
-    
+    @FXML
+    private Label chietKhauLabel;
     
     @FXML
     private void addBill(ActionEvent event) {
@@ -156,6 +163,7 @@ public class addBillController implements Initializable{
     	try {
 			chonLoaiMon.setItems(addLoaiMonComboBox());
 			nguonDon.setItems(addNguonDon());
+			nguonDon.getSelectionModel().selectFirst();
 			initCol(); // tao column cho bang
 			setDefaultDateTime(); // lay time
 			
@@ -200,13 +208,23 @@ public class addBillController implements Initializable{
 		}
 		
 		
+		thayDoiPhiDichVuVaTongThu();
+		
 	}
 	
 	
 	@FXML
-	private void xoaMon(ActionEvent event) {
-		listMon.removeAll(table.getSelectionModel().getSelectedItem());
-		System.out.println("Hello world");
+	private void xoaMon(ActionEvent event) throws SQLException {
+		if(table.getSelectionModel().getSelectedIndex()>0)
+		
+		{
+			listMon.removeAll(table.getSelectionModel().getSelectedItem());
+			tinhTongGia();
+			thayDoiPhiDichVuVaTongThu();
+		}
+			
+		
+		
 	}
 	
 	
@@ -214,5 +232,96 @@ public class addBillController implements Initializable{
 	private void setDefaultDateTime() {
 		Calendar cal = Calendar.getInstance();
 		datePicker.setValue(LocalDate.now());
+		
+
+		LocalTime time = LocalTime.now();
+		DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+		String timeString = time.format(myFormat);
+		timeLabel.setText(timeString);
+		
+		
+	}
+	
+	@FXML
+	private void tangSoLuong(ActionEvent event) {
+		soLuong.setText((Integer.parseInt(soLuong.getText())+1)+"");
+		
+	}
+	
+	
+	@FXML
+	private void giamSoLuong(ActionEvent event) {
+		if(Integer.parseInt(soLuong.getText())<=1) {
+			return;
+		}
+		
+		soLuong.setText((Integer.parseInt(soLuong.getText())-1)+"");
+	}
+	
+	
+	
+	// Hien thi tien khi co thay doi.
+	private int tinhTongGia() {
+		int tong = 0;
+		for(MonTrongDanhSach monTrongDanhSach : listMon) {
+			tong += monTrongDanhSach.getDonGia()*monTrongDanhSach.getSoLuong();
+		}
+		return tong;
+	}
+	
+	private int layPhanTramPhiDichVu() throws SQLException {
+		int phiDichVu = 0;
+		String nguonDonString = nguonDon.getValue();
+		
+		String sql = "SELECT * FROM App\r\n" + 
+				"WHERE ten = " + "\"" + nguonDonString +"\"" ;
+		ResultSet rs = DataHelper.execQuery(sql);
+		while(rs.next()) {
+			phiDichVu = rs.getInt("phidichvu");
+		}
+		return phiDichVu;
+	}
+	
+	private int tinhPhiDichVu() throws SQLException {
+		
+		return (tinhTongGia()*layPhanTramPhiDichVu())/100;
+	}
+	
+	
+	@FXML
+	private void phiDichVu() throws SQLException {
+		phiDichVuLabel.setText(tinhPhiDichVu()+"đ");
+	}
+	
+	private int lamTronTien(int tien) {
+		int le = tien % 1000;
+		if (le == 500 || le == 0) {
+			return tien;
+		}
+		if (le > 0 && le < 500) {
+			return tien - le + 500;
+		}
+		
+		return tien - le + 1000;
+	}
+	
+	private int tinhTongThu() throws SQLException {
+		return lamTronTien(tinhTongGia()*(100-layPhanTramPhiDichVu())/100-tinhChietKhau());
+	}
+	
+	private int tinhChietKhau() {
+		return tinhTongGia()*Integer.parseInt(chietKhau.getText())/100;
+	}
+	
+	private void tongThu() throws SQLException {
+		tongThuLabel.setText(tinhTongThu()+"đ");
+	}
+	
+	@FXML
+	private void thayDoiPhiDichVuVaTongThu() throws SQLException {
+		tongThu();
+		phiDichVu();
+		chietKhauLabel.setText(tinhChietKhau()+"đ");
+		tongGiaLabel.setText(tinhTongGia()+"đ");
 	}
 }

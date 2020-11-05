@@ -2,6 +2,7 @@ package quanlybanhangmangdi.ui.giaodienquanly;
 
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,13 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class MenuModuleController implements Initializable{
 		
@@ -88,11 +94,37 @@ public class MenuModuleController implements Initializable{
 		}
 	}
 
+    @FXML
+    private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
+    	Stage primaryStage = new Stage();
+ 
+    	Parent root = FXMLLoader.load(getClass().getResource("addBill/addBill.fxml"));
+		Scene scene = new Scene(root,965,760);
+		scene.getStylesheets().add(getClass().getResource("addBill/application.css").toExternalForm());
+	    primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+    }
+    @FXML
+    private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {
+    	Stage primaryStage = new Stage();
+ 
+    	Parent root = FXMLLoader.load(getClass().getResource("editBill/editBill.fxml"));
+		Scene scene = new Scene(root,965,760);
+		scene.getStylesheets().add(getClass().getResource("editBill/application.css").toExternalForm());
+	    primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//Set table view DonHang
+		
 		
 	}
+	
+	
+
 
 
 }

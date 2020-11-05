@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -16,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.ui.login.LoginController">
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #0F89E5;" BorderPane.alignment="CENTER">
          <children>
@@ -65,46 +62,34 @@
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-border-color: #0F89E5; -fx-background-color: transparent;" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="131.0" layoutY="175.0" promptText="Tên Tài Khoản" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField layoutX="130.0" layoutY="220.0" promptText="Mật Khẩu" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="133.0" layoutY="330.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #0598ff;" text="ĐĂNG NHẬP" textFill="WHITE">
+            <TextField fx:id="taiKhoanTextField" layoutX="118.0" layoutY="175.0" promptText="Tên Tài Khoản" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="matKhauTextField" layoutX="119.0" layoutY="236.0" promptText="Mật Khẩu" style="-fx-background-color: transparent; -fx-border-color: #0598ff; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="dangNhapButton" layoutX="114.0" layoutY="339.0" mnemonicParsing="false" onAction="#kiemTraTaiKhoanHopLe" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #0598ff;" text="ĐĂNG NHẬP" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Hyperlink layoutX="144.0" layoutY="438.0" text="Quên Mật Khẩu?" underline="true" />
-            <Label layoutX="124.0" layoutY="101.0" text="Đăng Nhập" textFill="#0f89e5">
+            <Hyperlink layoutX="126.0" layoutY="444.0" text="Quên Mật Khẩu?" underline="true" />
+            <Label layoutX="106.0" layoutY="98.0" text="Đăng Nhập" textFill="#0f89e5">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="167.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="149.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/users.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="90.0" layoutX="96.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="90.0" layoutX="69.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/man.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="55.0" layoutX="175.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/key.jpg" />
-               </image>
-            </ImageView>
-            <ComboBox layoutX="206.0" layoutY="268.0" prefHeight="25.0" prefWidth="130.0" promptText="Chọn Quyền" style="-fx-background-color: #84c4f4; -fx-text-fill: #ffffff;">
-            	<items>
-            		<FXCollections fx:factory="observableArrayList">
-            			<String fx:value="Nhân Viên" />
-            			<String fx:value="Quản Lý" />
-            		</FXCollections>
-            	</items>
-            </ComboBox>
-            <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="91.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="64.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/OKhoa.png" />
                </image>
             </ImageView>
+            <Label fx:id="trangThaiLabel" layoutX="55.0" layoutY="290.0" textFill="RED" />
            
          </children>
       </AnchorPane>

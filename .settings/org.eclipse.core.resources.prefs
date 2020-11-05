@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//src/quanlybanhangmangdi/database/connection/jdbc/ConnectionUtils.java=UTF-8
 encoding//src/quanlybanhangmangdi/database/connection/jdbc/MySQLConnUtils.java=UTF-8
 encoding//src/quanlybanhangmangdi/ui/giaodienquanly/MenuModuleController.java=UTF-8
+encoding//src/quanlybanhangmangdi/ui/giaodienquanly/addBill/addBillController.java=UTF-8
+encoding//src/quanlybanhangmangdi/ui/login/LoginController.java=UTF-8
