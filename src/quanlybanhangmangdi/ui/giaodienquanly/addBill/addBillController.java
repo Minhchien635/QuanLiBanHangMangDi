@@ -209,6 +209,8 @@ public class addBillController implements Initializable{
 		System.out.println("Hello world");
 	}
 	
+	
+	// dat thoi gian mat dinh cho label Date
 	private void setDefaultDateTime() {
 		Calendar cal = Calendar.getInstance();
 		datePicker.setValue(LocalDate.now());
