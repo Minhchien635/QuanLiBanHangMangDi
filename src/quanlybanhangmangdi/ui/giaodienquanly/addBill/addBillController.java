@@ -1,9 +1,12 @@
 package quanlybanhangmangdi.ui.giaodienquanly.addBill;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -15,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -83,6 +87,13 @@ public class addBillController implements Initializable{
     @FXML
     private TableColumn<MonTrongDanhSach, Integer> soLuongColumn;
     
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private TextField timeLabel;
+
+    
     
     @FXML
     private void addBill(ActionEvent event) {
@@ -146,7 +157,7 @@ public class addBillController implements Initializable{
 			chonLoaiMon.setItems(addLoaiMonComboBox());
 			nguonDon.setItems(addNguonDon());
 			initCol(); // tao column cho bang
-			
+			setDefaultDateTime(); // lay time
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -189,5 +200,17 @@ public class addBillController implements Initializable{
 		}
 		
 		
+	}
+	
+	
+	@FXML
+	private void xoaMon(ActionEvent event) {
+		listMon.removeAll(table.getSelectionModel().getSelectedItem());
+		System.out.println("Hello world");
+	}
+	
+	private void setDefaultDateTime() {
+		Calendar cal = Calendar.getInstance();
+		datePicker.setValue(LocalDate.now());
 	}
 }
