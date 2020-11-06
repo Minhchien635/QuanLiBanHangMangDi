@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: quanlybanhang
+-- Host: localhost    Database: quanlybanhang
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -36,7 +36,7 @@ CREATE TABLE `app` (
 
 LOCK TABLES `app` WRITE;
 /*!40000 ALTER TABLE `app` DISABLE KEYS */;
-INSERT INTO `app` VALUES ('baemi','Baemin',20),('gofoo','Go Food',20),('grabf','Grab Food',30),('nowfo','Now',20),('taqua','Tại Quán',0);
+INSERT INTO `app` VALUES ('1tqua','Tại Quán',0),('baemi','Baemin',20),('gofoo','Go Food',20),('grabf','Grab Food',30),('nowfo','Now',20);
 /*!40000 ALTER TABLE `app` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-29 13:12:41
+-- Dump completed on 2020-11-06 13:33:35

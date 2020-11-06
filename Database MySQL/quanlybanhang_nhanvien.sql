@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: quanlybanhang
+-- Host: localhost    Database: quanlybanhang
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -27,6 +27,10 @@ CREATE TABLE `nhanvien` (
   `machucvu` int DEFAULT NULL,
   `hoten` varchar(40) DEFAULT NULL,
   `dienthoai` varchar(10) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `taikhoan` varchar(50) DEFAULT NULL,
+  `matkhau` varchar(50) DEFAULT NULL,
+  `gioitinh` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`ma`),
   KEY `FK_ChucVu` (`machucvu`),
   CONSTRAINT `FK_ChucVu` FOREIGN KEY (`machucvu`) REFERENCES `chucvu` (`ma`)
@@ -39,7 +43,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,2,'Trần Phước An','0333487982'),(2,2,'Trần Lê Anh Khôi','0167222394'),(3,1,'Trần Minh Chiến','0987325341'),(4,1,'Hoa Thanh Danh','054132348');
+INSERT INTO `nhanvien` VALUES (1,2,'Trần Phước An','0333487982','anhanpro2k@gmail.com','anhanpro2k','123456',NULL),(2,1,'Trần Lê Anh Khôi','0167222394','khoi@gmail.com','khoipro123','123456',NULL),(3,1,'Trần Minh Chiến','0987325341','chienpro123@gmail.com','chienpro123','123456',NULL),(4,1,'Hoa Thanh Danh','054132348','danhpro123@gmail.com','danhpro123','123456',NULL);
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-29 13:12:41
+-- Dump completed on 2020-11-06 13:33:35

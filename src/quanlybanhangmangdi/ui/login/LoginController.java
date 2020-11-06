@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import quanlybanhangmangdi.database.Controller;
+import quanlybanhangmangdi.controller.DAO;
 import quanlybanhangmangdi.database.connection.jdbc.DataHelper;
 import quanlybanhangmangdi.model.NhanVien;
 
@@ -36,7 +36,7 @@ public class LoginController implements Initializable{
 	
 	private TaiKhoan tk = new TaiKhoan();
 	
-	private ArrayList<NhanVien> danhSachNhanVien = Controller.getDuLieuNhanVien();
+	private ArrayList<NhanVien> danhSachNhanVien = DAO.getDuLieuNhanVien();
 	
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {

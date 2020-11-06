@@ -42,7 +42,7 @@
       </Button>
       <ComboBox fx:id="nguonDon" layoutX="133.0" layoutY="170.0" onAction="#thayDoiPhiDichVuVaTongThu" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-prompt-text-fill: #ffffff;" />
       <ComboBox fx:id="chonLoaiMon" layoutX="397.0" layoutY="453.0" onAction="#addMon" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
-      <TextField fx:id="chietKhau" layoutX="39.0" layoutY="336.0" prefHeight="37.0" prefWidth="221.0" promptText="Chiết Khấu % (Nếu có)" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;">
+      <TextField fx:id="chietKhau" layoutX="204.0" layoutY="334.0" prefHeight="38.0" prefWidth="55.0" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;" text="0">
          <font>
             <Font size="16.0" />
          </font>
@@ -107,7 +107,7 @@
          </graphic>
       </Button>
       <Label fx:id="phiDichVuLabel" layoutX="151.0" layoutY="470.0" text="0đ" />
-      <Label fx:id="tongThuLabel" layoutX="150.0" layoutY="572.0" text="0đ" />
+      <Label fx:id="tongThuLabel" layoutX="151.0" layoutY="572.0" text="0đ" />
       <Label layoutX="362.0" layoutY="581.0" prefHeight="28.0" prefWidth="111.0" text="Số lượng:">
          <font>
             <Font size="19.0" />
@@ -153,6 +153,11 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="chietKhauLabel" layoutX="146.0" layoutY="538.0" text="0đ" />
+      <Label fx:id="chietKhauLabel" layoutX="151.0" layoutY="538.0" text="0đ" />
+      <Label layoutX="41.0" layoutY="340.0" text="Chiết Khấu(%)">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

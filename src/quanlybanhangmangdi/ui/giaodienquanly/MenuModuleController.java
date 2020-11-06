@@ -103,6 +103,7 @@ public class MenuModuleController implements Initializable{
 		scene.getStylesheets().add(getClass().getResource("addBill/application.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
+		primaryStage.requestFocus();
 		primaryStage.show();
     }
     @FXML

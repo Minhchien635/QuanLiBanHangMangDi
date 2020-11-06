@@ -1,4 +1,4 @@
-package quanlybanhangmangdi.database;
+package quanlybanhangmangdi.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import quanlybanhangmangdi.database.connection.jdbc.DataHelper;
 import quanlybanhangmangdi.model.NhanVien;
 
-public class Controller {
+public class DAO {
 	public static ArrayList<NhanVien> getDuLieuNhanVien() {
 		ArrayList<NhanVien> danhSachNhanVien = new ArrayList<NhanVien>();
 		String sql = "SELECT * FROM nhanvien";
