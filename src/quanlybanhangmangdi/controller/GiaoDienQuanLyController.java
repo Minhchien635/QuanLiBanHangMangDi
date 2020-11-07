@@ -107,7 +107,6 @@ public class GiaoDienQuanLyController implements Initializable{
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		
-		primaryStage.setFullScreen(true);
 		
 		primaryStage.show();
     }
@@ -134,6 +133,7 @@ public class GiaoDienQuanLyController implements Initializable{
 		
 		
 	}
+	
 	
 	
 
