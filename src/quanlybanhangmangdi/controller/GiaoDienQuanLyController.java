@@ -106,20 +106,16 @@ public class GiaoDienQuanLyController implements Initializable{
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
+		
+		primaryStage.setFullScreen(true);
+		
 		primaryStage.show();
     }
 
     @FXML
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
-    	Stage primaryStage = new Stage();
- 
-    	Parent root = FXMLLoader.load(getClass().getResource("addBill/addBill.fxml"));
-		Scene scene = new Scene(root,965,760);
-		scene.getStylesheets().add(getClass().getResource("addBill/application.css").toExternalForm());
-	    primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.requestFocus();
-		primaryStage.show();
+    	AddBillController addBill = new AddBillController();
+    	addBill.show();
     }
     @FXML
     private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {

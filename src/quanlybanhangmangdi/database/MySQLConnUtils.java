@@ -15,7 +15,7 @@ public class MySQLConnUtils {
      String userName = "root";
      
      //pass thay đổi theo mật khẩu root của workbench
-     String password = "Rvpvnvp098765";
+     String password = "Anhanpro0#";
  
      return getMySQLConnection(hostName, dbName, userName, password);
  }
