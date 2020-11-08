@@ -2,11 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyNhanVienController">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="1078.0" prefWidth="383.0" style="-fx-background-color: d5ebfc;">
          <children>
@@ -129,6 +125,12 @@
                            <font>
                               <Font size="18.0" />
                            </font></Button>
+                        <Label layoutX="54.0" layoutY="23.0" text="Tài Khoản">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="219.0" layoutY="27.0" text="UserId" />
                      </children>
                      <VBox.margin>
                         <Insets top="50.0" />
@@ -162,86 +164,9 @@
       </AnchorPane>
       <AnchorPane layoutX="385.0" layoutY="-7.0" prefHeight="1086.0" prefWidth="1535.0">
          <children>
-            <Pane fx:id="pane_BaoCao" prefHeight="1087.0" prefWidth="1539.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Label layoutX="311.0" layoutY="24.0" text="Báo Cáo" />
-               </children>
-            </Pane>
-            <Pane fx:id="pane_Menu" prefHeight="618.0" prefWidth="654.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="pane_ThuChi" layoutY="-1.0" prefHeight="1086.0" prefWidth="1537.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Label layoutX="600.0" layoutY="-95.0" prefHeight="190.0" prefWidth="320.0" style="-fx-background-color: #084675; -fx-background-radius: 70;" textFill="#f2e8e8" />
-                  <Label layoutX="685.0" layoutY="14.0" text="Báo cáo" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="35.0" />
-                     </font>
-                  </Label>
-                  <TableView layoutX="125.0" layoutY="202.0" prefHeight="800.0" prefWidth="1298.0">
-                    <columns>
-                      <TableColumn prefWidth="104.0" text="Mã nhân viên" />
-                      <TableColumn prefWidth="100.0" text="C2" />
-                        <TableColumn prefWidth="84.0" text="C2" />
-                        <TableColumn prefWidth="12.0" text="C2" />
-                        <TableColumn prefWidth="120.0" text="C2" />
-                    </columns>
-                  </TableView>
-                  <ComboBox layoutX="50.0" layoutY="132.0" prefHeight="33.0" prefWidth="196.0" promptText="Thu chi theo tháng" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
-                  <DatePicker layoutX="257.0" layoutY="132.0" prefHeight="34.0" prefWidth="214.0" promptText="Thu chi theo ngày" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
-               </children>
-            </Pane>
-            <Pane fx:id="pane_AppGiaoHang" prefHeight="1086.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Label layoutX="300.0" layoutY="14.0" text="App Giao Hàng" />
-               </children>
-            </Pane>
             <Pane fx:id="pane_NhanVien" prefHeight="1086.0" prefWidth="1535.0" style="-fx-background-color: #fff;">
                <children>
                   <Label layoutX="300.0" layoutY="14.0" text="Nhân Viên" />
-               </children>
-            </Pane>
-            <Pane fx:id="pane_DonHang" layoutX="-2.0" layoutY="7.0" prefHeight="1090.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
-               <children>
-                  <TableView fx:id="tableDonHang1" layoutX="75.0" layoutY="467.0" prefHeight="535.0" prefWidth="1345.0" style="-fx-font-size: 16px;">
-                     <columns>
-                        <TableColumn fx:id="maDon1" prefWidth="112.0" style="-fx-background-color: #96cdf7;" text="Mã đơn" />
-                        <TableColumn fx:id="ngay1" prefWidth="142.0" style="-fx-background-color: #d5ebfc;" text="Thời Gian" />
-                        <TableColumn prefWidth="167.0" style="-fx-background-color: #96cdf7;" text="Nhân Viên" />
-                        <TableColumn fx:id="tenApp1" prefWidth="144.0" style="-fx-background-color: #d5ebfc;" text="Nguồn đơn" />
-                        <TableColumn prefWidth="138.0" style="-fx-background-color: #96cdf7;" text="Mã đơn App" />
-                        <TableColumn fx:id="tongMon1" prefWidth="103.0" style="-fx-background-color: #d5ebfc;" text="Tổng Món" />
-                        <TableColumn fx:id="chietKhau1" prefWidth="139.0" style="-fx-background-color: #96cdf7;" text="Chiết Khấu" />
-                        <TableColumn prefWidth="120.0" style="-fx-background-color: #d5ebfc;" text="Tổng tiền" />
-                        <TableColumn minWidth="0.0" prefWidth="138.0" style="-fx-background-color: #96cdf7;" text="Phí Dịch Vụ" />
-                        <TableColumn prefWidth="140.0" style="-fx-background-color: #d5ebfc;" text="Tổng Thu" />
-                     </columns>
-                  </TableView>
-                  <Button id="bevel" layoutX="805.0" layoutY="272.0" mnemonicParsing="false" onAction="#moGiaoDienThemDonHang" prefHeight="42.0" prefWidth="104.0" stylesheets="@stylesheet/stylesheet.css" text="Add" />
-                  <Button layoutX="1041.0" layoutY="272.0" mnemonicParsing="false" onAction="#moGiaoDienSuaDonHang" prefHeight="42.0" prefWidth="64.0" text="Edit" />
-                  <Button layoutX="1181.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" text="Delete" />
-                  <Button layoutX="1345.0" layoutY="272.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" text="Print" />
-                  <Pane layoutX="551.0" layoutY="-159.0" prefHeight="263.0" prefWidth="467.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
-                     <children>
-                        <Label fx:id="btn_Title1" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="185.0" text="Quản Lý Đơn Hàng" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="38.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <TableView layoutX="75.0" layoutY="184.0" prefHeight="218.0" prefWidth="568.0">
-                    <columns>
-                      <TableColumn prefWidth="218.66668701171875" style="-fx-background-color: #96cdf7;" text="Tên món" />
-                      <TableColumn prefWidth="163.33331298828125" style="-fx-background-color: #d5ebfc;" text="Loại món" />
-                        <TableColumn prefWidth="94.6666259765625" style="-fx-background-color: #96cdf7;" text="Số lượng" />
-                        <TableColumn prefWidth="91.6666259765625" style="-fx-background-color: #d5ebfc;" text="Đơn Giá" />
-                    </columns>
-                  </TableView>
-                  <ComboBox layoutX="1270.0" layoutY="412.0" prefWidth="150.0" promptText="Bộ lọc" />
-                  <Label layoutX="97.0" layoutY="142.0" prefHeight="33.0" prefWidth="339.0" text="Danh Sách Món Của Đơn Hàng:" textFill="#084675">
-                     <font>
-                        <Font name="System Bold" size="19.0" />
-                     </font>
-                  </Label>
                </children>
             </Pane>
          </children>

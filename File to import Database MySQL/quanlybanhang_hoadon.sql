@@ -23,16 +23,16 @@ DROP TABLE IF EXISTS `hoadon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hoadon` (
-  `Ma` varchar(5) NOT NULL,
+  `ma` varchar(10) NOT NULL,
   `MaNV` int DEFAULT NULL,
   `ThoiGian` datetime DEFAULT NULL,
-  `MaApp` varchar(5) NOT NULL,
+  `MaApp` varchar(5) DEFAULT NULL,
   `TongTienThu` int DEFAULT NULL,
   `MaDonTrenApp` varchar(20) DEFAULT NULL,
   `ChietKhau` int DEFAULT NULL,
-  `TongTien` int NOT NULL,
+  `TongGia` int NOT NULL,
   `PhiDichVu` int NOT NULL,
-  PRIMARY KEY (`Ma`),
+  PRIMARY KEY (`ma`),
   UNIQUE KEY `MaDonTrenApp` (`MaDonTrenApp`),
   KEY `FK_NhanVien` (`MaNV`),
   KEY `FK_App` (`MaApp`),
@@ -47,7 +47,6 @@ CREATE TABLE `hoadon` (
 
 LOCK TABLES `hoadon` WRITE;
 /*!40000 ALTER TABLE `hoadon` DISABLE KEYS */;
-INSERT INTO `hoadon` VALUES ('B2301',3,'2020-10-27 09:15:20','BAEMI',67500,'040620-EDJX-7459 ',0,0,0),('G0102',3,'2020-10-27 07:13:19','GOFOO',106000,'F-996059967 ',0,0,0),('G2010',4,'2020-10-27 19:20:14','GOFOO',31500,'F-996059982 ',0,0,0),('N0213',4,'2020-10-27 18:15:30','NOWFO',52000,'21039-392889126 ',0,0,0);
 /*!40000 ALTER TABLE `hoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-07 19:23:50
+-- Dump completed on 2020-11-08 20:42:28

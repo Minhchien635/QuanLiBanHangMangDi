@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -33,6 +35,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import quanlybanhangmangdi.database.DataHelper;
+import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.DonHang;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
 
 public class AddBillController implements Initializable{
@@ -108,7 +113,7 @@ public class AddBillController implements Initializable{
     @FXML
     private Label chietKhauLabel;
     
-    
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
     
     
     public void show() throws IOException {
@@ -122,10 +127,52 @@ public class AddBillController implements Initializable{
 		primaryStage.setScene(scene);
 		primaryStage.show();
     }
+    
+    
+    //Luu mon vao database
     @FXML
-    private void addBill(ActionEvent event) {
+    private void addBill(ActionEvent event) throws ParseException {
+    	java.util.Date t = sdf.parse(datePicker.getValue().format(DateTimeFormatter.ofPattern("dd/M/yyyy"))+" "+timeLabel.getText());
+    	String maApp = getMaAppTuTenApp(nguonDon.getValue());
+    	
+    	// lay ma mon
+    	String maDonTrongApp = maDonApp.getText();
+    	
+    	
+    	ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
+    	for(MonTrongDanhSach mon : listMon) {
+    		danhSachChiTiet.add(new ChiTietHoaDon(mon.getMaMon(), mon.getSoLuong()));
+    	}
+    	
+    	int phiDichVu = Integer.parseInt(phiDichVuLabel.getText());
+    	int tongGia = Integer.parseInt(tongGiaLabel.getText());
+    	int chietKhau = Integer.parseInt(chietKhauLabel.getText());
+    	int tongThu = Integer.parseInt(tongThuLabel.getText());
+    	
+    	DonHang donMoi = new DonHang(Test.nhanVien.getMaNhanVien(), t, maApp, maDonApp.getText(), tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet); 
+    	
+    	if(donMoi.luuDatabase()) System.out.println("Luu thanh cong");
+    	//new DonHang(Test.nhanVien.getMaNhanVien(),t, 1,maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet)
+    }
+    
+    private String getMaAppTuTenApp(String tenApp)  {
+    	String sql = "SELECT ma app\r\n" + 
+    			"WHERE ten = " + "\"" + tenApp +"\"";
+    	ResultSet rs = DataHelper.execQuery(sql);
+    		String maApp;
+			try {
+				maApp = rs.getString("ma");
+	        	return maApp;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
     	
     }
+    
+    
+
     
     private ObservableList<String> addLoaiMonComboBox() throws SQLException {
     	ArrayList<String> cacLoaiMon = new ArrayList<String>();

@@ -65,7 +65,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a86f230" height="55.0" layoutX="279.0" layoutY="14.0" stroke="#96cdf7" strokeType="INSIDE" width="344.0" />
       <Line endX="-24.0" endY="21.5" layoutX="668.0" layoutY="468.0" startX="-101.0" stroke="#96cdf7" />
       <Line endX="-24.0" endY="-43.5" layoutX="668.0" layoutY="533.0" startX="-100.0" stroke="#96cdf7" />
-      <Button id="windows2" fx:id="saveButton" layoutX="23.0" layoutY="657.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="437.0" stylesheets="@StyleSheet/stylesheet.css" text="  Lưu">
+      <Button id="windows2" fx:id="saveButton" layoutX="23.0" layoutY="657.0" mnemonicParsing="false" onAction="#addBill" prefHeight="95.0" prefWidth="437.0" stylesheets="@StyleSheet/stylesheet.css" text="  Lưu">
          <graphic>
             <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                <image>

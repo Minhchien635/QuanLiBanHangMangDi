@@ -36,7 +36,7 @@ CREATE TABLE `app` (
 
 LOCK TABLES `app` WRITE;
 /*!40000 ALTER TABLE `app` DISABLE KEYS */;
-INSERT INTO `app` VALUES ('1tqua','Tại Quán',0),('baemi','Baemin',20),('gofoo','Go Food',20),('grabf','Grab Food',30),('nowfo','Now',20);
+INSERT INTO `app` VALUES ('atqua','Tại Quán',0),('baemi','Baemin',20),('gofoo','Go Food',20),('grabf','Grab Food',30),('nowfo','Now',20);
 /*!40000 ALTER TABLE `app` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-07 19:23:49
+-- Dump completed on 2020-11-08 20:42:28

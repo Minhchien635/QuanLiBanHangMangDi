@@ -1,7 +1,7 @@
 package quanlybanhangmangdi.controller;
 
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.main.*;
 
 public class LoginController implements Initializable{
 
@@ -53,7 +55,7 @@ public class LoginController implements Initializable{
 	}
 	
 	@FXML
-	public void kiemTraTaiKhoanHopLe() throws IOException {
+	public void kiemTraTaiKhoanHopLe(ActionEvent event) throws IOException {
 		
 		if(taiKhoanTextField.getText().equals("")&&matKhauTextField.getText().equals("")) {
 			trangThaiLabel.setText("Vui lòng nhập tài khoản và mật khẩu");
@@ -61,6 +63,7 @@ public class LoginController implements Initializable{
 			if(kiemTraTaiKhoanTonTai(taiKhoanTextField.getText())) {
 				if(kiemTraMatKhau(taiKhoanTextField.getText(), matKhauTextField.getText())) {
 					System.out.println("Dang nhap thanh cong");
+					((Node)event.getSource()).getScene().getWindow().hide();
 					if(kiemTraQuyenTaiKhoan(taiKhoanTextField.getText())==2) {
 						moGiaoDienQuanLy();
 					} else {
@@ -80,16 +83,19 @@ public class LoginController implements Initializable{
 	}
 
 	private void moGiaoDienQuanLy() throws IOException {
-		MenuQuanLyController menuQuanLyController = new MenuQuanLyController();
-		menuQuanLyController.show();
-		
+		MenuQuanLyController menuQuanLy = new MenuQuanLyController();
+		menuQuanLy.show();
 	}
 
 	public boolean kiemTraMatKhau(String taiKhoan, String matKhau) {
 		for(NhanVien nhanVien : danhSachNhanVien) {
 			if(nhanVien.getTaiKhoan().equals(taiKhoan)) {
 				if(nhanVien.getMatKhau().equals(matKhau))
+				{
+					Test.nhanVien = nhanVien;
 					return true;
+				}
+					
 			}
 		}
 		return false;

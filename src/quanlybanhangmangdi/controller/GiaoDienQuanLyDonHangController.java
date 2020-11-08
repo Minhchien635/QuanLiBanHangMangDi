@@ -4,6 +4,7 @@ package quanlybanhangmangdi.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -22,9 +23,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-public class GiaoDienQuanLyController implements Initializable{
-		
+public class GiaoDienQuanLyDonHangController implements Initializable{
 		
 		
 		@FXML
@@ -69,44 +70,50 @@ public class GiaoDienQuanLyController implements Initializable{
 	    
 	    
 	    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-		if(event.getSource() == btn_DonHang) {
-			pane_DonHang.toFront();
-			btn_Title.setText("Quản Lý Đơn Hàng");
+	    @FXML
+	    private void handleButtonAction(ActionEvent event) throws IOException {
+	    	if(event.getSource() == btn_DonHang) {
+	    		return ;
+			}
+	    	else if(event.getSource() == btn_Menu) {
+				GiaoDienQuanLyMenuController menu = new GiaoDienQuanLyMenuController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
+			else if(event.getSource() == btn_AppGiaoHang) {
+				GiaoDienQuanLyAppController menu = new GiaoDienQuanLyAppController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
+			else if(event.getSource() == btn_NhanVien) {
+				GiaoDienQuanLyNhanVienController menu = new GiaoDienQuanLyNhanVienController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
+			else if(event.getSource() == btn_ThuChi) {
+				GiaoDienQuanLyThuChiController menu = new GiaoDienQuanLyThuChiController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
+			else if(event.getSource() == btn_BaoCao) {
+				GiaoDienQuanLyBaoCaoController menu = new GiaoDienQuanLyBaoCaoController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
 		}
-		else if(event.getSource() == btn_Menu) {
-			pane_Menu.toFront();
-			btn_Title.setText("Quản Lý Menu");
-		}
-		else if(event.getSource() == btn_AppGiaoHang) {
-			pane_AppGiaoHang.toFront();
-			btn_Title.setText("Quản Lý Các App");
-		}
-		else if(event.getSource() == btn_NhanVien) {
-			pane_NhanVien.toFront();
-			btn_Title.setText("Quản Lý Nhân Viên");
-		}
-		else if(event.getSource() == btn_ThuChi) {
-			pane_ThuChi.toFront();
-			btn_Title.setText("Quản lý Thu Chi");
-		}
-		else if(event.getSource() == btn_BaoCao) {
-			pane_BaoCao.toFront();
-			btn_Title.setText("Báo cáo");
-		}
-	}
     
     public void show() throws IOException {
     			
 		Stage primaryStage = new Stage();
 		 
-    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLy.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyDonHang.fxml"));
 		Scene scene = new Scene(root,1920,1080);
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
+	
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
-		
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+
 		
 		primaryStage.show();
     }

@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `chitiethoadon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chitiethoadon` (
-  `mahd` varchar(5) NOT NULL,
+  `mahd` varchar(10) NOT NULL,
   `mamon` varchar(5) NOT NULL,
   `soluong` int DEFAULT NULL,
   PRIMARY KEY (`mahd`,`mamon`),
   KEY `FK_Mon` (`mamon`),
-  CONSTRAINT `FK_HoaDon` FOREIGN KEY (`mahd`) REFERENCES `hoadon` (`Ma`),
+  CONSTRAINT `FK_HoaDon` FOREIGN KEY (`mahd`) REFERENCES `hoadon` (`ma`),
   CONSTRAINT `FK_Mon` FOREIGN KEY (`mamon`) REFERENCES `mon` (`ma`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,7 +39,6 @@ CREATE TABLE `chitiethoadon` (
 
 LOCK TABLES `chitiethoadon` WRITE;
 /*!40000 ALTER TABLE `chitiethoadon` DISABLE KEYS */;
-INSERT INTO `chitiethoadon` VALUES ('B2301','buhdo',2),('B2301','bulga',1),('B2301','cafe',1),('G0102','buhki',1),('G0102','buthe',1),('G0102','cfsua',1),('G2010','bulga',1),('G2010','buthe',2),('G2010','longa',1),('N0213','bulga',1);
 /*!40000 ALTER TABLE `chitiethoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-07 19:23:49
+-- Dump completed on 2020-11-08 20:42:28
