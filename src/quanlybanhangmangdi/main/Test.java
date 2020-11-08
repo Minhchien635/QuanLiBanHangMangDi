@@ -41,7 +41,7 @@ public class Test extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		showAddBill();
+		showLogin();
 	}
 	
 	private void showLogin() throws IOException {

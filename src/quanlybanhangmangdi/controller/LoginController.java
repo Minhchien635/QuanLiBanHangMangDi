@@ -77,6 +77,12 @@ public class LoginController implements Initializable{
 		}
 	}
 	
+	
+	@FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+	
 	private void moGiaoDienNhanVien() {
 		// TODO Auto-generated method stub
 		

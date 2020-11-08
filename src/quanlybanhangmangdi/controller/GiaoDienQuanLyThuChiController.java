@@ -68,7 +68,10 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    @FXML
 	    private Label btn_Title;
     
-	    
+	    @FXML
+	    private void huy(ActionEvent event) {
+	    	((Node)event.getSource()).getScene().getWindow().hide();
+	    }
 	    
 	    
 	    @FXML

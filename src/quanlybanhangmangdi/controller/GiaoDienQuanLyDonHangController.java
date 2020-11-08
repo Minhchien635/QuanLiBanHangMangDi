@@ -119,6 +119,12 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
     }
 
     @FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    
+    
+    @FXML
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
     	AddBillController addBill = new AddBillController();
     	addBill.show();

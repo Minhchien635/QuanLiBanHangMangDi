@@ -1,6 +1,6 @@
 package quanlybanhangmangdi.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL; 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -23,8 +23,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -34,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.ChiTietHoaDon;
@@ -113,7 +116,7 @@ public class AddBillController implements Initializable{
     @FXML
     private Label chietKhauLabel;
     
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
     
     
     public void show() throws IOException {
@@ -125,6 +128,7 @@ public class AddBillController implements Initializable{
 		scene.getStylesheets().add(getClass().getResource("../view/AddBillStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
     }
     
@@ -133,6 +137,7 @@ public class AddBillController implements Initializable{
     @FXML
     private void addBill(ActionEvent event) throws ParseException {
     	java.util.Date t = sdf.parse(datePicker.getValue().format(DateTimeFormatter.ofPattern("dd/M/yyyy"))+" "+timeLabel.getText());
+    	System.out.println(sdf.format(t));
     	String maApp = getMaAppTuTenApp(nguonDon.getValue());
     	
     	// lay ma mon
@@ -151,18 +156,38 @@ public class AddBillController implements Initializable{
     	
     	DonHang donMoi = new DonHang(Test.nhanVien.getMaNhanVien(), t, maApp, maDonApp.getText(), tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet); 
     	
-    	if(donMoi.luuDatabase()) System.out.println("Luu thanh cong");
+    	if(donMoi.luuDatabase()) {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    		alert.setHeaderText("Thông báo");
+    		alert.setContentText("Thêm đơn hàng mới thành công");
+    		alert.showAndWait();
+    		((Node)event.getSource()).getScene().getWindow().hide();
+    	} else {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setHeaderText("Thông báo");
+    		alert.setContentText("Thêm đơn hàng mới thất bại");
+    		alert.showAndWait();
+    		((Node)event.getSource()).getScene().getWindow().hide();
+    	}
+    	
     	//new DonHang(Test.nhanVien.getMaNhanVien(),t, 1,maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet)
     }
     
+    @FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    
     private String getMaAppTuTenApp(String tenApp)  {
-    	String sql = "SELECT ma app\r\n" + 
-    			"WHERE ten = " + "\"" + tenApp +"\"";
+    	String sql = "SELECT ma FROM app\r\n" + 
+    			" WHERE ten = " + "\"" + tenApp +"\"";
     	ResultSet rs = DataHelper.execQuery(sql);
-    		String maApp;
+    		String maApp = null;
 			try {
-				maApp = rs.getString("ma");
-	        	return maApp;
+				while(rs.next()) {
+					maApp = rs.getString("ma");
+				}
+				return maApp;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -357,7 +382,7 @@ public class AddBillController implements Initializable{
 	
 	@FXML
 	private void phiDichVu() throws SQLException {
-		phiDichVuLabel.setText(tinhPhiDichVu()+"đ");
+		phiDichVuLabel.setText(tinhPhiDichVu()+"");
 	}
 	
 	private int lamTronTien(int tien) {
@@ -381,14 +406,14 @@ public class AddBillController implements Initializable{
 	}
 	
 	private void tongThu() throws SQLException {
-		tongThuLabel.setText(tinhTongThu()+"đ");
+		tongThuLabel.setText(tinhTongThu()+"");
 	}
 	
 	@FXML
 	private void thayDoiPhiDichVuVaTongThu() throws SQLException {
 		tongThu();
 		phiDichVu();
-		chietKhauLabel.setText(tinhChietKhau()+"đ");
-		tongGiaLabel.setText(tinhTongGia()+"đ");
+		chietKhauLabel.setText(tinhChietKhau()+"");
+		tongGiaLabel.setText(tinhTongGia()+"");
 	}
 }

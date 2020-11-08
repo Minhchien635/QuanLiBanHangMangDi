@@ -60,6 +60,11 @@ public class MenuQuanLyController implements Initializable{
 	}
 
 	
+	@FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+	
 	 @FXML
 	 private void handleButtonAction(ActionEvent event) throws IOException {
 	    	if(event.getSource() == btn_DonHang) {

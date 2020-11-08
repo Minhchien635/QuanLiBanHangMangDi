@@ -167,6 +167,15 @@
             <Pane fx:id="pane_AppGiaoHang" prefHeight="1086.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
                <children>
                   <Label layoutX="300.0" layoutY="14.0" text="App Giao Hàng" />
+                   <Button layoutX="1490.0" layoutY="23.0" mnemonicParsing="false" onAction="#huy" style="-fx-border-color: blue;">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                           <image>
+                              <Image url="@image/cancel-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </Pane>
          </children>

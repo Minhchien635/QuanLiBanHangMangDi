@@ -73,7 +73,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button id="windows2" fx:id="cancelButton" layoutX="474.0" layoutY="657.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="464.0" stylesheets="@StyleSheet/stylesheet.css" text="  Hủy">
+      <Button id="windows2" fx:id="cancelButton" layoutX="474.0" layoutY="657.0" mnemonicParsing="false" onAction="#huy" prefHeight="95.0" prefWidth="464.0" stylesheets="@StyleSheet/stylesheet.css" text="  Hủy">
          <graphic>
             <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -159,5 +159,14 @@
             <Font size="17.0" />
          </font>
       </Label>
+      <Button layoutX="921.0" layoutY="6.0" mnemonicParsing="false" onAction="#huy" style="-fx-border-color: blue;">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+               <image>
+                  <Image url="@image/cancel-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

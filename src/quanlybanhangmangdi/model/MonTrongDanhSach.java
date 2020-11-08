@@ -14,7 +14,6 @@ public class MonTrongDanhSach {
 		this.tenMon = new SimpleStringProperty(tenMon);
 		this.donGia = new SimpleIntegerProperty(donGia);
 		this.soLuong = new SimpleIntegerProperty(soLuong);
-		
 	}
 	
 	public String getMaMon() {

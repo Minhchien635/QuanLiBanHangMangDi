@@ -115,6 +115,16 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
     }
+    
+    
+    
+    @FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    
+    
+    
 
     @FXML
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {

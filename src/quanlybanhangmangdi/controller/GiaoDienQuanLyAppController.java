@@ -121,6 +121,13 @@ public class GiaoDienQuanLyAppController implements Initializable{
     	AddBillController addBill = new AddBillController();
     	addBill.show();
     }
+    
+    @FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    
+    
     @FXML
     private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {
     	Stage primaryStage = new Stage();

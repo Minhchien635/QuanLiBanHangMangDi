@@ -42,15 +42,15 @@ public class DonHang {
 	}
 	
 	private String taoMa() throws NumberFormatException, SQLException {
+		String maApp = "BA";
 		ResultSet rs = DataHelper.execQuery("SELECT ma FROM hoadon \r\n" + 
 				"ORDER BY ma DESC\r\n" + 
 				"LIMIT 1;");
 		int stt = -1;
 		while(rs.next()) {
-				stt = Integer.parseInt(rs.getString("ma"));
-				System.out.print(stt);
-		++stt;
-		
+				stt = Integer.parseInt(rs.getString("ma").substring(3));
+		}
+		stt++;
 		
 		String kq = maApp.substring(0, 2);
 		String cuoi = Integer.toString(stt);
@@ -60,6 +60,10 @@ public class DonHang {
 		kq += cuoi;
 		return kq;
 	
+	}
+	
+	public static void main(String[] args) throws NumberFormatException, SQLException {
+		
 	}
 	
 	public boolean luuDatabase() {
@@ -75,14 +79,14 @@ public class DonHang {
 					"\"" + getMaDonApp() + "\","+
 					"\"" + getChietKhau() + "\","+
 					"\"" + getTongGia() + "\","+
-					"\"" + getPhiDichVu() + "\",)";
+					"\"" + getPhiDichVu() + "\")";
 			boolean exec = DataHelper.execAction(sql);
 			if(exec) {
 				for(ChiTietHoaDon chiTiet : getDanhSachMon()) {
 					String sql2 = "INSERT INTO ChiTietHoaDon(mahd, mamon, soluong) \r\n" + 
 							"VALUES (\"" + maHD + "\"," +
 							"\"" + chiTiet.getMaMon() + "\"," +
-							"\"" + chiTiet.getSoLuong() + "\",)";
+							"\"" + chiTiet.getSoLuong() + "\")";
 					exec = DataHelper.execAction(sql2);
 				}
 			}

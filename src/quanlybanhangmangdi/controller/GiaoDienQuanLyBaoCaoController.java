@@ -116,6 +116,13 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 		
 		primaryStage.show();
     }
+    
+    @FXML
+    private void huy(ActionEvent event) {
+    	((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    
+    
 
     @FXML
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
