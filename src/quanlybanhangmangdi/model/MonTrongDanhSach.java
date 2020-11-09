@@ -4,31 +4,54 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class MonTrongDanhSach {
-	private final SimpleStringProperty maMon;
-	private final SimpleStringProperty tenMon;
-	private final SimpleIntegerProperty donGia;
-	private final SimpleIntegerProperty soLuong;
+	private String maMon;
+	private String tenMon;
+	private int donGia;
+	private int soLuong;
 	
-	public MonTrongDanhSach(String maMon, String tenMon, Integer donGia, Integer soLuong) {
-		this.maMon = new SimpleStringProperty(maMon);
-		this.tenMon = new SimpleStringProperty(tenMon);
-		this.donGia = new SimpleIntegerProperty(donGia);
-		this.soLuong = new SimpleIntegerProperty(soLuong);
+	
+	public MonTrongDanhSach(String maMon, String tenMon, int donGia, int soLuong) {
+		super();
+		this.maMon = maMon;
+		this.tenMon = tenMon;
+		this.donGia = donGia;
+		this.soLuong = soLuong;
 	}
 	
+	public void setMaMon(String maMon) {
+		this.maMon = maMon;
+	}
+
+	public void setTenMon(String tenMon) {
+		this.tenMon = tenMon;
+	}
+
+	public void setDonGia(int donGia) {
+		this.donGia = donGia;
+	}
+
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+
 	public String getMaMon() {
-		return maMon.get();
+		return maMon;
 	}
+
+
 
 	public String getTenMon() {
-		return tenMon.get();
+		return tenMon;
 	}
 
-	public Integer getDonGia() {
-		return donGia.get();
+	public int getDonGia() {
+		return donGia;
 	}
 
-	public Integer getSoLuong() {
-		return soLuong.get();
+	public int getSoLuong() {
+		return soLuong;
 	}
+
+	
+	
 }

@@ -42,7 +42,6 @@ public class DonHang {
 	}
 	
 	private String taoMa() throws NumberFormatException, SQLException {
-		String maApp = "BA";
 		ResultSet rs = DataHelper.execQuery("SELECT ma FROM hoadon \r\n" + 
 				"ORDER BY ma DESC\r\n" + 
 				"LIMIT 1;");

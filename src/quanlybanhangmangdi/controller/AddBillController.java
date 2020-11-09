@@ -290,18 +290,35 @@ public class AddBillController implements Initializable{
 		ResultSet rs = DataHelper.execQuery(sql);
 		String maMon = "";
 		String tenMon ="";
-		Integer donGia = 0;
+		int donGia = 0;
 		while(rs.next()) {
 			maMon = rs.getString("ma");
 			tenMon = rs.getString("tenmon");
 			donGia = rs.getInt("giaban");
 			MonTrongDanhSach monMoi = new MonTrongDanhSach(maMon, tenMon, donGia, Integer.parseInt(soLuong.getText()));
-			listMon.add(monMoi);
+			MonTrongDanhSach monTrongDS =kiemTraMonTonTai(monMoi);
+			if(monTrongDS==null) {
+				listMon.add(monMoi);
+			} else {
+				int i = listMon.indexOf(monTrongDS);
+				monMoi.setSoLuong(monTrongDS.getSoLuong()+monMoi.getSoLuong());
+				listMon.remove(i);
+				listMon.add(i, monMoi);
+			}
 		}
 		
 		
 		thayDoiPhiDichVuVaTongThu();
 		
+	}
+	
+	private MonTrongDanhSach kiemTraMonTonTai(MonTrongDanhSach mon) {
+		for(MonTrongDanhSach monTrongDs: listMon) {
+			if(monTrongDs.getMaMon().equals(mon.getMaMon())) {
+				return monTrongDs;
+			}
+		}
+		return null;
 	}
 	
 	

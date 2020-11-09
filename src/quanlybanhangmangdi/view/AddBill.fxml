@@ -42,7 +42,7 @@
       </Button>
       <ComboBox fx:id="nguonDon" layoutX="133.0" layoutY="170.0" onAction="#thayDoiPhiDichVuVaTongThu" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-prompt-text-fill: #ffffff;" />
       <ComboBox fx:id="chonLoaiMon" layoutX="397.0" layoutY="453.0" onAction="#addMon" prefHeight="42.0" prefWidth="172.0" promptText="Chọn Loại Món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
-      <TextField fx:id="chietKhau" layoutX="204.0" layoutY="334.0" prefHeight="38.0" prefWidth="55.0" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;" text="0">
+      <TextField fx:id="chietKhau" layoutX="204.0" layoutY="334.0" onAction="#thayDoiPhiDichVuVaTongThu" onInputMethodTextChanged="#thayDoiPhiDichVuVaTongThu" onMouseClicked="#thayDoiPhiDichVuVaTongThu" onMouseDragged="#thayDoiPhiDichVuVaTongThu" onMousePressed="#thayDoiPhiDichVuVaTongThu" onMouseReleased="#thayDoiPhiDichVuVaTongThu" prefHeight="38.0" prefWidth="55.0" style="-fx-background-color: #d5ebfc; -fx-prompt-text-fill: #495447;" text="0">
          <font>
             <Font size="16.0" />
          </font>

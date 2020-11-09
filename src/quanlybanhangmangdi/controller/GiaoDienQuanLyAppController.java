@@ -4,6 +4,7 @@ package quanlybanhangmangdi.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -24,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.main.Test;
 
 public class GiaoDienQuanLyAppController implements Initializable{
 		
@@ -68,7 +70,14 @@ public class GiaoDienQuanLyAppController implements Initializable{
 	    @FXML
 	    private Label btn_Title;
     
-	    
+	    @FXML
+	    private Label UserNameLabel;
+
+	    @FXML
+	    private Label UserPermissionLabel;
+
+	    @FXML
+	    private Label UserIDLabel;
 	    
 	    
     @FXML
@@ -116,11 +125,6 @@ public class GiaoDienQuanLyAppController implements Initializable{
 		primaryStage.show();
     }
 
-    @FXML
-    private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
-    	AddBillController addBill = new AddBillController();
-    	addBill.show();
-    }
     
     @FXML
     private void huy(ActionEvent event) {
@@ -128,22 +132,28 @@ public class GiaoDienQuanLyAppController implements Initializable{
     }
     
     
-    @FXML
-    private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {
-    	Stage primaryStage = new Stage();
  
-    	Parent root = FXMLLoader.load(getClass().getResource("editBill/editBill.fxml"));
-		Scene scene = new Scene(root,965,760);
-		scene.getStylesheets().add(getClass().getResource("editBill/application.css").toExternalForm());
-	    primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+    @FXML
+    private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
+		MenuQuanLyController menuQuanLy = new MenuQuanLyController();
+		huy(event);
+		menuQuanLy.show();
+	}
+    
+    private void setThongTinTaiKhoan() {
+    	try {
+			// set thong tin tai khoan
+			Test.setLabelThongTinDangNhap(UserIDLabel, UserNameLabel, UserPermissionLabel);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		setThongTinTaiKhoan();
 	}
 	
 	

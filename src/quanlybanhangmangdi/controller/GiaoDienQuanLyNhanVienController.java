@@ -4,6 +4,7 @@ package quanlybanhangmangdi.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -24,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.main.Test;
 
 public class GiaoDienQuanLyNhanVienController implements Initializable{
 		
@@ -68,15 +70,22 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 	    @FXML
 	    private Label btn_Title;
     
-	    
+	    @FXML
+	    private Label UserNameLabel;
+
+	    @FXML
+	    private Label UserPermissionLabel;
+
+	    @FXML
+	    private Label UserIDLabel;
 	    
 	    
 	    @FXML
 	    private void handleButtonAction(ActionEvent event) throws IOException {
 	    	if(event.getSource() == btn_DonHang) {
+				((Node)event.getSource()).getScene().getWindow().hide();
 	    		GiaoDienQuanLyDonHangController menu = new GiaoDienQuanLyDonHangController();
 				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
 			}
 	    	else if(event.getSource() == btn_Menu) {
 				GiaoDienQuanLyMenuController menu = new GiaoDienQuanLyMenuController();
@@ -117,33 +126,32 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 		primaryStage.show();
     }
     
-    
+   
     @FXML
     private void huy(ActionEvent event) {
     	((Node)event.getSource()).getScene().getWindow().hide();
     }
-
+    
     @FXML
-    private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
-    	AddBillController addBill = new AddBillController();
-    	addBill.show();
-    }
-    @FXML
-    private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {
-    	Stage primaryStage = new Stage();
- 
-    	Parent root = FXMLLoader.load(getClass().getResource("editBill/editBill.fxml"));
-		Scene scene = new Scene(root,965,760);
-		scene.getStylesheets().add(getClass().getResource("editBill/application.css").toExternalForm());
-	    primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+    private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
+		MenuQuanLyController menuQuanLy = new MenuQuanLyController();
+		huy(event);
+		menuQuanLy.show();
+	}
+    private void setThongTinTaiKhoan() {
+    	try {
+			// set thong tin tai khoan
+			Test.setLabelThongTinDangNhap(UserIDLabel, UserNameLabel, UserPermissionLabel);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		setThongTinTaiKhoan();
 	}
 	
 	

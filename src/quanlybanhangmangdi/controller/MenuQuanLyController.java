@@ -98,7 +98,12 @@ public class MenuQuanLyController implements Initializable{
 				((Node)event.getSource()).getScene().getWindow().hide();
 			}
 		}
-	
+	 @FXML
+	    private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
+			MenuQuanLyController menuQuanLy = new MenuQuanLyController();
+			huy(event);
+			menuQuanLy.show();
+		}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
