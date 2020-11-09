@@ -41,13 +41,30 @@ public class DonHang {
 		this.danhSachChiTiet = danhSachChiTiet;
 	}
 	
+	
+	public DonHang(String ma, int maNhanVien, Date thoiGian, String maApp, String maDonApp, int tongGia, int chietKhau,
+			int phiDichVu, int tongTienThu, ArrayList<ChiTietHoaDon> danhSachChiTiet) {
+		super();
+		this.ma = ma;
+		this.maNhanVien = maNhanVien;
+		this.thoiGian = thoiGian;
+		this.maApp = maApp;
+		this.maDonApp = maDonApp;
+		this.tongGia = tongGia;
+		this.chietKhau = chietKhau;
+		this.phiDichVu = phiDichVu;
+		this.tongTienThu = tongTienThu;
+		this.danhSachChiTiet = danhSachChiTiet;
+	}
+
+
 	private String taoMa() throws NumberFormatException, SQLException {
 		ResultSet rs = DataHelper.execQuery("SELECT ma FROM hoadon \r\n" + 
 				"ORDER BY ma DESC\r\n" + 
 				"LIMIT 1;");
 		int stt = -1;
 		while(rs.next()) {
-				stt = Integer.parseInt(rs.getString("ma").substring(3));
+				stt = Integer.parseInt(rs.getString("ma").substring(0, 8));
 		}
 		stt++;
 		
@@ -56,14 +73,10 @@ public class DonHang {
 		while(cuoi.length() < 8) {
 			cuoi = "0" + cuoi;
 		}
-		kq += cuoi;
+		kq = cuoi+kq;
 		return kq;
-	
 	}
 	
-	public static void main(String[] args) throws NumberFormatException, SQLException {
-		
-	}
 	
 	public boolean luuDatabase() {
 		

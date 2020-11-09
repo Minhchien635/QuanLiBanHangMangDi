@@ -4,6 +4,7 @@ package quanlybanhangmangdi.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -25,10 +26,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.database.DAO;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangTable;
+import quanlybanhangmangdi.model.MonTrongDanhSach;
 
 public class GiaoDienQuanLyDonHangController implements Initializable{
 		
+		public static ObservableList<DonHangTable> listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable()); 
 		
 		@FXML
 	    private Button btn_DonHang;
@@ -78,7 +84,40 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	    @FXML
 	    private Label UserIDLabel;
 	    
-	    
+	    @FXML
+	    private TableView<DonHangTable> tableDonHang;
+
+	    @FXML
+	    private TableColumn<DonHangTable, String> maDonCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, String> thoiGianCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, Integer> nhanVienCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, String> nguonDonCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, String> maDonAppCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, Integer> chietKhauCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, Integer> tongTienCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, Integer> phiDichVuCol;
+
+	    @FXML
+	    private TableColumn<DonHangTable, Integer> tongThuCol;
+
+	    @FXML
+	    private Label btn_Title1;
+
+	   
 	    @FXML
 	    private void handleButtonAction(ActionEvent event) throws IOException {
 	    	if(event.getSource() == btn_DonHang) {
@@ -174,7 +213,45 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		iniColHoaDon();
+		loadDataHoaDon();
 		setThongTinTaiKhoan();
+	}
+	
+	@FXML
+	public void refershData(ActionEvent event) {
+		loadDataHoaDon();
+		System.out.println();
+	}
+	
+	
+	
+	
+	
+	public TableView<DonHangTable> getTableDonHang() {
+		return tableDonHang;
+	}
+
+	public void setTableDonHang(TableView<DonHangTable> tableDonHang) {
+		this.tableDonHang = tableDonHang;
+	}
+
+	public void loadDataHoaDon() {
+		listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable());
+		tableDonHang.getItems().setAll(listDonHang);
+		System.out.println("Hello world");
+	}
+	
+	private void iniColHoaDon() {
+		maDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("ma"));
+		thoiGianCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("thoiGian"));
+		nhanVienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("maNhanVien"));
+		nguonDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maApp"));
+		maDonAppCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maDonApp"));
+		chietKhauCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("chietKhau"));
+		tongTienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("tongGia"));
+		phiDichVuCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("phiDichVu"));
+		tongThuCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("tongTienThu"));
 	}
 	
 	

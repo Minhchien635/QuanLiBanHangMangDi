@@ -133,6 +133,21 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 		
 		primaryStage.show();
     }
+    
+    public void show720p() throws IOException {
+		
+		Stage primaryStage = new Stage();
+		 
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyThuChi720p.fxml"));
+		Scene scene = new Scene(root,1366,768);
+		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
+	    primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+		
+		primaryStage.show();
+    }
 
 
     @FXML

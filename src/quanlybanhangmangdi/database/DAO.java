@@ -1,16 +1,28 @@
 package quanlybanhangmangdi.database;
 
+import java.sql.Date;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NhanVien;
 
 public class DAO {
+	
+	
+	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	
 	public static ArrayList<NhanVien> getDuLieuNhanVien() {
 		ArrayList<NhanVien> danhSachNhanVien = new ArrayList<NhanVien>();
 		String sql = "SELECT * FROM nhanvien";
 		ResultSet rs = DataHelper.execQuery(sql);
+		
+		
 		
 		try {
 			while(rs.next()) {
@@ -30,6 +42,79 @@ public class DAO {
 			e.printStackTrace();
 		}
 		return danhSachNhanVien;
+	}
+	
+	public static ArrayList<DonHang> getDuLieuDonHang() {
+		ArrayList<DonHang> danhSachDonHang = new ArrayList<DonHang>();
+		String query = "SELECT * FROM HoaDon";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				String maDon = rs.getString("ma");
+				Date d = rs.getDate("ThoiGian");
+				int maNV = rs.getInt("MaNV");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(
+						new DonHang(maDon, maNV, d, maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu, getCacChiTietDon(maDon)));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private static ArrayList<ChiTietHoaDon> getCacChiTietDon(String maDon) {
+		ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
+		String query = "SELECT * FROM ChiTietHoaDon WHERE maHD = \" "+maDon +"\"";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				String maMon = rs.getString("mamon");
+				int soLuong = rs.getInt("soLuong");
+				danhSachChiTiet.add(new ChiTietHoaDon(maMon, soLuong));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public static ArrayList<DonHangTable> getDuLieuDonHangTable() {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String query = "SELECT * FROM HoaDon";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				String maDon = rs.getString("ma");
+				Date d = rs.getDate("ThoiGian");
+				int maNV = rs.getInt("MaNV");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(
+						new DonHangTable(maDon, maNV,sdf.format(d) , maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	
