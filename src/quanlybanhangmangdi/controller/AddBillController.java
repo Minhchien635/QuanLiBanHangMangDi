@@ -35,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
@@ -124,12 +125,14 @@ public class AddBillController implements Initializable{
     	
     	
     	Stage primaryStage = new Stage();
+    	 
     	Parent root = FXMLLoader.load(getClass().getResource("../view/AddBill.fxml"));
 		Scene scene = new Scene(root,965,760);
 		scene.getStylesheets().add(getClass().getResource("../view/AddBillStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.initModality(Modality.APPLICATION_MODAL);
 		primaryStage.show();
     }
     
@@ -137,6 +140,10 @@ public class AddBillController implements Initializable{
     //Luu mon vao database
     @FXML
     private void addBill(ActionEvent event) throws ParseException {
+    	
+    	
+    	
+    	
     	java.util.Date t = sdf.parse(datePicker.getValue().format(DateTimeFormatter.ofPattern("dd/M/yyyy"))+" "+timeLabel.getText());
     	System.out.println(sdf.format(t));
     	String maApp = getMaAppTuTenApp(nguonDon.getValue());
@@ -148,6 +155,14 @@ public class AddBillController implements Initializable{
     	ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
     	for(MonTrongDanhSach mon : listMon) {
     		danhSachChiTiet.add(new ChiTietHoaDon(mon.getMaMon(), mon.getSoLuong()));
+    	}
+    	
+    	if(danhSachChiTiet.isEmpty()) {
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setHeaderText(null);
+    		alert.setContentText("Vui lòng thêm món vào danh sách");
+    		alert.showAndWait();
+    		return ;
     	}
     	
     	int phiDichVu = Integer.parseInt(phiDichVuLabel.getText());

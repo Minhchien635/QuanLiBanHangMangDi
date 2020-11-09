@@ -166,15 +166,15 @@
                <children>
                   <TableView fx:id="tableDonHang" layoutX="75.0" layoutY="467.0" prefHeight="535.0" prefWidth="1361.0" style="-fx-font-size: 16px;">
                      <columns>
-                        <TableColumn fx:id="maDonCol" prefWidth="116.800048828125" style="-fx-background-color: #96cdf7;" text="Mã đơn" />
-                        <TableColumn fx:id="thoiGianCol" prefWidth="188.0" style="-fx-background-color: #d5ebfc;" text="Thời Gian" />
-                        <TableColumn fx:id="nhanVienCol" prefWidth="192.79998779296875" style="-fx-background-color: #96cdf7;" text="Nhân Viên" />
-                        <TableColumn fx:id="nguonDonCol" prefWidth="147.20001220703125" style="-fx-background-color: #d5ebfc;" text="Nguồn đơn" />
-                        <TableColumn fx:id="maDonAppCol" prefWidth="178.39990234375" style="-fx-background-color: #96cdf7;" text="Mã đơn App" />
-                        <TableColumn fx:id="chietKhauCol" prefWidth="143.2000732421875" style="-fx-background-color: #96cdf7;" text="Chiết Khấu" />
-                        <TableColumn fx:id="tongTienCol" prefWidth="134.39990234375" style="-fx-background-color: #d5ebfc;" text="Tổng tiền" />
-                        <TableColumn fx:id="phiDichVuCol" minWidth="0.0" prefWidth="120.8001708984375" style="-fx-background-color: #96cdf7;" text="Phí Dịch Vụ" />
-                        <TableColumn fx:id="tongThuCol" prefWidth="117.4000244140625" style="-fx-background-color: #d5ebfc;" text="Tổng Thu" />
+                        <TableColumn fx:id="maDonCol" prefWidth="170.0" style="-fx-background-color: #96cdf7;" text="Mã đơn" />
+                        <TableColumn fx:id="thoiGianCol" prefWidth="184.0" style="-fx-background-color: #d5ebfc;" text="Thời Gian" />
+                        <TableColumn fx:id="nhanVienCol" prefWidth="230.0" style="-fx-background-color: #96cdf7;" text="Nhân Viên" />
+                        <TableColumn fx:id="nguonDonCol" prefWidth="130.0" style="-fx-background-color: #d5ebfc;" text="Nguồn đơn" />
+                        <TableColumn fx:id="maDonAppCol" prefWidth="141.0" style="-fx-background-color: #96cdf7;" text="Mã đơn App" />
+                        <TableColumn fx:id="chietKhauCol" prefWidth="138.0" style="-fx-background-color: #d5ebfc;" text="Chiết Khấu(đ)" />
+                        <TableColumn fx:id="tongTienCol" prefWidth="124.0" style="-fx-background-color: #96cdf7;" text="Tổng tiền(đ)" />
+                        <TableColumn fx:id="phiDichVuCol" minWidth="0.0" prefWidth="129.0" style="-fx-background-color: #d5ebfc;" text="Phí Dịch Vụ(đ)" />
+                        <TableColumn fx:id="tongThuCol" prefWidth="112.0" style="-fx-background-color: #96cdf7;" text="Tổng Thu(đ)" />
                      </columns>
                   </TableView>
                   <Button id="bevel" layoutX="805.0" layoutY="272.0" mnemonicParsing="false" onAction="#moGiaoDienThemDonHang" prefHeight="42.0" prefWidth="104.0" stylesheets="@stylesheet/stylesheet.css" text="Add" />

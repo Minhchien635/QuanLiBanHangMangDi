@@ -3,6 +3,7 @@ package quanlybanhangmangdi.database;
 import java.sql.Date;
 import java.sql.ResultSet; 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -98,7 +99,7 @@ public class DAO {
 		try {
 			while(rs.next()) {
 				String maDon = rs.getString("ma");
-				Date d = rs.getDate("ThoiGian");
+				Timestamp d = rs.getTimestamp("ThoiGian");
 				int maNV = rs.getInt("MaNV");
 				String maApp = rs.getString("MaApp");
 				String maDonApp = rs.getString("MaDonTrenApp");
@@ -106,8 +107,7 @@ public class DAO {
 				int tongGia = rs.getInt("TongGia");
 				int phiDichVu = rs.getInt("PhiDichVu");
 				int tongTienThu = rs.getInt("TongTienThu");
-				danhSachDonHang.add(
-						new DonHangTable(maDon, maNV,sdf.format(d) , maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu));
+				danhSachDonHang.add(new DonHangTable(maDon, Test.nhanVien.getHoTen(), sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
 			}
 			return danhSachDonHang;
 		} catch (SQLException e) {
@@ -116,6 +116,24 @@ public class DAO {
 		}
 		return null;
 	}
+	
+	static private String getTenAppTuMaApp(String maApp)  {
+    	String sql = "SELECT ten FROM app\r\n" + 
+    			" WHERE ma = " + "\"" + maApp +"\"";
+    	ResultSet rs = DataHelper.execQuery(sql);
+    		String tenApp = null;
+			try {
+				while(rs.next()) {
+					tenApp = rs.getString("ten");
+				}
+				return tenApp;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+    	
+    }
 	
 	
 }
