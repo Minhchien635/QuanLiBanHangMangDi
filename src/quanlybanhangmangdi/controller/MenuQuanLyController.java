@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.DonHang;
 
@@ -54,7 +55,8 @@ public class MenuQuanLyController implements Initializable{
     	Parent root = FXMLLoader.load(getClass().getResource("../view/MenuQuanLy.fxml"));
 		Scene scene = new Scene(root,900,630);
 		scene.getStylesheets().add(getClass().getResource("../view/MenuQuanLyStyle.css").toExternalForm());
-	    primaryStage.setResizable(false);
+		primaryStage.setResizable(false);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

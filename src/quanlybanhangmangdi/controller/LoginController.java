@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import quanlybanhangmangdi.model.NhanVien;
 import quanlybanhangmangdi.main.*;
 
@@ -47,10 +48,11 @@ public class LoginController implements Initializable{
 		
 		Stage primaryStage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
-		Scene scene = new Scene(root,750,500);
+		Scene scene = new Scene(root,700,500);
 		scene.getStylesheets().add(getClass().getResource("../view/LoginStyle.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 	}
 	
