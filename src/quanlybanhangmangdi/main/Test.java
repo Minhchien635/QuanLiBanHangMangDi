@@ -42,7 +42,7 @@ public class Test extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		showBaoCao720();
+		showLogin();
 	}
 	
 	public void showBaoCao720() throws IOException {
