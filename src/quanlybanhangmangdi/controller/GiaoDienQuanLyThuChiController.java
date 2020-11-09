@@ -29,7 +29,6 @@ import quanlybanhangmangdi.main.Test;
 
 public class GiaoDienQuanLyThuChiController implements Initializable{
 		
-		private ArrayList<Object> statement;
 		
 		@FXML
 	    private Button btn_DonHang;
@@ -139,12 +138,10 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 		Stage primaryStage = new Stage();
 		 
     	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyThuChi720p.fxml"));
-		Scene scene = new Scene(root,1366,768);
+		Scene scene = new Scene(root,1082,619);
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
-
-		primaryStage.initStyle(StageStyle.UNDECORATED);
 		
 		primaryStage.show();
     }
@@ -169,9 +166,6 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
   
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setThongTinTaiKhoan();
-		
-		
 	}
 	
 	

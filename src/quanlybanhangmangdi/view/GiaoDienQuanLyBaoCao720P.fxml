@@ -18,7 +18,7 @@
          <children>
             <VBox layoutY="187.0" prefHeight="431.0" prefWidth="236.0" style="-fx-background-color: #d5ebfc;">
                <children>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     ĐƠN HÀNG" textFill="#0101ee">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     ĐƠN HÀNG" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +33,7 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     MENU" textFill="#0101ee">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     MENU" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,7 +44,7 @@
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      APP GIAO HÀNG" textFill="#0303ff">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      APP GIAO HÀNG" textFill="#0303ff">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="240.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      NHÂN VIÊN" textFill="#0303ff">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="240.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      NHÂN VIÊN" textFill="#0303ff">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -66,7 +66,7 @@
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      THU - CHI" textFill="WHITE">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      THU - CHI" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,7 +77,7 @@
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      BÁO CÁO" textAlignment="CENTER" textFill="#0101ee">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      BÁO CÁO" textAlignment="CENTER" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -137,7 +137,7 @@
       </AnchorPane>
       <AnchorPane layoutX="245.0" layoutY="1.0" prefHeight="618.0" prefWidth="836.0">
          <children>
-            <Pane fx:id="pane_ThuChi" prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
+            <Pane prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
                <children>
                   <Label layoutX="300.0" layoutY="14.0" text="Thu - Chi" />
                </children>
@@ -146,7 +146,7 @@
       </AnchorPane>
       <Pane layoutX="506.0" layoutY="-216.0" prefHeight="263.0" prefWidth="310.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
          <children>
-            <Label fx:id="btn_Title" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="214.0" text="Bao Cao" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="214.0" text="Bao Cao" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

@@ -123,9 +123,21 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
-		
 		primaryStage.show();
     }
+    
+ public void show720p() throws IOException {
+		
+		Stage primaryStage = new Stage();
+		 
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyBaoCao720P.fxml"));
+		Scene scene = new Scene(root,1082,619);
+		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
+	    primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+    }
+    
     
     @FXML
     private void huy(ActionEvent event) {
@@ -153,7 +165,6 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setThongTinTaiKhoan();
 		
 	}
 	

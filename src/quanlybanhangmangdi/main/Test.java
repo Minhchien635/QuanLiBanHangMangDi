@@ -13,6 +13,7 @@ import quanlybanhangmangdi.controller.GiaoDienQuanLyBaoCaoController;
 import quanlybanhangmangdi.controller.GiaoDienQuanLyDonHangController;
 import quanlybanhangmangdi.controller.GiaoDienQuanLyMenuController;
 import quanlybanhangmangdi.controller.GiaoDienQuanLyNhanVienController;
+import quanlybanhangmangdi.controller.GiaoDienQuanLyThuChiController;
 import quanlybanhangmangdi.controller.LoginController;
 import quanlybanhangmangdi.controller.MenuQuanLyController;
 import quanlybanhangmangdi.database.DataHelper;
@@ -41,7 +42,17 @@ public class Test extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		showLogin();
+		showBaoCao720();
+	}
+	
+	public void showBaoCao720() throws IOException {
+		GiaoDienQuanLyBaoCaoController baoCao = new GiaoDienQuanLyBaoCaoController();
+		baoCao.show720p();
+	}
+	
+	public void showThuChi720() throws IOException {
+		GiaoDienQuanLyThuChiController thuChi = new GiaoDienQuanLyThuChiController();
+		thuChi.show720p();
 	}
 	
 	private void showLogin() throws IOException {
