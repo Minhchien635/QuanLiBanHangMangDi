@@ -2,6 +2,7 @@ package quanlybanhangmangdi.controller;
 
 
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -28,6 +29,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.DonHang;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
@@ -35,6 +38,8 @@ import quanlybanhangmangdi.model.MonTrongDanhSach;
 public class GiaoDienQuanLyDonHangController implements Initializable{
 		
 		public static ObservableList<DonHangTable> listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable()); 
+		
+		public static ObservableList<DanhSachMonTableQuanLyDonHang> listMon;
 		
 		@FXML
 	    private Button btn_DonHang;
@@ -116,6 +121,21 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 
 	    @FXML
 	    private Label btn_Title1;
+
+	    
+	    
+
+	    @FXML
+	    private TableView<DanhSachMonTableQuanLyDonHang> dsMonTable;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, String> tenMonCol;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, Integer> soLuongCol;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, Integer> donGiaCol;
 
 	   
 	    @FXML
@@ -213,8 +233,10 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		iniColHoaDon();
+		
+		iniColDSMon();
 		loadDataHoaDon();
+		iniColHoaDon();
 		setThongTinTaiKhoan();
 	}
 	
@@ -254,6 +276,19 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 		tongThuCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("tongTienThu"));
 	}
 	
+	
+	private void iniColDSMon() {
+		tenMonCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, String>("tenMon"));
+		soLuongCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, Integer>("soLuong"));
+		donGiaCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, Integer>("donGia"));
+	}
+	
+	@FXML
+	public void hienThiDanhSachMon() {
+		String maDon = tableDonHang.getSelectionModel().getSelectedItem().getMa();
+		listMon  =  FXCollections.observableArrayList(DAO.getDanhSachMonQLDH(maDon));
+		dsMonTable.setItems(listMon);
+	}
 	
 	
 

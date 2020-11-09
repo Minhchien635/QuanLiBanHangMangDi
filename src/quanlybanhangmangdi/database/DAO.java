@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.DonHang;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NhanVien;
@@ -47,7 +48,7 @@ public class DAO {
 	
 	public static ArrayList<DonHang> getDuLieuDonHang() {
 		ArrayList<DonHang> danhSachDonHang = new ArrayList<DonHang>();
-		String query = "SELECT * FROM HoaDon";
+		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
@@ -72,7 +73,7 @@ public class DAO {
 		return null;
 	}
 	
-	private static ArrayList<ChiTietHoaDon> getCacChiTietDon(String maDon) {
+	public static ArrayList<ChiTietHoaDon> getCacChiTietDon(String maDon) {
 		ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
 		String query = "SELECT * FROM ChiTietHoaDon WHERE maHD = \" "+maDon +"\"";
 		ResultSet rs = DataHelper.execQuery(query);
@@ -93,7 +94,7 @@ public class DAO {
 	
 	public static ArrayList<DonHangTable> getDuLieuDonHangTable() {
 		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
-		String query = "SELECT * FROM HoaDon";
+		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
@@ -134,6 +135,31 @@ public class DAO {
 			return null;
     	
     }
+	
+	
+	public static ArrayList<DanhSachMonTableQuanLyDonHang> getDanhSachMonQLDH(String maDon) {
+		String sql = "SELECT Mon.tenMon,ChiTietHoaDon.soLuong, Mon.giaban FROM ChiTietHoaDon\r\n" + 
+				"JOIN Mon ON ChiTietHoaDon.mamon = Mon.ma\r\n" + 
+				"WHERE mahd = " + "\"" +maDon+"\"";
+		ResultSet rs = DataHelper.execQuery(sql);
+		ArrayList<DanhSachMonTableQuanLyDonHang> dsMon = new ArrayList<DanhSachMonTableQuanLyDonHang>();
+		try {
+			while(rs.next()) {
+				String tenMon = rs.getString("tenMon");
+				int soLuong = rs.getInt("soLuong");
+				int donGia = rs.getInt("giaban");
+				dsMon.add(new DanhSachMonTableQuanLyDonHang(tenMon, soLuong, donGia*soLuong));
+			}
+			
+			return dsMon;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
 	
 	
 }

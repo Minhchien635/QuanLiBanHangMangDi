@@ -22,7 +22,6 @@ import quanlybanhangmangdi.model.NhanVien;
 
 public class Test extends Application{
 	public static NhanVien nhanVien;
-	public static int sttDonHang;
 	public static DecimalFormat dcf = new DecimalFormat("###,###,###");
 
 	public static void setLabelThongTinDangNhap(Label UserIDLabel, Label UserNameLabel, Label UserPermissionLabel) throws SQLException {
