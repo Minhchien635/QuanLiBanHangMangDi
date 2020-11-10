@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataHelper {
-	
+	public static Connection connection = null;
 	public static ResultSet execQuery(String query) {
 		try {
-			Connection conn = ConnectionUtils.getMyConnection();
-			Statement statement = conn.createStatement();
+			if(connection == null) {
+			connection = ConnectionUtils.getMyConnection();
+			}
+			Statement statement = connection.createStatement();
 			
 			ResultSet rs = statement.executeQuery(query);
 			return rs;
@@ -27,14 +29,17 @@ public class DataHelper {
 	
 	public static boolean execAction(String query) {
 		try {
-			Connection conn = ConnectionUtils.getMyConnection();
-			Statement statement = conn.createStatement();
+			if(connection == null) {
+				connection = ConnectionUtils.getMyConnection();
+			}
+			Statement statement = connection.createStatement();
 			statement.execute(query);
 			return true;
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return false;
 	}
 }

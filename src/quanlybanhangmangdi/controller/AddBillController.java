@@ -125,15 +125,17 @@ public class AddBillController implements Initializable{
     	
     	
     	Stage primaryStage = new Stage();
-    	 
+    	
     	Parent root = FXMLLoader.load(getClass().getResource("../view/AddBill.fxml"));
-		Scene scene = new Scene(root,965,760);
-		scene.getStylesheets().add(getClass().getResource("../view/AddBillStyle.css").toExternalForm());
+    	
+    	Scene scene = new Scene(root,965,760);
+		
+    	scene.getStylesheets().add(getClass().getResource("../view/AddBillStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.initModality(Modality.APPLICATION_MODAL);
-		primaryStage.show();
+		primaryStage.showAndWait();
     }
     
     
@@ -173,11 +175,13 @@ public class AddBillController implements Initializable{
     	DonHang donMoi = new DonHang(Test.nhanVien.getMaNhanVien(), t, maApp, maDonApp.getText(), tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet); 
     	
     	if(donMoi.luuDatabase()) {
+    		
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
     		alert.setHeaderText("Thông báo");
     		alert.setContentText("Thêm đơn hàng mới thành công");
     		alert.showAndWait();
     		((Node)event.getSource()).getScene().getWindow().hide();
+    		
     	} else {
     		Alert alert = new Alert(Alert.AlertType.ERROR);
     		alert.setHeaderText("Thông báo");

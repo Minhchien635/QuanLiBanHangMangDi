@@ -118,6 +118,9 @@ public class DAO {
 		return null;
 	}
 	
+	
+	
+	
 	static private String getTenAppTuMaApp(String maApp)  {
     	String sql = "SELECT ten FROM app\r\n" + 
     			" WHERE ma = " + "\"" + maApp +"\"";

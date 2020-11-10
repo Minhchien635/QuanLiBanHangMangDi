@@ -8,6 +8,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -19,7 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +32,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
+import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.ChiTietHoaDon;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
@@ -191,6 +196,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
     	AddBillController addBill = new AddBillController();
     	addBill.show();
+    	loadDataHoaDon();
     }
     
    
@@ -240,11 +246,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 		setThongTinTaiKhoan();
 	}
 	
-	@FXML
-	public void refershData(ActionEvent event) {
-		loadDataHoaDon();
-		System.out.println();
-	}
+	
 	
 	
 	
@@ -259,6 +261,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	}
 
 	public void loadDataHoaDon() {
+		listDonHang.clear();
 		listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable());
 		tableDonHang.getItems().setAll(listDonHang);
 		System.out.println("Hello world");
@@ -291,6 +294,38 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	}
 	
 	
+	
+	@FXML
+	public void tamXoaDonHang() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+    	String maDon = tableDonHang.getSelectionModel().getSelectedItem().getMa();
+        alert.setTitle("Xóa đơn hàng");
+        alert.setHeaderText("Bạn chắc chắn muốn di chuyển đơn hàng " + maDon +" xuống thùng rác");
+ 
+        // option != null.
+        Optional<ButtonType> option = alert.showAndWait();
+        
+        if(option.get() == ButtonType.OK) {
+        	if(anDonHangCSDL(maDon)){
+        		Alert alertCompleted = new Alert(AlertType.INFORMATION);
+        		alertCompleted.setTitle("Thông báo");
+        		alertCompleted.setHeaderText("Xóa thành công");
+        		alertCompleted.showAndWait();
+        		loadDataHoaDon();
+        	}
+        }
+	}
+	
+	private boolean anDonHangCSDL(String maHoaDon) {
+		boolean result;
+		
+		result = DataHelper.execAction("UPDATE HoaDon\r\n" + 
+				"SET TrangThai = FALSE\r\n" + 
+				"WHERE ma = " +"'"+maHoaDon+"';");
+		
+		
+		return result;
+	}
 
 
 
