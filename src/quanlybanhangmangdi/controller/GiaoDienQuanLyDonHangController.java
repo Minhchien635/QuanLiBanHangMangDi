@@ -104,7 +104,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	    private TableColumn<DonHangTable, String> thoiGianCol;
 
 	    @FXML
-	    private TableColumn<DonHangTable, Integer> nhanVienCol;
+	    private TableColumn<DonHangTable, String> nhanVienCol;
 
 	    @FXML
 	    private TableColumn<DonHangTable, String> nguonDonCol;
@@ -264,13 +264,12 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 		listDonHang.clear();
 		listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable());
 		tableDonHang.getItems().setAll(listDonHang);
-		System.out.println("Hello world");
 	}
 	
 	private void iniColHoaDon() {
 		maDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("ma"));
 		thoiGianCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("thoiGian"));
-		nhanVienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("maNhanVien"));
+		nhanVienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maNhanVien"));
 		nguonDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maApp"));
 		maDonAppCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maDonApp"));
 		chietKhauCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("chietKhau"));
@@ -312,6 +311,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
         		alertCompleted.setHeaderText("Xóa thành công");
         		alertCompleted.showAndWait();
         		loadDataHoaDon();
+        		listMon.clear();
         	}
         }
 	}
@@ -327,6 +327,12 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 		return result;
 	}
 
+	  @FXML
+	    void moDonHangAn(ActionEvent event) throws IOException {
+		  	XemDonHangAnController an = new XemDonHangAnController();
+		  	an.show();
+		  	loadDataHoaDon();
+	    }
 
 
 }

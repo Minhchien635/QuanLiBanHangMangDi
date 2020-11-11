@@ -275,7 +275,7 @@ public class AddBillController implements Initializable{
     	try {
 			chonLoaiMon.setItems(addLoaiMonComboBox());
 			nguonDon.setItems(addNguonDon());
-			nguonDon.getSelectionModel().selectFirst();
+			nguonDon.getSelectionModel().selectLast();
 			initCol(); // tao column cho bang
 			setDefaultDateTime(); // lay time
 			

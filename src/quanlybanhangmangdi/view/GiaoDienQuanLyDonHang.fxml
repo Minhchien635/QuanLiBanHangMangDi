@@ -164,7 +164,7 @@
          <children>
             <Pane fx:id="pane_DonHang" accessibleRole="COMBO_BOX" layoutX="-2.0" layoutY="7.0" prefHeight="1090.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
                <children>
-                  <TableView fx:id="tableDonHang" layoutX="75.0" layoutY="467.0" onMouseClicked="#hienThiDanhSachMon" prefHeight="535.0" prefWidth="1361.0" style="-fx-font-size: 16px; -fx-background-color: #96cdf7;">
+                  <TableView fx:id="tableDonHang" layoutX="75.0" layoutY="467.0" onMouseClicked="#hienThiDanhSachMon" prefHeight="535.0" prefWidth="1361.0" style="-fx-font-size: 16px; -fx-background-color: #96cdf7; -fx-text-fill: blue;">
                      <columns>
                         <TableColumn fx:id="maDonCol" prefWidth="141.0" style="-fx-background-color: #96cdf7;" text="Mã đơn" />
                         <TableColumn fx:id="thoiGianCol" prefWidth="188.0" style="-fx-background-color: #d5ebfc;" text="Thời Gian" />
@@ -177,7 +177,7 @@
                         <TableColumn fx:id="tongThuCol" prefWidth="138.0" style="-fx-background-color: #96cdf7;" text="Tổng Thu(đ)" />
                      </columns>
                   </TableView>
-                  <Pane layoutX="551.0" layoutY="-159.0" prefHeight="263.0" prefWidth="467.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+                  <Pane fx:id="pane_Title" layoutX="551.0" layoutY="-159.0" prefHeight="263.0" prefWidth="467.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
                      <children>
                         <Label fx:id="btn_Title1" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="185.0" text="Quản Lý Đơn Hàng" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -208,7 +208,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="721.0" layoutY="274.0" mnemonicParsing="false" onAction="#moGiaoDienThemDonHang" prefHeight="44.0" prefWidth="150.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm" textFill="WHITE">
+                  <Button id="windows2" layoutX="711.0" layoutY="219.0" mnemonicParsing="false" onAction="#moGiaoDienThemDonHang" prefHeight="55.0" prefWidth="205.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm Đơn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -220,7 +220,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="943.0" layoutY="275.0" mnemonicParsing="false" onAction="#tamXoaDonHang" prefHeight="44.0" prefWidth="150.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa" textFill="WHITE">
+                  <Button id="windows2" layoutX="711.0" layoutY="313.0" mnemonicParsing="false" onAction="#tamXoaDonHang" prefHeight="55.0" prefWidth="205.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa Đơn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -232,7 +232,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="1180.0" layoutY="274.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="150.0" stylesheets="@StyleSheet/stylesheet.css" text="In" textFill="WHITE">
+                  <Button id="windows2" layoutX="1103.0" layoutY="219.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="In Đơn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -240,6 +240,18 @@
                         <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@image/printer-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="windows2" layoutX="1103.0" layoutY="313.0" mnemonicParsing="false" onAction="#moDonHangAn" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="Xem Đơn Ẩn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/info-32.png" />
                            </image>
                         </ImageView>
                      </graphic>

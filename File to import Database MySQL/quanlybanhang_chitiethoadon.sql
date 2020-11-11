@@ -39,7 +39,7 @@ CREATE TABLE `chitiethoadon` (
 
 LOCK TABLES `chitiethoadon` WRITE;
 /*!40000 ALTER TABLE `chitiethoadon` DISABLE KEYS */;
-INSERT INTO `chitiethoadon` VALUES ('00000000at','buhdo',3),('00000000at','cbhd2',2),('00000000at','cfsua',2),('00000001at','buhdo',1),('00000001at','cbhd2',2),('00000001ba','cafe',1),('00000001ba','cbhd1',1),('00000001ba','cbhd2',1),('00000001ba','cfsua',1),('00000002at','buhki',1),('00000003ba','cbhd1',1),('00000004at','buhki',4),('00000005at','cafe',1),('00000005at','cbhd1',1),('00000006at','buhdo',1),('00000007at','buhdo',2),('00000007at','cbhd1',2),('00000008at','buhdo',2),('00000009at','buhdo',3),('00000010at','cafe',1),('00000011at','buhki',1),('00000011at','cbhd1',2),('00000011at','cbhd2',1),('00000012at','buhki',1),('00000013at','cbhd1',1),('00000014at','buhdo',4),('00000014at','cafe',1),('00000015at','cbhd1',1),('00000016AT','cbhd1',1),('00000017BA','cbhd2',3),('00000018AT','cbhd1',1),('00000019AT','buhki',1),('00000020AT','buhdo',1),('00000020AT','cbhd1',2),('00000021AT','buhdo',1),('00000022AT','buhdo',1),('00000023AT','cbhd1',1),('00000024AT','buhdo',1),('00000025AT','buhdo',1),('00000026AT','cbhd1',1),('00000027AT','buhdo',1),('00000028AT','buhdo',1),('00000029AT','cbhd1',1),('00000030AT','buhdo',1),('00000031AT','buhdo',1),('00000031AT','cbhd1',1),('00000032AT','buhdo',1),('00000032AT','cafe',1),('00000032AT','cbhd1',1),('00000033AT','bulga',1),('00000034AT','cbhd2',1),('00000035AT','thitg',1),('00000036AT','buhki',1),('00000038AT','cafe',1),('00000039AT','buthe',1),('00000040AT','buhdo',3),('00000040AT','cbhd1',1),('00000041AT','buhki',1),('00000042AT','cbhd1',1),('00000043AT','buhdo',1),('00000044AT','cfsua',1),('00000045AT','buhdo',1),('00000046AT','buhdo',1),('00000047AT','cbhd1',1),('00000048AT','buhdo',1),('00000049AT','cfsua',1),('00000050AT','cbhd2',1),('00000051AT','cbhd1',1),('00000052AT','cfsua',1),('00000053AT','cfsua',1),('00000054AT','cbhd2',1),('00000055AT','buhdo',4),('00000056AT','cbhd1',1);
+INSERT INTO `chitiethoadon` VALUES ('00000000at','buhdo',3),('00000000at','cbhd2',2),('00000000at','cfsua',2),('00000001at','buhdo',1),('00000001at','cbhd2',2),('00000004at','buhki',4),('00000005at','cafe',1),('00000005at','cbhd1',1),('00000006at','buhdo',1),('00000008at','buhdo',2),('00000009at','buhdo',3),('00000010at','cafe',1),('00000011at','buhki',1),('00000011at','cbhd1',2),('00000011at','cbhd2',1),('00000012at','buhki',1),('00000013at','cbhd1',1),('00000015at','cbhd1',1),('00000016AT','cbhd1',5),('00000016AT','cbhd2',2),('00000017AT','buhdo',3),('00000017AT','cbhd1',1),('00000018AT','buhdo',1);
 /*!40000 ALTER TABLE `chitiethoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-10 18:20:27
+-- Dump completed on 2020-11-11 19:44:02
