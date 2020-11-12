@@ -19,7 +19,7 @@ public class Test720 extends Application{
 	
 	@Override // ham de chay phan mem
 	public void start(Stage primaryStage) throws Exception {
-		showBaoCao720();
+		showThuChi720();
 		
 	}
 	

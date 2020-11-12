@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.ChiTietHoaDon;
 import quanlybanhangmangdi.model.DonHang;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.model.PhieuChi;
 
 public class DAO {
 	
@@ -117,5 +119,27 @@ public class DAO {
 		return null;
 	}
 	
+	
+	public static ArrayList<PhieuChi> getCacPhieuChi() {
+		ArrayList<PhieuChi> danhSach = new ArrayList<PhieuChi>();
+		String query = "SELECT * FROM PhieuChi";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				int manhanvien = rs.getInt("manhanvien");
+				String maphieuchi = rs.getString("ma");
+				String ngay = rs.getString("ngay");
+				int tongtien = rs.getInt("tonggia");
+				danhSach.add(new PhieuChi(maphieuchi,manhanvien,ngay,tongtien));
+			}
+			return danhSach;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 }
