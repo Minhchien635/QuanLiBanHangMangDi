@@ -2,6 +2,7 @@ package quanlybanhangmangdi.main;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import javafx.application.Application;
 import javafx.scene.control.Label;
@@ -16,12 +17,13 @@ import quanlybanhangmangdi.controller.GiaoDienQuanLyNhanVienController;
 import quanlybanhangmangdi.controller.GiaoDienQuanLyThuChiController;
 import quanlybanhangmangdi.controller.LoginController;
 import quanlybanhangmangdi.controller.MenuQuanLyController;
+import quanlybanhangmangdi.controller.XemDonHangAnController;
 import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.model.NhanVien;
 
 public class Test extends Application{
 	public static NhanVien nhanVien;
-	public static int sttDonHang;
+	public static DecimalFormat dcf = new DecimalFormat("###,###,###");
 
 	public static void setLabelThongTinDangNhap(Label UserIDLabel, Label UserNameLabel, Label UserPermissionLabel) throws SQLException {
 		UserIDLabel.setText(Test.nhanVien.getTaiKhoan());

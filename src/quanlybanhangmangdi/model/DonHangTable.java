@@ -10,22 +10,22 @@ import javafx.beans.property.SimpleStringProperty;
 public class DonHangTable {
 
 	private SimpleStringProperty ma;
-	private SimpleIntegerProperty maNhanVien;
+	private SimpleStringProperty tenNhanVien;
 	private SimpleStringProperty thoiGian;
-	private SimpleStringProperty maApp;
+	private SimpleStringProperty tenApp;
 	private SimpleStringProperty maDonApp;
 	private SimpleIntegerProperty tongGia;
 	private SimpleIntegerProperty chietKhau;
 	private SimpleIntegerProperty phiDichVu;
 	private SimpleIntegerProperty tongTienThu;
-	public DonHangTable(String ma, Integer maNhanVien, String thoiGian,
+	public DonHangTable(String ma, String maNhanVien, String thoiGian,
 			String maApp, String maDonApp, Integer tongGia,
 			Integer chietKhau, Integer phiDichVu, Integer tongTienThu) {
 		super();
 		this.ma = new SimpleStringProperty(ma);
-		this.maNhanVien = new SimpleIntegerProperty(maNhanVien);
+		this.tenNhanVien = new SimpleStringProperty(maNhanVien);
 		this.thoiGian = new SimpleStringProperty(thoiGian);
-		this.maApp = new SimpleStringProperty(maApp);
+		this.tenApp = new SimpleStringProperty(maApp);
 		this.maDonApp = new SimpleStringProperty(maDonApp);
 		this.tongGia = new SimpleIntegerProperty(tongGia);
 		this.chietKhau = new SimpleIntegerProperty(chietKhau);
@@ -38,20 +38,20 @@ public class DonHangTable {
 	public void setMa(SimpleStringProperty ma) {
 		this.ma = ma;
 	}
-	public Integer getMaNhanVien() {
-		return maNhanVien.get();
+	public String getMaNhanVien() {
+		return tenNhanVien.get();
 	}
-	public void setMaNhanVien(SimpleIntegerProperty maNhanVien) {
-		this.maNhanVien = maNhanVien;
+	public void setMaNhanVien(SimpleStringProperty maNhanVien) {
+		this.tenNhanVien = maNhanVien;
 	}
 	public String getThoiGian() {
 		return thoiGian.get();
 	}
 	public String getMaApp() {
-		return maApp.get();
+		return tenApp.get();
 	}
 	public void setMaApp(SimpleStringProperty maApp) {
-		this.maApp = maApp;
+		this.tenApp = maApp;
 	}
 	public String getMaDonApp() {
 		return maDonApp.get();

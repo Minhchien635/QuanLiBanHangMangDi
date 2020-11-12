@@ -29,8 +29,6 @@ import quanlybanhangmangdi.main.Test;
 
 public class GiaoDienQuanLyMenuController implements Initializable{
 		
-		private ArrayList<Object> statement;
-		
 		@FXML
 	    private Button btn_DonHang;
 
@@ -122,6 +120,7 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
+		
 		primaryStage.show();
     }
     
@@ -152,8 +151,7 @@ public class GiaoDienQuanLyMenuController implements Initializable{
  
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setThongTinTaiKhoan();
-		
+		 setThongTinTaiKhoan();
 	}
 	
 	

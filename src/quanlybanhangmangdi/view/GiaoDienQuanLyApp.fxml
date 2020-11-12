@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,11 +13,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyAppController">
    <children>
-      <AnchorPane layoutY="1.0" prefHeight="1078.0" prefWidth="383.0" style="-fx-background-color: d5ebfc;">
+      <AnchorPane layoutY="1.0" prefHeight="1078.0" prefWidth="383.0" style="-fx-background-color: #d5ebfc;">
          <children>
             <VBox layoutY="187.0" prefHeight="889.0" prefWidth="386.0" style="-fx-background-color: #d5ebfc;">
                <children>
@@ -159,9 +163,9 @@
       </AnchorPane>
       <AnchorPane layoutX="385.0" layoutY="-7.0" prefHeight="1086.0" prefWidth="1535.0">
          <children>
-            <Pane fx:id="pane_AppGiaoHang" prefHeight="1086.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
+            <Pane fx:id="pane_AppGiaoHang" onMouseClicked="#showThongTin" prefHeight="1086.0" prefWidth="1541.0" style="-fx-background-color: #fff;">
                <children>
-                  <Label layoutX="300.0" layoutY="14.0" text="App Giao Hàng" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e7ed300" height="190.0" layoutX="107.0" layoutY="153.0" stroke="#1e7ed3" strokeType="INSIDE" width="499.0" />
                    <Button layoutX="1490.0" layoutY="23.0" mnemonicParsing="false" onAction="#huy" style="-fx-border-color: blue;">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" smooth="false">
@@ -171,9 +175,86 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Button id="windows2" fx:id="themAppButton" layoutX="675.0" layoutY="170.0" mnemonicParsing="false" onAction="#themApp" prefHeight="55.0" prefWidth="205.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm App" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/add-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="windows2" layoutX="1043.0" layoutY="221.0" mnemonicParsing="false" onAction="#xoaApp" prefHeight="55.0" prefWidth="205.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa App" textFill="WHITE" fx:id="xoaAppButton">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/delete-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="windows2" fx:id="suaAppButton" layoutX="675.0" layoutY="271.0" mnemonicParsing="false" onAction="#suaThongTinApp" prefHeight="55.0" prefWidth="205.0" stylesheets="@StyleSheet/stylesheet.css" text="Sửa App" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/add-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TableView fx:id="tableApp" layoutX="100.0" layoutY="459.0" onMouseClicked="#showThongTin" prefHeight="585.0" prefWidth="1340.0" style="-fx-font-size: 35px;">
+                    <columns>
+                      <TableColumn fx:id="maAppCol" prefWidth="416.66668701171875" style="-fx-background-color: #96cdf7;" text="Mã App" />
+                      <TableColumn fx:id="tenAppCol" prefWidth="519.3333129882812" style="-fx-background-color: #d5ebfc;" text="Tên App" />
+                        <TableColumn fx:id="hoaHongCol" prefWidth="400.3333740234375" style="-fx-background-color: #96cdf7;" text="Phí Hoa Hồng(%)" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="127.0" layoutY="192.0" text="Tên App:" textFill="#047bd6">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="133.0" layoutY="272.0" text="Phí Hoa Hồng(%):" textFill="#047bd6">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tenAppTextField" layoutX="391.0" layoutY="187.0" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #d5ebfc;">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="hoaHongTextField" layoutX="392.0" layoutY="271.0" prefHeight="25.0" prefWidth="53.0" style="-fx-background-color: #d5ebfc;">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Line endX="-32.0" endY="0.5" layoutX="707.0" layoutY="197.0" startX="-100.0" stroke="#56acee" />
+                  <Line endX="-32.0" endY="0.5" layoutX="707.0" layoutY="297.0" startX="-100.0" stroke="#56acee" />
+                  <TextField fx:id="timKiemTextField" layoutX="151.0" layoutY="399.0" promptText="Tìm kiếm mã app" />
+                  <Label layoutX="100.0" layoutY="403.0" text="Search" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
+      <Pane fx:id="pane_Title" layoutX="899.0" layoutY="-162.0" prefHeight="263.0" prefWidth="530.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label fx:id="btn_Title1" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="180.0" text="Quản Lý App Giao Hàng" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
+   
 </AnchorPane>

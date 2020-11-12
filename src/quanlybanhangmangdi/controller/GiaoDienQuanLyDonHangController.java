@@ -2,11 +2,13 @@ package quanlybanhangmangdi.controller;
 
 
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -18,7 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,7 +32,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
+import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.DonHang;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
@@ -35,6 +43,8 @@ import quanlybanhangmangdi.model.MonTrongDanhSach;
 public class GiaoDienQuanLyDonHangController implements Initializable{
 		
 		public static ObservableList<DonHangTable> listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable()); 
+		
+		public static ObservableList<DanhSachMonTableQuanLyDonHang> listMon;
 		
 		@FXML
 	    private Button btn_DonHang;
@@ -94,7 +104,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	    private TableColumn<DonHangTable, String> thoiGianCol;
 
 	    @FXML
-	    private TableColumn<DonHangTable, Integer> nhanVienCol;
+	    private TableColumn<DonHangTable, String> nhanVienCol;
 
 	    @FXML
 	    private TableColumn<DonHangTable, String> nguonDonCol;
@@ -116,6 +126,21 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 
 	    @FXML
 	    private Label btn_Title1;
+
+	    
+	    
+
+	    @FXML
+	    private TableView<DanhSachMonTableQuanLyDonHang> dsMonTable;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, String> tenMonCol;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, Integer> soLuongCol;
+
+	    @FXML
+	    private TableColumn<DanhSachMonTableQuanLyDonHang, Integer> donGiaCol;
 
 	   
 	    @FXML
@@ -171,6 +196,7 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
     	AddBillController addBill = new AddBillController();
     	addBill.show();
+    	loadDataHoaDon();
     }
     
    
@@ -213,16 +239,14 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		iniColHoaDon();
+		
+		iniColDSMon();
 		loadDataHoaDon();
+		iniColHoaDon();
 		setThongTinTaiKhoan();
 	}
 	
-	@FXML
-	public void refershData(ActionEvent event) {
-		loadDataHoaDon();
-		System.out.println();
-	}
+	
 	
 	
 	
@@ -237,15 +261,15 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	}
 
 	public void loadDataHoaDon() {
+		listDonHang.clear();
 		listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable());
 		tableDonHang.getItems().setAll(listDonHang);
-		System.out.println("Hello world");
 	}
 	
 	private void iniColHoaDon() {
 		maDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("ma"));
 		thoiGianCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("thoiGian"));
-		nhanVienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("maNhanVien"));
+		nhanVienCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maNhanVien"));
 		nguonDonCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maApp"));
 		maDonAppCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, String>("maDonApp"));
 		chietKhauCol.setCellValueFactory(new PropertyValueFactory<DonHangTable, Integer>("chietKhau"));
@@ -255,8 +279,60 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	}
 	
 	
+	private void iniColDSMon() {
+		tenMonCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, String>("tenMon"));
+		soLuongCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, Integer>("soLuong"));
+		donGiaCol.setCellValueFactory(new PropertyValueFactory<DanhSachMonTableQuanLyDonHang, Integer>("donGia"));
+	}
 	
+	@FXML
+	public void hienThiDanhSachMon() {
+		String maDon = tableDonHang.getSelectionModel().getSelectedItem().getMa();
+		listMon  =  FXCollections.observableArrayList(DAO.getDanhSachMonQLDH(maDon));
+		dsMonTable.setItems(listMon);
+	}
+	
+	
+	
+	@FXML
+	public void tamXoaDonHang() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+    	String maDon = tableDonHang.getSelectionModel().getSelectedItem().getMa();
+        alert.setTitle("Xóa đơn hàng");
+        alert.setHeaderText("Bạn chắc chắn muốn di chuyển đơn hàng " + maDon +" xuống thùng rác");
+ 
+        // option != null.
+        Optional<ButtonType> option = alert.showAndWait();
+        
+        if(option.get() == ButtonType.OK) {
+        	if(anDonHangCSDL(maDon)){
+        		Alert alertCompleted = new Alert(AlertType.INFORMATION);
+        		alertCompleted.setTitle("Thông báo");
+        		alertCompleted.setHeaderText("Xóa thành công");
+        		alertCompleted.showAndWait();
+        		loadDataHoaDon();
+        		listMon.clear();
+        	}
+        }
+	}
+	
+	private boolean anDonHangCSDL(String maHoaDon) {
+		boolean result;
+		
+		result = DataHelper.execAction("UPDATE HoaDon\r\n" + 
+				"SET TrangThai = FALSE\r\n" + 
+				"WHERE ma = " +"'"+maHoaDon+"';");
+		
+		
+		return result;
+	}
 
+	  @FXML
+	    void moDonHangAn(ActionEvent event) throws IOException {
+		  	XemDonHangAnController an = new XemDonHangAnController();
+		  	an.show();
+		  	loadDataHoaDon();
+	    }
 
 
 }

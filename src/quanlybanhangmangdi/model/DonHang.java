@@ -73,7 +73,7 @@ public class DonHang {
 		while(cuoi.length() < 8) {
 			cuoi = "0" + cuoi;
 		}
-		kq = cuoi+kq;
+		kq = cuoi+kq.toUpperCase();
 		return kq;
 	}
 	
