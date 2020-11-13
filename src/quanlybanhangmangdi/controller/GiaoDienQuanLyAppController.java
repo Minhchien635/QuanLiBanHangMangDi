@@ -220,9 +220,10 @@ public class GiaoDienQuanLyAppController implements Initializable{
     
     @FXML
     private void themApp(ActionEvent event) {
+    	//Lấy dữ liệu Tên App và Phí Hoa Hồng nhập từ textField
     	String tenApp = tenAppTextField.getText();
     	String hoaHong = hoaHongTextField.getText();
-    	// nếu 2 textfield không bị trống
+    	// Kiểm tra xem tên app đã tồn tại chưa
     	if(kiemTraTenApp(tenApp)) {
     		Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Thông báo");
@@ -231,9 +232,10 @@ public class GiaoDienQuanLyAppController implements Initializable{
 			return ;
     	}
     	
-    	
+    	// Kiểm tra xem textfield có bị trống không
     	if((!tenApp.isEmpty())&&(!hoaHong.isEmpty())) {
-    		if(kiemTraPhiHoaHong(hoaHong)&&kiemTraTenApp(tenApp)) {
+    		// kiểm tra phí hoa hồng hợp lệ và tên app đã tồn tại chưa
+    		if( ( kiemTraPhiHoaHong( hoaHong ) ) && ( !kiemTraTenApp(tenApp) ) ) {
     			if(themAppVaoCSDL(tenApp, Integer.parseInt(hoaHong))) {
     				Alert alert = new Alert(AlertType.INFORMATION);
     				alert.setTitle("Thông báo");
@@ -261,7 +263,8 @@ public class GiaoDienQuanLyAppController implements Initializable{
     	}
     }
     
-    
+
+	// Kiểm tra xem App đã tồn tại trong hệ thống chưa
     private boolean kiemTraTenApp(String tenApp) {
     	for(AppGiaoHangTable app: listApp) {
     		if(app.getTenApp().contains(tenApp)) return true;
@@ -296,7 +299,8 @@ public class GiaoDienQuanLyAppController implements Initializable{
     	// Kiểm tra phí hoa hồng có trong khoảng từ 1 đến 100 ko
     	
     	try {
-    		if(Integer.parseInt(phiHoaHong) >= 0 && Integer.parseInt(phiHoaHong) <= 100 ) return true;
+    		int intHoaHong = Integer.parseInt(phiHoaHong);
+    		if((intHoaHong>=0)&& (intHoaHong<= 100) ) return true;
 		} catch (Exception e) {
 			return false;
 		}
