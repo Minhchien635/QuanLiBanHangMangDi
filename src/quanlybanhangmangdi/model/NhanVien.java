@@ -1,33 +1,57 @@
 package quanlybanhangmangdi.model;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import quanlybanhangmangdi.database.DataHelper;
+
 public class NhanVien {
 	private int maNhanVien;
 	private int maChucVu;
-	private String hoTen;
-	private String dienThoai;
-	private String email;
 	private boolean gioiTinh;
+	private Date ngaySinh;
+	private String dienThoai;
+	private String diaChi;
 	private String taiKhoan;
 	private String matKhau;
 	
 	
 	
-	
-	
-	public NhanVien(int maNhanVien, int maChucVu, String hoTen, String dienThoai, String email, boolean gioiTinh,
+	public NhanVien(int maNhanVien, int maChucVu, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
 			String taiKhoan, String matKhau) {
 		super();
 		this.maNhanVien = maNhanVien;
 		this.maChucVu = maChucVu;
-		this.hoTen = hoTen;
-		this.dienThoai = dienThoai;
-		this.email = email;
 		this.gioiTinh = gioiTinh;
+		this.ngaySinh = ngaySinh;
+		this.dienThoai = dienThoai;
+		this.diaChi = diaChi;
 		this.taiKhoan = taiKhoan;
 		this.matKhau = matKhau;
 	}
 	
+	public NhanVien(String tenTaiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
 	
+	public String getHoTen() {
+		String sql = "SELECT * FROM NhanVien WHERE ma = "+maNhanVien;
+		String ten = null;
+		ResultSet rs = DataHelper.execQuery(sql);
+		try {
+			while(rs.next()) {
+				ten = rs.getString("hoten");
+			}
+			return ten;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	
 	
 	public int getMaNhanVien() {
@@ -42,11 +66,17 @@ public class NhanVien {
 	public void setMaChucVu(int maChucVu) {
 		this.maChucVu = maChucVu;
 	}
-	public String getHoTen() {
-		return hoTen;
+	public boolean isGioiTinh() {
+		return gioiTinh;
 	}
-	public void setHoTen(String hoTen) {
-		this.hoTen = hoTen;
+	public void setGioiTinh(boolean gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+	public Date getNgaySinh() {
+		return ngaySinh;
+	}
+	public void setNgaySinh(Date ngaySinh) {
+		this.ngaySinh = ngaySinh;
 	}
 	public String getDienThoai() {
 		return dienThoai;
@@ -54,17 +84,11 @@ public class NhanVien {
 	public void setDienThoai(String dienThoai) {
 		this.dienThoai = dienThoai;
 	}
-	public String getEmail() {
-		return email;
+	public String getDiaChi() {
+		return diaChi;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public boolean isGioiTinh() {
-		return gioiTinh;
-	}
-	public void setGioiTinh(boolean gioiTinh) {
-		this.gioiTinh = gioiTinh;
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
 	}
 	public String getTaiKhoan() {
 		return taiKhoan;
@@ -78,6 +102,12 @@ public class NhanVien {
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

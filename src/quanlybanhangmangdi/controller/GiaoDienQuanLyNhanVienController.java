@@ -26,10 +26,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.AppGiaoHangTable;
+import quanlybanhangmangdi.model.NhanVienTable;
 
 public class GiaoDienQuanLyNhanVienController implements Initializable{
 		
-		private ArrayList<Object> statement;
 		
 		@FXML
 	    private Button btn_DonHang;
@@ -78,6 +79,34 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 
 	    @FXML
 	    private Label UserIDLabel;
+	    
+	    private static ObservableList<NhanVienTable> danhSachNhanVien;
+	    
+	    
+	    //Tạo liên kết với giao diện
+	    @FXML
+	    private TableView<NhanVienTable> tbl_NhanVien;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, Integer> col_Ma;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_Ten;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_ChucVu;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_GioiTinh;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_NgaySinh;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_DienThoai;
+
+	    @FXML
+	    private TableColumn<NhanVienTable, String> col_DiaChi;
 	    
 	    
 	    @FXML
@@ -132,6 +161,8 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
     	((Node)event.getSource()).getScene().getWindow().hide();
     }
     
+    
+    //Hàm dùng để mở giao diện quản lý
     @FXML
     private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
 		MenuQuanLyController menuQuanLy = new MenuQuanLyController();
@@ -148,9 +179,26 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 		}
     }
     
+    private void iniNhanVienCol() {
+    	col_Ma.setCellValueFactory(new PropertyValueFactory<>("maNhanVien"));
+    	col_Ten.setCellValueFactory(new PropertyValueFactory<>("tenNhanVien"));
+    	col_ChucVu.setCellValueFactory(new PropertyValueFactory<>("chucVu"));
+    	col_GioiTinh.setCellValueFactory(new PropertyValueFactory<>("gioiTinh"));
+    	col_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("ngaySinh"));
+    	col_DienThoai.setCellValueFactory(new PropertyValueFactory<>("dienThoai"));
+    	col_DiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
+    }
+    
+    private void loadDataNhanVien() {
+    	danhSachNhanVien = FXCollections.observableArrayList(NhanVienTable.getDuLIeuTableNhanVien());
+    	tbl_NhanVien.getItems().setAll(danhSachNhanVien);
+    }
+    
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		iniNhanVienCol();
+		loadDataNhanVien();
 		setThongTinTaiKhoan();
 	}
 	

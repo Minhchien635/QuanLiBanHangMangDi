@@ -38,7 +38,7 @@ import quanlybanhangmangdi.model.DonHangTable;
 
 public class GiaoDienQuanLyAppController implements Initializable{
 		
-		private ArrayList<Object> statement;
+		
 		
 		// Cau truc chung cua view
 		

@@ -34,13 +34,13 @@ public class DAO {
 				int maNhanVien = rs.getInt("ma");
 				int maChucVu = rs.getInt("machucvu");
 				String hoTen = rs.getString("hoten");
+				boolean gioiTinh = rs.getBoolean("gioiTinh");
+				Date ngaySinh = rs.getDate("NgaySinh");
 				String dienThoai = rs.getString("dienthoai");
-				String email = rs.getString("email");
+				String diaChi = rs.getString("diachi");
 				String taiKhoan = rs.getString("taikhoan");
 				String matKhau = rs.getString("matkhau");
-				boolean gioiTinh = rs.getBoolean("gioiTinh");
-				
-				danhSachNhanVien.add(new NhanVien(maNhanVien, maChucVu, hoTen, dienThoai, email, gioiTinh, taiKhoan, matKhau));
+				danhSachNhanVien.add(new NhanVien(maNhanVien, maChucVu, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
