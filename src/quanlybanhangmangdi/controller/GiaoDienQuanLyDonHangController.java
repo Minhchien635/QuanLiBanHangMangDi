@@ -34,9 +34,9 @@ import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
 import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
-import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.ChiTietHoaDonDTO;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
-import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
 

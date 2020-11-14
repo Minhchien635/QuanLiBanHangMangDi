@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.AppGiaoHangTable;
-import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.ChiTietHoaDonDTO;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
-import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
-import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.PhieuChi;
 
 public class DAO {
@@ -22,8 +22,8 @@ public class DAO {
 	
 	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
-	public static ArrayList<NhanVien> getDuLieuNhanVien() {
-		ArrayList<NhanVien> danhSachNhanVien = new ArrayList<NhanVien>();
+	public static ArrayList<NhanVienDTO> getDuLieuNhanVien() {
+		ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<NhanVienDTO>();
 		String sql = "SELECT * FROM nhanvien";
 		ResultSet rs = DataHelper.execQuery(sql);
 		
@@ -40,7 +40,7 @@ public class DAO {
 				String diaChi = rs.getString("diachi");
 				String taiKhoan = rs.getString("taikhoan");
 				String matKhau = rs.getString("matkhau");
-				danhSachNhanVien.add(new NhanVien(maNhanVien, maChucVu, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
+				danhSachNhanVien.add(new NhanVienDTO(maNhanVien, maChucVu,hoTen, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -49,8 +49,8 @@ public class DAO {
 		return danhSachNhanVien;
 	}
 	
-	public static ArrayList<DonHang> getDuLieuDonHang() {
-		ArrayList<DonHang> danhSachDonHang = new ArrayList<DonHang>();
+	public static ArrayList<DonHangDTO> getDuLieuDonHang() {
+		ArrayList<DonHangDTO> danhSachDonHang = new ArrayList<DonHangDTO>();
 		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
@@ -66,7 +66,7 @@ public class DAO {
 				int phiDichVu = rs.getInt("PhiDichVu");
 				int tongTienThu = rs.getInt("TongTienThu");
 				danhSachDonHang.add(
-						new DonHang(maDon, maNV, d, maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu, getCacChiTietDon(maDon)));
+						new DonHangDTO(maDon, maNV, d, maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu, getCacChiTietDon(maDon)));
 			}
 			return danhSachDonHang;
 		} catch (SQLException e) {
@@ -80,8 +80,8 @@ public class DAO {
 	
 	
 	
-	public static ArrayList<ChiTietHoaDon> getCacChiTietDon(String maDon) {
-		ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
+	public static ArrayList<ChiTietHoaDonDTO> getCacChiTietDon(String maDon) {
+		ArrayList<ChiTietHoaDonDTO> danhSachChiTiet = new ArrayList<ChiTietHoaDonDTO>();
 		String query = "SELECT * FROM ChiTietHoaDon WHERE maHD = \" "+maDon +"\"";
 		ResultSet rs = DataHelper.execQuery(query);
 		
@@ -89,7 +89,7 @@ public class DAO {
 			while(rs.next()) {
 				String maMon = rs.getString("mamon");
 				int soLuong = rs.getInt("soLuong");
-				danhSachChiTiet.add(new ChiTietHoaDon(maMon, soLuong));
+				danhSachChiTiet.add(new ChiTietHoaDonDTO(maMon, soLuong));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -1,13 +1,17 @@
 package quanlybanhangmangdi.model;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 import quanlybanhangmangdi.database.DataHelper;
 
-public class NhanVien {
+public class NhanVienDTO {
 	private int maNhanVien;
+	private String hoTen;
 	private int maChucVu;
 	private boolean gioiTinh;
 	private Date ngaySinh;
@@ -18,7 +22,20 @@ public class NhanVien {
 	
 	
 	
-	public NhanVien(int maNhanVien, int maChucVu, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
+	public NhanVienDTO(int maChucVu, String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
+			String taiKhoan, String matKhau) {
+		super();
+		this.hoTen = hoTen;
+		this.maChucVu = maChucVu;
+		this.gioiTinh = gioiTinh;
+		this.ngaySinh = ngaySinh;
+		this.dienThoai = dienThoai;
+		this.diaChi = diaChi;
+		this.taiKhoan = taiKhoan;
+		this.matKhau = matKhau;
+	}
+	
+	public NhanVienDTO(int maNhanVien, int maChucVu,String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
 			String taiKhoan, String matKhau) {
 		super();
 		this.maNhanVien = maNhanVien;
@@ -30,8 +47,8 @@ public class NhanVien {
 		this.taiKhoan = taiKhoan;
 		this.matKhau = matKhau;
 	}
-	
-	public NhanVien(String tenTaiKhoan) {
+
+	public NhanVienDTO(String tenTaiKhoan) {
 		this.taiKhoan = taiKhoan;
 	}
 	
@@ -105,8 +122,45 @@ public class NhanVien {
 	
 	
 	
+	public void setHoTen(String hoTen) {
+		this.hoTen = hoTen;
+	}
+
+	public boolean luuNhanVien() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String sql = "INSERT Into NhanVien(ma,hoten,taikhoan,matkhau,gioitinh,machucvu,ngaysinh,dienthoai,diachi)\r\n" + 
+				"VALUES ('"+taoMaNhanVien()+"',"+
+				"'"+hoTen+"',"+
+				"'"+taiKhoan+"',"+
+				"'"+matKhau+"',"+
+				gioiTinh+","+
+				"'"+maChucVu+"',"+
+				"'"+sdf.format(ngaySinh)+"',"+
+				"'"+dienThoai+"',"+
+				"'"+diaChi+"')";
+		boolean result = DataHelper.execAction(sql);
+		return result;
+	}
 	
 	
+	public static void main(String[] args) {
+		
+	}
+	static public int taoMaNhanVien() {
+		String sql = "SELECT ma FROM nhanvien\r\n" + 
+				"ORDER BY ma DESC\r\n" + 
+				"LIMIT 1;";
+		ResultSet rs = DataHelper.execQuery(sql);
+		int result=0;
+		try {
+			while(rs.next()) {
+				result = rs.getInt("ma");
+			}
+			return result+1;
+		} catch (SQLException e) {
+			return -1;
+		}
+	}
 	
 	
 	

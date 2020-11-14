@@ -3,10 +3,10 @@ package quanlybanhangmangdi.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class ChiTietHoaDon {
+public class ChiTietHoaDonDTO {
 	private String maMon;
 	private int soLuong;
-	public ChiTietHoaDon(String maMon, int soLuong) {
+	public ChiTietHoaDonDTO(String maMon, int soLuong) {
 		super();
 		this.maMon = maMon;
 		this.soLuong = soLuong;

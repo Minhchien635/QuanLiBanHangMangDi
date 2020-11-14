@@ -19,7 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.main.*;
 
 public class LoginController implements Initializable{
@@ -36,7 +36,7 @@ public class LoginController implements Initializable{
     @FXML private Label trangThaiLabel;
 	
 	
-	private ArrayList<NhanVien> danhSachNhanVien = quanlybanhangmangdi.database.DAO.getDuLieuNhanVien();
+	private ArrayList<NhanVienDTO> danhSachNhanVien = quanlybanhangmangdi.database.DAO.getDuLieuNhanVien();
 	
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -96,7 +96,7 @@ public class LoginController implements Initializable{
 	}
 
 	public boolean kiemTraMatKhau(String taiKhoan, String matKhau) {
-		for(NhanVien nhanVien : danhSachNhanVien) {
+		for(NhanVienDTO nhanVien : danhSachNhanVien) {
 			if(nhanVien.getTaiKhoan().equals(taiKhoan)) {
 				if(nhanVien.getMatKhau().equals(matKhau))
 				{
@@ -110,7 +110,7 @@ public class LoginController implements Initializable{
 	}
 	
 	public int kiemTraQuyenTaiKhoan(String tenTaiKhoan) {
-		for(NhanVien nhanVien : danhSachNhanVien) {
+		for(NhanVienDTO nhanVien : danhSachNhanVien) {
 			if(nhanVien.getTaiKhoan().equals(tenTaiKhoan)) {
 				return nhanVien.getMaChucVu();
 			}
@@ -119,7 +119,7 @@ public class LoginController implements Initializable{
 	}
 	
 	public boolean kiemTraTaiKhoanTonTai(String tenTaiKhoan) {
-		for(NhanVien nhanVien : danhSachNhanVien) {
+		for(NhanVienDTO nhanVien : danhSachNhanVien) {
 			if(nhanVien.getTaiKhoan().equals(tenTaiKhoan)) return true;
 		}
 		return false;
@@ -133,6 +133,11 @@ public class LoginController implements Initializable{
 		return matKhauTextField.getText();
 	}
 	
+	
+	public void themNhanVien(ActionEvent event) {
+		GiaoDienQuanLyNhanVienAddController addNhanVien = new GiaoDienQuanLyNhanVienAddController();
+		addNhanVien.show();
+	}
 	
 	
 	

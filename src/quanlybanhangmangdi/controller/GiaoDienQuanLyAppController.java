@@ -288,9 +288,6 @@ public class GiaoDienQuanLyAppController implements Initializable{
     }
     
     
-    private String sinhMaApp() {
-    	return null;
-    }
 
     
     

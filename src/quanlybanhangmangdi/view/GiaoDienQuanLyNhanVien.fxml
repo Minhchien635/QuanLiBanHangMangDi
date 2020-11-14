@@ -183,7 +183,7 @@
                         <TableColumn fx:id="col_DiaChi" prefWidth="480.0" style="-fx-background-color: #96cdf7;" text="Địa chỉ" />
                      </columns>
                   </TableView>
-                  <Button id="windows2" layoutX="241.0" layoutY="159.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="291.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm Nhân Viên" textFill="WHITE">
+                  <Button id="windows2" layoutX="184.0" layoutY="186.0" mnemonicParsing="false" onAction="#themNhanVien" prefHeight="55.0" prefWidth="291.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm Nhân Viên" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -195,7 +195,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="671.0" layoutY="157.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="311.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa Nhân Viên" textFill="WHITE">
+                  <Button id="windows2" layoutX="1079.0" layoutY="175.0" mnemonicParsing="false" onAction="#xoaNhanVien" prefHeight="55.0" prefWidth="311.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa Nhân Viên" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -207,14 +207,14 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="1121.0" layoutY="159.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="305.0" stylesheets="@StyleSheet/stylesheet.css" text="Xem Nhân Viên Ẩn" textFill="WHITE">
+                  <Button id="windows2" layoutX="626.0" layoutY="179.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="311.0" stylesheets="@StyleSheet/stylesheet.css" text="Sửa Nhân Viên" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@image/info-32.png" />
+                              <Image url="@image/delete-32.png" />
                            </image>
                         </ImageView>
                      </graphic>

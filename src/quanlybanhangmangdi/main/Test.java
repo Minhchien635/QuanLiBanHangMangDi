@@ -19,10 +19,10 @@ import quanlybanhangmangdi.controller.LoginController;
 import quanlybanhangmangdi.controller.MenuQuanLyController;
 import quanlybanhangmangdi.controller.XemDonHangAnController;
 import quanlybanhangmangdi.database.DataHelper;
-import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.model.NhanVienDTO;
 
 public class Test extends Application{
-	public static NhanVien nhanVien;
+	public static NhanVienDTO nhanVien;
 	public static DecimalFormat dcf = new DecimalFormat("###,###,###");
 
 	public static void setLabelThongTinDangNhap(Label UserIDLabel, Label UserNameLabel, Label UserPermissionLabel) throws SQLException {

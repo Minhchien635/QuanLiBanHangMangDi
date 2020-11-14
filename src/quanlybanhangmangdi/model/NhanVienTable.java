@@ -1,5 +1,6 @@
 package quanlybanhangmangdi.model;
 
+import java.lang.reflect.Executable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,10 +18,12 @@ public class NhanVienTable {
 	private SimpleStringProperty ngaySinh;
 	private SimpleStringProperty dienThoai;
 	private SimpleStringProperty diaChi;
+	private SimpleStringProperty taiKhoan;
+	private SimpleStringProperty matKhau;
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	public NhanVienTable(Integer maNhanVien,String tenNhanVien, String chucVu, String gioiTinh, String ngaySinh, String dienThoai,
-			String diaChi) {
+			String diaChi, String taiKhoan, String matKhau) {
 		super();
 		this.tenNhanVien = new SimpleStringProperty(tenNhanVien);
 		this.maNhanVien = new SimpleIntegerProperty(maNhanVien);
@@ -29,8 +32,19 @@ public class NhanVienTable {
 		this.ngaySinh = new SimpleStringProperty(ngaySinh);
 		this.dienThoai = new SimpleStringProperty(dienThoai);
 		this.diaChi = new SimpleStringProperty(diaChi);
+		this.taiKhoan = new SimpleStringProperty(taiKhoan);
+		this.matKhau = new SimpleStringProperty(matKhau);
 	}
 	
+	public String getTaiKhoan() {
+		return taiKhoan.get();
+	}
+
+
+	public String getMatKhau() {
+		return matKhau.get();
+	}
+
 	public String getTenNhanVien() {
 		return tenNhanVien.get();
 	}
@@ -58,9 +72,11 @@ public class NhanVienTable {
 		return diaChi.get();
 	}
 	
+	
+	
 	public static ArrayList<NhanVienTable> getDuLIeuTableNhanVien() {
 		 ArrayList<NhanVienTable> danhSachNhanVien = new ArrayList<NhanVienTable>();
-		String sql = "SELECT nv.ma, nv.hoten, cv.ten, nv.gioitinh, nv.ngaysinh, nv.dienthoai, nv.diachi FROM NhanVien nv\r\n" + 
+		String sql = "SELECT nv.ma, nv.hoten, cv.ten, nv.gioitinh, nv.ngaysinh, nv.dienthoai, nv.diachi, nv.taikhoan, nv.matkhau FROM NhanVien nv\r\n" + 
 				"JOIN ChucVu cv On nv.machucvu = cv.ma";
 		ResultSet rs = DataHelper.execQuery(sql);
 		try {
@@ -77,7 +93,9 @@ public class NhanVienTable {
 				String ngaySinh = sdf.format(rs.getDate("ngaysinh"));
 				String dienThoai = rs.getString("dienthoai");
 				String diaChi = rs.getString("diachi");
-				danhSachNhanVien.add(new NhanVienTable(maNhanVien, tenNhanVien, chucVu, gioiTinh, ngaySinh, dienThoai, diaChi));
+				String taiKhoan = rs.getString("taikhoan");
+				String matKhau = rs.getString("matkhau");
+				danhSachNhanVien.add(new NhanVienTable(maNhanVien, tenNhanVien, chucVu, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
 			}
 			return danhSachNhanVien;
 		} catch (SQLException e) {

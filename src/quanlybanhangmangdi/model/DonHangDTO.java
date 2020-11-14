@@ -9,7 +9,7 @@ import java.util.Date;
 
 import quanlybanhangmangdi.database.DataHelper;
 
-public class DonHang {
+public class DonHangDTO {
 	
 	private String ma;
 	private int maNhanVien;
@@ -20,15 +20,15 @@ public class DonHang {
 	private int chietKhau;
 	private int phiDichVu;
 	private int tongTienThu;
-	private ArrayList<ChiTietHoaDon> danhSachChiTiet;
+	private ArrayList<ChiTietHoaDonDTO> danhSachChiTiet;
 
 	private SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private SimpleDateFormat sdfUI = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 	private SimpleDateFormat sdfMaNgay = new SimpleDateFormat("ddMMyyyy-HHmmss");
 
-	public DonHang(int maNhanVien, Date thoiGian, String maApp, String maDonApp, int tongGia, int chietKhau,
-			int phiDichVu, int tongTienThu, ArrayList<ChiTietHoaDon> danhSachChiTiet) {
+	public DonHangDTO(int maNhanVien, Date thoiGian, String maApp, String maDonApp, int tongGia, int chietKhau,
+			int phiDichVu, int tongTienThu, ArrayList<ChiTietHoaDonDTO> danhSachChiTiet) {
 		super();
 		this.maNhanVien = maNhanVien;
 		this.thoiGian = thoiGian;
@@ -42,8 +42,8 @@ public class DonHang {
 	}
 	
 	
-	public DonHang(String ma, int maNhanVien, Date thoiGian, String maApp, String maDonApp, int tongGia, int chietKhau,
-			int phiDichVu, int tongTienThu, ArrayList<ChiTietHoaDon> danhSachChiTiet) {
+	public DonHangDTO(String ma, int maNhanVien, Date thoiGian, String maApp, String maDonApp, int tongGia, int chietKhau,
+			int phiDichVu, int tongTienThu, ArrayList<ChiTietHoaDonDTO> danhSachChiTiet) {
 		super();
 		this.ma = ma;
 		this.maNhanVien = maNhanVien;
@@ -94,7 +94,7 @@ public class DonHang {
 					"\"" + getPhiDichVu() + "\")";
 			boolean exec = DataHelper.execAction(sql);
 			if(exec) {
-				for(ChiTietHoaDon chiTiet : getDanhSachMon()) {
+				for(ChiTietHoaDonDTO chiTiet : getDanhSachMon()) {
 					String sql2 = "INSERT INTO ChiTietHoaDon(mahd, mamon, soluong) \r\n" + 
 							"VALUES (\"" + maHD + "\"," +
 							"\"" + chiTiet.getMaMon() + "\"," +
@@ -118,7 +118,7 @@ public class DonHang {
 				
 	}
 		
-	public ArrayList<ChiTietHoaDon> getDanhSachMon() {
+	public ArrayList<ChiTietHoaDonDTO> getDanhSachMon() {
 		return danhSachChiTiet;
 	}
 	
@@ -171,7 +171,7 @@ public class DonHang {
 		this.tongTienThu = tongTienThu;
 	}
 	
-	public void setDanhSachMon(ArrayList<ChiTietHoaDon> danhSachMon) {
+	public void setDanhSachMon(ArrayList<ChiTietHoaDonDTO> danhSachMon) {
 		this.danhSachChiTiet = danhSachMon;
 	}
 
