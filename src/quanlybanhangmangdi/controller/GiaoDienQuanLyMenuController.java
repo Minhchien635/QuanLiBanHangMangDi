@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -17,15 +18,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.AppGiaoHangTable;
+import quanlybanhangmangdi.model.MenuTable;
+import quanlybanhangmangdi.model.NhanVienTable;
 
 public class GiaoDienQuanLyMenuController implements Initializable{
 		
@@ -76,6 +84,41 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 
 	    @FXML
 	    private Label UserIDLabel;
+	    
+	    
+	    // Khai báo cho button chức năng
+	    @FXML
+	    private Button btn_ThemMon;
+
+	    @FXML
+	    private Button btn_SuaMon;
+
+	    @FXML
+	    private Button btn_XoaMon;
+
+	    @FXML
+	    private Button btn_QuanLyLoaiMon;
+
+	    // Get dữ liệu món
+	    ObservableList<MenuTable> danhSachMon;
+	    
+	    
+	    //Khai báo cho table danh sách món
+	    @FXML
+	    private TableView<MenuTable> tbl_DanhSachMon;
+
+	    @FXML
+	    private TableColumn<MenuTable, String> col_MaMon;
+
+	    @FXML
+	    private TableColumn<MenuTable, String> col_LoaiMon;
+
+	    @FXML
+	    private TableColumn<MenuTable, String> col_TenMon;
+
+	    @FXML
+	    private TableColumn<MenuTable, Integer> col_GiaBan;
+	    
 	    
 	    
 	    @FXML
@@ -147,11 +190,99 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 			e.printStackTrace();
 		}
     }
+    
+    
+    public void iniMonCol() {
+		col_MaMon.setCellValueFactory(new PropertyValueFactory<MenuTable, String>("maMon"));
+		col_LoaiMon.setCellValueFactory(new PropertyValueFactory<MenuTable, String>("tenLoaiMon"));
+		col_TenMon.setCellValueFactory(new PropertyValueFactory<MenuTable, String>("tenMon"));
+		col_GiaBan.setCellValueFactory(new PropertyValueFactory<MenuTable, Integer>("giaBan"));
+    }
+    
+    public void loadDataMon() {
+    	// lấy dữ liệu món trong database
+    	danhSachMon = FXCollections.observableArrayList(MenuTable.getDuLieuMonTable());
+    	//set dữ liệu cho table danh sách món
+    	tbl_DanhSachMon.getItems().setAll(danhSachMon);
+    }
 
+    
+    @FXML
+    public void themMon(ActionEvent event) {
+    	GiaoDienQuanLyMenuAddController giaoDienThemMon = new GiaoDienQuanLyMenuAddController();
+    	giaoDienThemMon.show();
+    	loadDataMon();
+    }
+    
+    @FXML
+    public void xoaMon(ActionEvent event) {
+    	MenuTable mon = tbl_DanhSachMon.getSelectionModel().getSelectedItem();
+		int soLuongChon = tbl_DanhSachMon.getSelectionModel().getSelectedIndex();
+		
+		
+		
+		
+		
+    	if(soLuongChon == -1) {
+    		alertThongBao("Lỗi", "Vui lòng chọn món cần xóa");
+    		return ;
+    	}
+    	
+    	boolean result = alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn xóa nhân viên "+mon.getTenMon()+" khỏi danh sách chứ?");	
+		
+    	if(result) {
+    		if(xoaMon(mon.getMaMon())) {
+        		alertThongBao("Thông báo", "Xóa món thành công");
+        		loadDataMon();
+        	} else {
+        		alertLoi("Lỗi", "Xóa món thất bại");
+        	}
+    	}
+    
+    }
+    
+    public boolean xoaMon(String maMon) {
+		String sql = "DELETE FROM mon\r\n" + 
+				"WHERE ma = '"+maMon+"'";
+		System.out.println(sql);
+		boolean result = DataHelper.execAction(sql);
+		return result;
+	}
+    
+    public void alertLoi(String title, String header) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.showAndWait();
+	}
+	
+	public void alertThongBao(String title, String header) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.showAndWait();
+	}
+	
+	public boolean alertXacNhan(String title, String header) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		 Optional<ButtonType> option = alert.showAndWait();
+		 if(option.get() == null) {
+			 return false;
+		 } else if(option.get() == ButtonType.OK) {
+			 return true;
+		 }
+		 return false;
+	}
+	
+     
  
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		 setThongTinTaiKhoan();
+		iniMonCol();
+		loadDataMon();
+		setThongTinTaiKhoan();
 	}
 	
 	

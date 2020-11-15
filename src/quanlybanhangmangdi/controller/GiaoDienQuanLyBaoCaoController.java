@@ -29,8 +29,6 @@ import quanlybanhangmangdi.main.Test;
 
 public class GiaoDienQuanLyBaoCaoController implements Initializable{
 		
-		private ArrayList<Object> statement;
-		
 		@FXML
 	    private Button btn_DonHang;
 
