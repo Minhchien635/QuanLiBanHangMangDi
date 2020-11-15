@@ -52,7 +52,7 @@ public class NhanVienTable {
 	public Integer getMaNhanVien() {
 		return maNhanVien.get();
 	}
-	public String getMaChucVu() {
+	public String getChucVu() {
 		return chucVu.get();
 	}
 
@@ -75,7 +75,7 @@ public class NhanVienTable {
 	
 	
 	public static ArrayList<NhanVienTable> getDuLIeuTableNhanVien() {
-		 ArrayList<NhanVienTable> danhSachNhanVien = new ArrayList<NhanVienTable>();
+		ArrayList<NhanVienTable> danhSachNhanVien = new ArrayList<NhanVienTable>();
 		String sql = "SELECT nv.ma, nv.hoten, cv.ten, nv.gioitinh, nv.ngaysinh, nv.dienthoai, nv.diachi, nv.taikhoan, nv.matkhau FROM NhanVien nv\r\n" + 
 				"JOIN ChucVu cv On nv.machucvu = cv.ma";
 		ResultSet rs = DataHelper.execQuery(sql);
@@ -83,7 +83,7 @@ public class NhanVienTable {
 			while(rs.next()) {
 				Integer maNhanVien = rs.getInt("ma");
 				String tenNhanVien = rs.getString("hoten");
-				String chucVu = rs.getString("ten");
+				String chucVu = rs.getString("cv.ten");
 				String gioiTinh = rs.getString("gioiTinh");
 				if(gioiTinh.equals("0")) gioiTinh = "Nữ";
 				else {

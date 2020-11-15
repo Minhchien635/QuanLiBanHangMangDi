@@ -221,6 +221,10 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 			return ;
 		}
     	
+		if(nhanVien.getMaNhanVien() == Test.nhanVien.getMaNhanVien()) {
+			alertLoi("Lỗi", "Bạn không thể xóa chính mình");
+			return ;
+		}
 		
 		//Hiện thông báo yêu cầu xác nhận xóa nhân viên
 		boolean result = alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn xóa nhân viên "+nhanVien.getTenNhanVien()+" khỏi danh sách chứ?");	

@@ -101,21 +101,23 @@ public class DAO {
 	
 	public static ArrayList<DonHangTable> getDuLieuDonHangTable() {
 		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
-		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n" + 
+				"JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + 
+				"WHERE TrangThai=1;";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
 			while(rs.next()) {
 				String maDon = rs.getString("ma");
 				Timestamp d = rs.getTimestamp("ThoiGian");
-				int maNV = rs.getInt("MaNV");
+				String tenNhanVien = rs.getString("hoten");
 				String maApp = rs.getString("MaApp");
 				String maDonApp = rs.getString("MaDonTrenApp");
 				int chietKhau = rs.getInt("ChietKhau");
 				int tongGia = rs.getInt("TongGia");
 				int phiDichVu = rs.getInt("PhiDichVu");
 				int tongTienThu = rs.getInt("TongTienThu");
-				danhSachDonHang.add(new DonHangTable(maDon, Test.nhanVien.getHoTen(), sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
 			}
 			return danhSachDonHang;
 		} catch (SQLException e) {
