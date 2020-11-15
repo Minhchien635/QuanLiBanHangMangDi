@@ -44,7 +44,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,2,'Trần Phước An','0333487982','anhanpro2k','123456',1,'2020-05-03','Ho Chi Minh City'),(5,2,'Nguyễn Văn Tèo','0584208003','vanteo123','123456',1,'2000-11-08','An minh kien giang');
+INSERT INTO `nhanvien` VALUES (1,2,'Trần Phước An','0333487982','anhanpro2k','123456',1,'2020-05-03','Ho Chi Minh City'),(2,1,'Trần Lê Anh Khôi','0167222394','khoipro123','123456',1,'2020-05-03','Ho Chi Minh City'),(3,1,'Trần Minh Chiến','0987325341','chienpro123','123456',1,'2020-05-03','Ho Chi Minh City'),(4,1,'Hoa Thanh Danh','054132348','danhpro123','123456',1,'2020-05-03','Ho Chi Minh City');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-15  8:43:23
+-- Dump completed on 2020-11-13 22:12:56

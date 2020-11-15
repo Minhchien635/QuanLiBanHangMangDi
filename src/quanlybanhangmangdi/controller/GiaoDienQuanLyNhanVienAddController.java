@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -30,7 +29,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.NhanVienDTO;
-import quanlybanhangmangdi.model.NhanVienTable;
  
 public class GiaoDienQuanLyNhanVienAddController implements Initializable{
 
@@ -64,7 +62,7 @@ public class GiaoDienQuanLyNhanVienAddController implements Initializable{
     @FXML
     private PasswordField txt_MatKhau;
 	
-	ArrayList<NhanVienTable> danhSachNhanVien = NhanVienTable.getDuLIeuTableNhanVien();
+	
 	
 	public void show() {
 		Stage primaryStage = new Stage();
@@ -151,12 +149,6 @@ public class GiaoDienQuanLyNhanVienAddController implements Initializable{
 			// nếu độ dài của số điện thoại khác 10
 			alertLoi("Thông báo", "Vui lòng nhập số điện thoại đúng quy định");
 			return false;
-		}
-		for(NhanVienTable nhanVien : danhSachNhanVien) {
-			if(nhanVien.getTaiKhoan().equals(txt_TaiKhoan.getText())) {
-				alertLoi("Lỗi", "Tài khoản đã tồn tại vui lòng nhập lại!");
-				return false;
-			}
 		}
 		return true;
 	}
