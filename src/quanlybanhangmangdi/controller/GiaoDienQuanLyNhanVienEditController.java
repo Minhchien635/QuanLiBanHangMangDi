@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -29,12 +31,16 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.NhanVienTable;
  
 public class GiaoDienQuanLyNhanVienEditController implements Initializable{
 
+	private ObservableList<NhanVienTable> danhSachNhanVien;
+	private NhanVienTable nhanVienSelected;
+	
 	@FXML
     private TextField txt_HoTen;
 
@@ -70,20 +76,83 @@ public class GiaoDienQuanLyNhanVienEditController implements Initializable{
 	
     private NhanVienTable nhanVien1;
 	
-	
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	public void show() {
 
-		
-		
 	}
 	
 	
 	@FXML
 	public void suaNhanVien(ActionEvent event) {
+		Integer maNhanVien = nhanVienSelected.getMaNhanVien();
+		
+		if(!kiemTraThongTin()) return ;
+		
+		if(luuChinhSuaDatabase()) {
+			alertThongBao("Thông báo", "Lưu thành công");
+			huy(event);
+		} else {
+			alertLoi("Lỗi", "Lưu thất bại");
+		}
+		
 	}
 	
-	public void setTaiKhoan(String taiKhoan) {
-		lbl_TaiKhoan.setText(taiKhoan);
+	
+	@FXML
+	public boolean luuChinhSuaDatabase() {
+		//Cú pháp đưa datepick về dạng date
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String hoTen = txt_HoTen.getText();
+		String matKhau = txt_MatKhau.getText();
+		boolean gioiTinh = cb_GioiTinh.getSelectionModel().getSelectedItem().equals("Nữ") ? false : true;
+		int maChucVu = cb_ChucVu.getSelectionModel().getSelectedItem().equals("Nhân Viên")? 1 : 2;
+		java.util.Date ngaySinh =  Date.from(dp_NgaySinh.getValue().atStartOfDay(defaultZoneId).toInstant());
+		String dienThoai = txt_DienThoai.getText();
+		String diaChi = txa_DiaChi.getText();
+		
+		
+		String sql = "UPDATE NhanVien SET hoten = '" +hoTen+"',"
+				+ "matkhau = '" +matKhau+"',"
+				+ "machucvu =   "+maChucVu+","
+				+ "gioitinh =  "+gioiTinh+","
+				+ "ngaysinh =  '"+sdf.format(ngaySinh)+"',"
+				+ "dienthoai =  '"+dienThoai+"',"
+				+ "diachi = '" +diaChi+"'\n"+ 
+				"WHERE ma = " + nhanVienSelected.getMaNhanVien();
+		System.out.println(sql);
+		boolean result = DataHelper.execAction(sql);
+		return result;
+	}
+	
+	public void setThongTin(ObservableList<NhanVienTable> danhSachNhanVien, NhanVienTable nhanVienSelected) {
+		this.danhSachNhanVien = danhSachNhanVien;
+		this.nhanVienSelected = nhanVienSelected;
+		
+		txt_HoTen.setText(nhanVienSelected.getTenNhanVien());
+		txt_TaiKhoan.setText(nhanVienSelected.getTaiKhoan());
+		txt_MatKhau.setText(nhanVienSelected.getMatKhau());
+		
+		cb_ChucVu.setItems(FXCollections.observableArrayList("Nhân Viên", "Quản Lý"));
+		if(nhanVienSelected.getChucVu().equals("Nhân Viên")) {
+			cb_ChucVu.getSelectionModel().select(0);
+		} else {
+			cb_ChucVu.getSelectionModel().select(1);
+		}
+		
+		
+		cb_GioiTinh.setItems(FXCollections.observableArrayList("Nam", "Nữ"));
+		if(nhanVienSelected.getGioiTinh().equals("Nữ")) cb_GioiTinh.getSelectionModel().select(1);
+		else cb_GioiTinh.getSelectionModel().select(0);
+		
+		
+		dp_NgaySinh.setValue(LocalDate.parse(nhanVienSelected.getNgaySinh(),formatter));
+		
+		txt_DienThoai.setText(nhanVienSelected.getDienThoai());
+		txa_DiaChi.setText(nhanVienSelected.getDiaChi());
+		
 	}
 	
 	

@@ -16,7 +16,7 @@
 <AnchorPane prefHeight="765.0" prefWidth="645.0" style="-fx-background-color: #f5fafe;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyNhanVienAddController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a86f230" height="55.0" layoutX="140.0" layoutY="14.0" stroke="#96cdf7" strokeType="INSIDE" width="344.0" />
-      <Label layoutX="175.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="THÊM NHÂN VIÊN">
+      <Label layoutX="175.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="SỬA NHÂN VIÊN">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
