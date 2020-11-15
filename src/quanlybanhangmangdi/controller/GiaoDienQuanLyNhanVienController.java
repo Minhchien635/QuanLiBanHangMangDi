@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DataHelper;
@@ -249,6 +250,41 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 		boolean result = DataHelper.execAction(sql);
 		return result;
 	}
+    
+    @FXML
+    public void suaNhanVien(ActionEvent event) {
+    	NhanVienTable nhanVien = tbl_NhanVien.getSelectionModel().getSelectedItem();
+    	
+    	int soLuongChon = tbl_NhanVien.getSelectionModel().getSelectedIndex();
+    	if(soLuongChon == -1) {
+    		alertLoi("Lỗi", "Vui lòng chọn nhân viên cần sửa");
+    		return ;
+    	}
+    	
+    	try {
+			Stage primaryStage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			Parent root = loader.load(getClass().getResource("../view/GiaoDienQuanLyNhanVienEdit.fxml").openStream());
+			GiaoDienQuanLyNhanVienEditController controller = (GiaoDienQuanLyNhanVienEditController)loader.getController();
+			controller.setTaiKhoan(nhanVien.getTaiKhoan());
+			Scene scene = new Scene(root,645,765);
+		    primaryStage.setResizable(false);
+			primaryStage.setScene(scene);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.initModality(Modality.APPLICATION_MODAL);
+			primaryStage.show();
+			
+			
+			
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
     
     
     public void alertLoi(String title, String header) {

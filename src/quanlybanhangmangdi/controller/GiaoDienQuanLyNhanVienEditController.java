@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -22,9 +21,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -32,7 +33,7 @@ import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.NhanVienTable;
  
-public class GiaoDienQuanLyNhanVienAddController implements Initializable{
+public class GiaoDienQuanLyNhanVienEditController implements Initializable{
 
 	@FXML
     private TextField txt_HoTen;
@@ -63,53 +64,26 @@ public class GiaoDienQuanLyNhanVienAddController implements Initializable{
 
     @FXML
     private PasswordField txt_MatKhau;
+    
+    @FXML
+    private Label lbl_TaiKhoan;
 	
-	ArrayList<NhanVienTable> danhSachNhanVien = NhanVienTable.getDuLIeuTableNhanVien();
+    private NhanVienTable nhanVien1;
+	
 	
 	public void show() {
-		Stage primaryStage = new Stage();
-		 
-    	Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyNhanVienAdd.fxml"));
-			Scene scene = new Scene(root,645,765);
-			scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
-		    primaryStage.setResizable(false);
-			primaryStage.setScene(scene);
-			primaryStage.initStyle(StageStyle.UNDECORATED);
-			primaryStage.initModality(Modality.APPLICATION_MODAL);
-			primaryStage.showAndWait();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		
 		
 	}
 	
 	
 	@FXML
-	public void themNhanVien(ActionEvent event) {
-		if(!kiemTraThongTin()) return ;
-		ZoneId defaultZoneId = ZoneId.systemDefault();
-		//Lấy dữ liệu trong form đưa về dạng thuộc tính của NhanVienDTO
-		String hoTen = txt_HoTen.getText();
-		String taiKhoan = txt_TaiKhoan.getText();
-		String matKhau = txt_MatKhau.getText();
-		boolean gioiTinh = cb_GioiTinh.getSelectionModel().getSelectedItem().equals("Nữ") ? false : true;
-		int maChucVu = cb_ChucVu.getSelectionModel().getSelectedItem().equals("Nhân Viên")? 1 : 2;
-		java.util.Date ngaySinh =  Date.from(dp_NgaySinh.getValue().atStartOfDay(defaultZoneId).toInstant());
-		String dienThoai = txt_DienThoai.getText();
-		String diaChi = txa_DiaChi.getText();
-		
-		//Chạy câu lệnh lưu nhân viên xuống database
-		NhanVienDTO nhanVien = new NhanVienDTO(maChucVu, hoTen,gioiTinh,ngaySinh,dienThoai,diaChi,taiKhoan,matKhau);
-		if(nhanVien.luuNhanVien()) {
-			alertThongBao("Thông báo", "Lưu nhân viên thành công");
-			((Node)event.getSource()).getScene().getWindow().hide();
-		} else {
-			alertLoi("Thông báo", "Lưu nhân viên thất bại");
-		}
-		
+	public void suaNhanVien(ActionEvent event) {
+	}
+	
+	public void setTaiKhoan(String taiKhoan) {
+		lbl_TaiKhoan.setText(taiKhoan);
 	}
 	
 	
@@ -152,12 +126,6 @@ public class GiaoDienQuanLyNhanVienAddController implements Initializable{
 			alertLoi("Thông báo", "Vui lòng nhập số điện thoại đúng quy định");
 			return false;
 		}
-		for(NhanVienTable nhanVien : danhSachNhanVien) {
-			if(nhanVien.getTaiKhoan().equals(txt_TaiKhoan.getText())) {
-				alertLoi("Lỗi", "Tài khoản đã tồn tại vui lòng nhập lại!");
-				return false;
-			}
-		}
 		return true;
 	}
 	
@@ -170,11 +138,7 @@ public class GiaoDienQuanLyNhanVienAddController implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Set 2 giá trị là nhân viên và quản lý cho chức vụ
-		cb_ChucVu.setItems(FXCollections.observableArrayList("Nhân Viên", "Quản Lý"));
-		cb_ChucVu.getSelectionModel().select(0);
-		cb_GioiTinh.setItems(FXCollections.observableArrayList("Nam", "Nữ"));
-		cb_GioiTinh.getSelectionModel().select(0);
+		
 	}
 
 }

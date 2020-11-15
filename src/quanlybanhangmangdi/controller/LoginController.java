@@ -134,11 +134,6 @@ public class LoginController implements Initializable{
 	}
 	
 	
-	public void themNhanVien(ActionEvent event) {
-		GiaoDienQuanLyNhanVienAddController addNhanVien = new GiaoDienQuanLyNhanVienAddController();
-		addNhanVien.show();
-	}
-	
 	
 	
 }

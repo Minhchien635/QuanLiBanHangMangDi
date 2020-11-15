@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="765.0" prefWidth="645.0" style="-fx-background-color: #f5fafe;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyNhanVienEditController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a86f230" height="55.0" layoutX="140.0" layoutY="14.0" stroke="#96cdf7" strokeType="INSIDE" width="344.0" />
+      <Label layoutX="175.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="SỬA NHÂN VIÊN">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="106.0" text="Họ Tên" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="282.0" text="Chức vụ" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="337.0" text="Giới tính" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="393.0" text="Ngày Sinh" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="449.0" text="Điện thoại" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="509.0" text="Địa chỉ" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_HoTen" layoutX="178.0" layoutY="106.0" prefHeight="31.0" prefWidth="296.0" />
+      <ComboBox fx:id="cb_ChucVu" layoutX="178.0" layoutY="278.0" prefHeight="37.0" prefWidth="191.0" promptText="Chọn chức vụ" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-text-fill: red;" />
+      <ComboBox fx:id="cb_GioiTinh" layoutX="178.0" layoutY="333.0" prefHeight="37.0" prefWidth="162.0" promptText="Chọn giới tính" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px;" />
+      <DatePicker fx:id="dp_NgaySinh" layoutX="178.0" layoutY="393.0" prefHeight="31.0" prefWidth="182.0" style="-fx-background-color: #d5ebfc;" />
+      <TextField fx:id="txt_DienThoai" layoutX="178.0" layoutY="449.0" prefHeight="31.0" prefWidth="182.0" />
+      <TextArea fx:id="txa_DiaChi" layoutX="178.0" layoutY="509.0" prefHeight="104.0" prefWidth="344.0" style="-fx-background-color: #d5ebfc;" />
+      <Button fx:id="btn_Luu" layoutX="45.0" layoutY="672.0" mnemonicParsing="false" onAction="#suaNhanVien" prefHeight="62.0" prefWidth="242.0" style="-fx-background-color: #55b0f4;" text="  Lưu" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Button>
+      <Button fx:id="btn_Cancel" layoutX="337.0" layoutY="672.0" mnemonicParsing="false" onAction="#huy" prefHeight="62.0" prefWidth="274.0" style="-fx-background-color: #55b0f4;" text="Hủy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Button>
+      <Label layoutX="44.0" layoutY="169.0" text="Tài khoản" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_TaiKhoan" layoutX="178.0" layoutY="168.0" prefHeight="31.0" prefWidth="207.0" />
+      <Label layoutX="45.0" layoutY="218.0" text="Mật khẩu" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txt_MatKhau" layoutX="178.0" layoutY="221.0" prefHeight="31.0" prefWidth="207.0" />
+      <Label fx:id="lbl_TaiKhoan" layoutX="140.0" layoutY="69.0" />
+   </children>
+</AnchorPane>

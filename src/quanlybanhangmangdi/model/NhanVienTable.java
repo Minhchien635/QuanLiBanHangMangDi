@@ -20,8 +20,12 @@ public class NhanVienTable {
 	private SimpleStringProperty diaChi;
 	private SimpleStringProperty taiKhoan;
 	private SimpleStringProperty matKhau;
-	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+	public NhanVienTable() {
+		super();
+	}
+
 	public NhanVienTable(Integer maNhanVien,String tenNhanVien, String chucVu, String gioiTinh, String ngaySinh, String dienThoai,
 			String diaChi, String taiKhoan, String matKhau) {
 		super();
@@ -75,6 +79,7 @@ public class NhanVienTable {
 	
 	
 	public static ArrayList<NhanVienTable> getDuLIeuTableNhanVien() {
+		
 		ArrayList<NhanVienTable> danhSachNhanVien = new ArrayList<NhanVienTable>();
 		String sql = "SELECT nv.ma, nv.hoten, cv.ten, nv.gioitinh, nv.ngaysinh, nv.dienthoai, nv.diachi, nv.taikhoan, nv.matkhau FROM NhanVien nv\r\n" + 
 				"JOIN ChucVu cv On nv.machucvu = cv.ma";
@@ -101,6 +106,7 @@ public class NhanVienTable {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 		
 		return null;
