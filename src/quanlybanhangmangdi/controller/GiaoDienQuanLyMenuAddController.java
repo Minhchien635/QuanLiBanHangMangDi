@@ -132,6 +132,7 @@ public class GiaoDienQuanLyMenuAddController implements Initializable{
 		MenuDTO monMoi = new MenuDTO(maLoaiMon, txt_TenMon.getText(), Integer.parseInt(txt_GiaBan.getText()));
 		if(monMoi.luuMonDataBase()) {
 			alertThongBao("Thông báo", "Lưu món mới thành công");
+			huy(event);
 		} else {
 			alertLoi("Lỗi", "Lưu món thất bại");
 		}

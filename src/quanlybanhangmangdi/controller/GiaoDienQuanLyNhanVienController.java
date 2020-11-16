@@ -249,7 +249,18 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 	}
     @FXML
     public void suaNhanVien(ActionEvent event) {
+    	if(tbl_NhanVien.getSelectionModel().getSelectedIndex()==-1) {
+    		alertLoi("Lỗi", "Vui lòng chọn nhân viên cần chỉnh sửa");
+    		return ;
+    	}
     	NhanVienTable nhanVienSelected = tbl_NhanVien.getSelectionModel().getSelectedItem();
+    	if(nhanVienSelected.getMaNhanVien()==1)
+    	{
+    		alertLoi("Lỗi", "Bạn không thể thay đổi thông tin của chủ quán");
+    		return ;
+    	}
+    	
+    	
     	try {
     		Stage primaryStage = new Stage();
         	FXMLLoader loader = new FXMLLoader();
