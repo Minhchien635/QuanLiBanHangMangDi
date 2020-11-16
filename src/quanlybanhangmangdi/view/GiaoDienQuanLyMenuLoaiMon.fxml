@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="701.0" prefWidth="1083.0" style="-fx-background-color: #f5fafe;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyMenuLoaiMonController">
+   <children>
+      <TableView fx:id="tbl_LoaiMon" layoutX="62.0" layoutY="280.0" onMouseClicked="#hienThongTinLoaiMon" prefHeight="393.0" prefWidth="940.0" style="-fx-font-size: 35px;">
+         <columns>
+            <TableColumn fx:id="col_MaLoaiMon" prefWidth="416.66668701171875" style="-fx-background-color: #96cdf7;" text="Mã Loại Món" />
+            <TableColumn fx:id="col_TenLoaiMon" prefWidth="519.3333129882812" style="-fx-background-color: #d5ebfc;" text="Tên Loại Món" />
+         </columns>
+      </TableView>
+      <Button id="windows2" fx:id="btn_Them" layoutX="499.0" layoutY="145.0" mnemonicParsing="false" onAction="#themLoaiMon" prefHeight="55.0" prefWidth="146.0" stylesheets="@StyleSheet/stylesheet.css" text="Thêm" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/add-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="windows2" fx:id="btn_Xoa" layoutX="890.0" layoutY="148.0" mnemonicParsing="false" onAction="#xoaLoaiMon" prefHeight="55.0" prefWidth="128.0" stylesheets="@StyleSheet/stylesheet.css" text="Xóa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/delete-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="windows2" fx:id="btn_Sua" layoutX="698.0" layoutY="145.0" mnemonicParsing="false" onAction="#suaLoaiMon" prefHeight="55.0" prefWidth="144.0" stylesheets="@StyleSheet/stylesheet.css" text="Sửa" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/add-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="71.0" layoutY="158.0" text="Tên loại món" textFill="#047bd6">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_TenLoaiMon" layoutX="262.0" layoutY="153.0" prefHeight="47.0" prefWidth="171.0" style="-fx-background-color: #d5ebfc;">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextField>
+      <Pane fx:id="pane_Title" layoutX="305.0" layoutY="-167.0" prefHeight="252.0" prefWidth="455.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label fx:id="btn_Title1" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="180.0" text="Quản Lý Loại Món" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

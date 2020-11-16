@@ -85,8 +85,9 @@ public class LoginController implements Initializable{
     	((Node)event.getSource()).getScene().getWindow().hide();
     }
 	
-	private void moGiaoDienNhanVien() {
-		// TODO Auto-generated method stub
+	private void moGiaoDienNhanVien() throws IOException {
+		GiaoDienNhanVien nhanVienView = new GiaoDienNhanVien();
+		nhanVienView.show();
 		
 	}
 

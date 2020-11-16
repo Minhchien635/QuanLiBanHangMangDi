@@ -103,7 +103,36 @@ public class DAO {
 		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
 		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n" + 
 				"JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + 
-				"WHERE TrangThai=1;";
+				"WHERE TRANGTHAI = 1";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				String maDon = rs.getString("ma");
+				Timestamp d = rs.getTimestamp("ThoiGian");
+				String tenNhanVien = rs.getString("hoten");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public static ArrayList<DonHangTable> getDuLieuDonHangNhanVienTable() {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n" + 
+				"JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + 
+				"WHERE DATE(thoigian) = CURDATE() AND TrangThai = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {

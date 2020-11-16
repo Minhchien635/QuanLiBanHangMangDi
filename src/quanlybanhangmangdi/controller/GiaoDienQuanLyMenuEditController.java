@@ -57,7 +57,7 @@ public class GiaoDienQuanLyMenuEditController implements Initializable{
 			Pane root = loader.load(getClass().getResource("../view/GiaoDienQuanLyMenuEdit.fxml").openStream());
 			GiaoDienQuanLyMenuEditController editMonController = (GiaoDienQuanLyMenuEditController)loader.getController();
 			editMonController.setThongTin(monDaChon);
-			Scene scene = new Scene(root,645,765);
+			Scene scene = new Scene(root,645,408);
 			scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.showAndWait();

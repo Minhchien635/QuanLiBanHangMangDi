@@ -249,20 +249,39 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 		return result;
 	}
     
-    
+    // hàm để bắt sự kiện
     @FXML
     public void suaMon(ActionEvent event) {
     	//Lấy món đã chọn
     	suaMon();
     }
-    
     public void suaMon() {
     	MenuTable monDaChon = tbl_DanhSachMon.getSelectionModel().getSelectedItem();
         //Hiển thị form sửa cho người dùng
+    	
+    	if(monDaChon==null) {
+    		alertLoi("Lỗi", "Vui lòng chọn món");
+    		return ;
+    	}
+    	
     	GiaoDienQuanLyMenuEditController controller = new GiaoDienQuanLyMenuEditController();
     	controller.show(monDaChon);
     	loadDataMon();
     }
+    
+    
+    @FXML
+    public void quanLyLoaiMon(ActionEvent event) throws IOException {
+    	GiaoDienQuanLyMenuLoaiMonController loaiMon = new GiaoDienQuanLyMenuLoaiMonController();
+    	loaiMon.show();
+    	loadDataMon();
+    }
+    
+    
+    
+    
+    
+    
     
     public void alertLoi(String title, String header) {
 		Alert alert = new Alert(AlertType.ERROR);
