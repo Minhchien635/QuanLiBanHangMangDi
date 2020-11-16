@@ -240,7 +240,7 @@ public class GiaoDienQuanLyMenuController implements Initializable{
     	}
     
     }
-    
+    //Hàm hỗ trợ xóa món từ database
     public boolean xoaMon(String maMon) {
 		String sql = "DELETE FROM mon\r\n" + 
 				"WHERE ma = '"+maMon+"'";
@@ -248,6 +248,21 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 		boolean result = DataHelper.execAction(sql);
 		return result;
 	}
+    
+    
+    @FXML
+    public void suaMon(ActionEvent event) {
+    	//Lấy món đã chọn
+    	suaMon();
+    }
+    
+    public void suaMon() {
+    	MenuTable monDaChon = tbl_DanhSachMon.getSelectionModel().getSelectedItem();
+        //Hiển thị form sửa cho người dùng
+    	GiaoDienQuanLyMenuEditController controller = new GiaoDienQuanLyMenuEditController();
+    	controller.show(monDaChon);
+    	loadDataMon();
+    }
     
     public void alertLoi(String title, String header) {
 		Alert alert = new Alert(AlertType.ERROR);
@@ -283,6 +298,14 @@ public class GiaoDienQuanLyMenuController implements Initializable{
 		iniMonCol();
 		loadDataMon();
 		setThongTinTaiKhoan();
+		
+		
+		//Set bắt sự kiện double click cho bản để hiển thị sửa món
+		tbl_DanhSachMon.setOnMouseClicked( event -> {
+		if( event.getClickCount() == 2 ) {
+		suaMon();
+			   }});
+
 	}
 	
 	

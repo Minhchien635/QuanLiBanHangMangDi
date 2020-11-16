@@ -288,8 +288,13 @@ public class GiaoDienQuanLyAppController implements Initializable{
     }
     
     
-
-    
+    @FXML
+    private void hienThiThonngTinApp() {
+    	AppGiaoHangTable app = tableApp.getSelectionModel().getSelectedItem();
+    	tenAppTextField.setText(app.getTenApp());
+    	hoaHongTextField.setText(app.getPhiHoaHong()+"");
+    	System.out.println("Hello world hien thi thong tin app");
+    }
     
     
     private boolean kiemTraPhiHoaHong(String phiHoaHong) {

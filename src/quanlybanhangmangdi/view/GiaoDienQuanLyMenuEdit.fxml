@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="408.0" prefWidth="645.0" style="-fx-background-color: #f5fafe;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyMenuEditController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0a86f230" height="55.0" layoutX="186.0" layoutY="14.0" stroke="#96cdf7" strokeType="INSIDE" width="228.0" />
+      <Label layoutX="225.0" layoutY="19.0" prefHeight="45.0" prefWidth="274.0" text="SỬA MÓN">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="106.0" text="Tên Món" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="175.0" text="Loại Món" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="249.0" text="Giá Bán" textFill="#3991d0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_TenMon" layoutX="178.0" layoutY="106.0" prefHeight="31.0" prefWidth="296.0" />
+      <ComboBox fx:id="cb_LoaiMon" layoutX="179.0" layoutY="171.0" prefHeight="37.0" prefWidth="191.0" promptText="Chọn loại món" style="-fx-background-color: #d5ebfc; -fx-font-size: 16px; -fx-text-fill: red;" />
+      <Button fx:id="btn_Luu" layoutX="19.0" layoutY="330.0" mnemonicParsing="false" onAction="#suaMon" prefHeight="62.0" prefWidth="274.0" style="-fx-background-color: #55b0f4;" text="  Lưu" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font></Button>
+      <Button fx:id="btn_Cancel" layoutX="316.0" layoutY="332.0" mnemonicParsing="false" onAction="#huy" prefHeight="62.0" prefWidth="317.0" style="-fx-background-color: #55b0f4;" text="  Hủy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txt_GiaBan" layoutX="178.0" layoutY="246.0" prefHeight="31.0" prefWidth="296.0" />
+   </children>
+</AnchorPane>
