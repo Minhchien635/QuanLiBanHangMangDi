@@ -211,7 +211,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TableView fx:id="tableApp" layoutX="100.0" layoutY="459.0" onMouseClicked="#showThongTin" prefHeight="585.0" prefWidth="1340.0" style="-fx-font-size: 35px;">
+                  <TableView fx:id="tableApp" layoutX="100.0" layoutY="459.0" onMouseClicked="#hienThiThonngTinApp" prefHeight="585.0" prefWidth="1340.0" style="-fx-font-size: 35px;">
                     <columns>
                       <TableColumn fx:id="maAppCol" prefWidth="416.66668701171875" style="-fx-background-color: #96cdf7;" text="Mã App" />
                       <TableColumn fx:id="tenAppCol" prefWidth="519.3333129882812" style="-fx-background-color: #d5ebfc;" text="Tên App" />

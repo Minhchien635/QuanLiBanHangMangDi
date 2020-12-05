@@ -12,22 +12,23 @@ import com.mysql.cj.protocol.Resultset.Type;
 import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.AppGiaoHangTable;
+
 import quanlybanhangmangdi.model.ChiTietChi;
 import quanlybanhangmangdi.model.ChiTietChiTable;
-import quanlybanhangmangdi.model.ChiTietHoaDon;
+import quanlybanhangmangdi.model.ChiTietHoaDonDTO;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
-import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NguyenLieu;
-import quanlybanhangmangdi.model.NhanVien;
+import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.PhieuChi;
 
 public class DAO {
 	
 	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
-	public static ArrayList<NhanVien> getDuLieuNhanVien() {
-		ArrayList<NhanVien> danhSachNhanVien = new ArrayList<NhanVien>();
+	public static  ArrayList<NhanVienDTO> getDuLieuNhanVien() {
+		ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<NhanVienDTO>();
 		String sql = "SELECT * FROM nhanvien";
 		ResultSet rs = DataHelper.execQuery(sql);
 		
@@ -36,13 +37,14 @@ public class DAO {
 				int maNhanVien = rs.getInt("ma");
 				int maChucVu = rs.getInt("machucvu");
 				String hoTen = rs.getString("hoten");
+				boolean gioiTinh = rs.getBoolean("gioiTinh");
+				Date ngaySinh = rs.getDate("NgaySinh");
 				String dienThoai = rs.getString("dienthoai");
-				String email = rs.getString("email");
+				String diaChi = rs.getString("diachi");
 				String taiKhoan = rs.getString("taikhoan");
 				String matKhau = rs.getString("matkhau");
-				boolean gioiTinh = rs.getBoolean("gioiTinh");
-				
-				danhSachNhanVien.add(new NhanVien(maNhanVien, maChucVu, hoTen, dienThoai, email, gioiTinh, taiKhoan, matKhau));
+				NhanVienDTO a = new NhanVienDTO(hoTen);
+				danhSachNhanVien.add(new NhanVienDTO(maNhanVien, maChucVu, hoTen, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -51,8 +53,8 @@ public class DAO {
 		return danhSachNhanVien;
 	}
 	
-	public static ArrayList<DonHang> getDuLieuDonHang() {
-		ArrayList<DonHang> danhSachDonHang = new ArrayList<DonHang>();
+	public static ArrayList<DonHangDTO> getDuLieuDonHang() {
+		ArrayList<DonHangDTO> danhSachDonHang = new ArrayList<DonHangDTO>();
 		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
@@ -68,7 +70,7 @@ public class DAO {
 				int phiDichVu = rs.getInt("PhiDichVu");
 				int tongTienThu = rs.getInt("TongTienThu");
 				danhSachDonHang.add(
-						new DonHang(maDon, maNV, d, maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu, getCacChiTietDon(maDon)));
+						new DonHangDTO(maDon, maNV, d, maApp, maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu, getCacChiTietDon(maDon)));
 			}
 			return danhSachDonHang;
 		} catch (SQLException e) {
@@ -82,8 +84,8 @@ public class DAO {
 	
 	
 	
-	public static ArrayList<ChiTietHoaDon> getCacChiTietDon(String maDon) {
-		ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
+	public static ArrayList<ChiTietHoaDonDTO> getCacChiTietDon(String maDon) {
+		ArrayList<ChiTietHoaDonDTO> danhSachChiTiet = new ArrayList<ChiTietHoaDonDTO>();
 		String query = "SELECT * FROM ChiTietHoaDon WHERE maHD = \" "+maDon +"\"";
 		ResultSet rs = DataHelper.execQuery(query);
 		
@@ -91,7 +93,7 @@ public class DAO {
 			while(rs.next()) {
 				String maMon = rs.getString("mamon");
 				int soLuong = rs.getInt("soLuong");
-				danhSachChiTiet.add(new ChiTietHoaDon(maMon, soLuong));
+				danhSachChiTiet.add(new ChiTietHoaDonDTO(maMon, soLuong));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -103,21 +105,52 @@ public class DAO {
 	
 	public static ArrayList<DonHangTable> getDuLieuDonHangTable() {
 		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
-		String query = "SELECT * FROM HoaDon WHERE TrangThai = 1";
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n" + 
+				"JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + 
+				"WHERE TRANGTHAI = 1";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
 			while(rs.next()) {
 				String maDon = rs.getString("ma");
 				Timestamp d = rs.getTimestamp("ThoiGian");
-				int maNV = rs.getInt("MaNV");
+				String tenNhanVien = rs.getString("hoten");
 				String maApp = rs.getString("MaApp");
 				String maDonApp = rs.getString("MaDonTrenApp");
 				int chietKhau = rs.getInt("ChietKhau");
 				int tongGia = rs.getInt("TongGia");
 				int phiDichVu = rs.getInt("PhiDichVu");
 				int tongTienThu = rs.getInt("TongTienThu");
-				danhSachDonHang.add(new DonHangTable(maDon, Test.nhanVien.getHoTen(), sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public static ArrayList<DonHangTable> getDuLieuDonHangNhanVienTable() {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n" + 
+				"JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + 
+				"WHERE DATE(thoigian) = CURDATE() AND TrangThai = 1";
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				String maDon = rs.getString("ma");
+				Timestamp d = rs.getTimestamp("ThoiGian");
+				String tenNhanVien = rs.getString("hoten");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp), maDonApp,tongGia, chietKhau, phiDichVu, tongTienThu));
 			}
 			return danhSachDonHang;
 		} catch (SQLException e) {

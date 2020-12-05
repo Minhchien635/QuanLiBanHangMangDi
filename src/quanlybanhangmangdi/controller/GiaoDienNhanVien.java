@@ -40,48 +40,13 @@ import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
 
-public class GiaoDienQuanLyDonHangController implements Initializable{
+public class GiaoDienNhanVien implements Initializable{
 		
-		public static ObservableList<DonHangTable> listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangTable()); 
+		public static ObservableList<DonHangTable> listDonHang = FXCollections.observableArrayList(DAO.getDuLieuDonHangNhanVienTable()); 
 		
 		public static ObservableList<DanhSachMonTableQuanLyDonHang> listMon;
 		
-		@FXML
-	    private Button btn_DonHang;
-
-	    @FXML
-	    private Button btn_Menu;
-
-	    @FXML
-	    private Button btn_AppGiaoHang;
-
-	    @FXML
-	    private Button btn_NhanVien;
-
-	    @FXML
-	    private Button btn_ThuChi;
-
-	    @FXML
-	    private Button btn_BaoCao;
-
-	    @FXML
-	    private Pane pane_DonHang;
-
-	    @FXML
-	    private Pane pane_Menu;
-
-	    @FXML
-	    private Pane pane_AppGiaoHang;
-
-	    @FXML
-	    private Pane pane_NhanVien;
-
-	    @FXML
-	    private Pane pane_ThuChi;
-
-	    @FXML
-	    private Pane pane_BaoCao;
-	    
+		
 	    @FXML
 	    private Label btn_Title;
     
@@ -143,43 +108,13 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 	    private TableColumn<DanhSachMonTableQuanLyDonHang, Integer> donGiaCol;
 
 	   
-	    @FXML
-	    private void handleButtonAction(ActionEvent event) throws IOException {
-	    	if(event.getSource() == btn_DonHang) {
-	    		return ;
-			}
-	    	else if(event.getSource() == btn_Menu) {
-				GiaoDienQuanLyMenuController menu = new GiaoDienQuanLyMenuController();
-				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
-			}
-			else if(event.getSource() == btn_AppGiaoHang) {
-				GiaoDienQuanLyAppController menu = new GiaoDienQuanLyAppController();
-				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
-			}
-			else if(event.getSource() == btn_NhanVien) {
-				GiaoDienQuanLyNhanVienController menu = new GiaoDienQuanLyNhanVienController();
-				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
-			}
-			else if(event.getSource() == btn_ThuChi) {
-				GiaoDienQuanLyThuChiController menu = new GiaoDienQuanLyThuChiController();
-				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
-			}
-			else if(event.getSource() == btn_BaoCao) {
-				GiaoDienQuanLyBaoCaoController menu = new GiaoDienQuanLyBaoCaoController();
-				menu.show();
-				((Node)event.getSource()).getScene().getWindow().hide();
-			}
-		}
+	
     
     public void show() throws IOException {
     			
 		Stage primaryStage = new Stage();
 		 
-    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyDonHang.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienNhanVien.fxml"));
 		Scene scene = new Scene(root,1920,1080);
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 	
@@ -200,32 +135,11 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
     }
     
    
-    
-    
-    @FXML
-    private void moGiaoDienSuaDonHang(ActionEvent event) throws IOException {
-    	Stage primaryStage = new Stage();
- 
-    	Parent root = FXMLLoader.load(getClass().getResource("editBill/editBill.fxml"));
-		Scene scene = new Scene(root,965,760);
-		scene.getStylesheets().add(getClass().getResource("editBill/application.css").toExternalForm());
-	    primaryStage.setResizable(false);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-    }
-
 
     @FXML
     private void huy(ActionEvent event) {
     	((Node)event.getSource()).getScene().getWindow().hide();
     }
-    
-    @FXML
-    private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
-		MenuQuanLyController menuQuanLy = new MenuQuanLyController();
-		huy(event);
-		menuQuanLy.show();
-	}
     
     private void setThongTinTaiKhoan() {
     	try {

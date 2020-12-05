@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.main.Test;
-import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.DonHangDTO;
 
 public class MenuQuanLyController implements Initializable{
 	

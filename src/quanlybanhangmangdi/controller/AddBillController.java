@@ -41,8 +41,8 @@ import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
 import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
-import quanlybanhangmangdi.model.ChiTietHoaDon;
-import quanlybanhangmangdi.model.DonHang;
+import quanlybanhangmangdi.model.ChiTietHoaDonDTO;
+import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.MonTrongDanhSach;
 
 public class AddBillController implements Initializable{
@@ -154,9 +154,9 @@ public class AddBillController implements Initializable{
     	String maDonTrongApp = maDonApp.getText();
     	
     	
-    	ArrayList<ChiTietHoaDon> danhSachChiTiet = new ArrayList<ChiTietHoaDon>();
+    	ArrayList<ChiTietHoaDonDTO> danhSachChiTiet = new ArrayList<ChiTietHoaDonDTO>();
     	for(MonTrongDanhSach mon : listMon) {
-    		danhSachChiTiet.add(new ChiTietHoaDon(mon.getMaMon(), mon.getSoLuong()));
+    		danhSachChiTiet.add(new ChiTietHoaDonDTO(mon.getMaMon(), mon.getSoLuong()));
     	}
     	
     	if(danhSachChiTiet.isEmpty()) {
@@ -172,7 +172,7 @@ public class AddBillController implements Initializable{
     	int chietKhau = Integer.parseInt(chietKhauLabel.getText());
     	int tongThu = Integer.parseInt(tongThuLabel.getText());
     	
-    	DonHang donMoi = new DonHang(Test.nhanVien.getMaNhanVien(), t, maApp, maDonApp.getText(), tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet); 
+    	DonHangDTO donMoi = new DonHangDTO(Test.nhanVien.getMaNhanVien(), t, maApp, maDonApp.getText(), tongGia, chietKhau, phiDichVu, tongThu, danhSachChiTiet); 
     	
     	if(donMoi.luuDatabase()) {
     		

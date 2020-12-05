@@ -18,12 +18,12 @@ public class DonHangTable {
 	private SimpleIntegerProperty chietKhau;
 	private SimpleIntegerProperty phiDichVu;
 	private SimpleIntegerProperty tongTienThu;
-	public DonHangTable(String ma, String maNhanVien, String thoiGian,
+	public DonHangTable(String ma, String tenNhanVien, String thoiGian,
 			String maApp, String maDonApp, Integer tongGia,
 			Integer chietKhau, Integer phiDichVu, Integer tongTienThu) {
 		super();
 		this.ma = new SimpleStringProperty(ma);
-		this.tenNhanVien = new SimpleStringProperty(maNhanVien);
+		this.tenNhanVien = new SimpleStringProperty(tenNhanVien);
 		this.thoiGian = new SimpleStringProperty(thoiGian);
 		this.tenApp = new SimpleStringProperty(maApp);
 		this.maDonApp = new SimpleStringProperty(maDonApp);
