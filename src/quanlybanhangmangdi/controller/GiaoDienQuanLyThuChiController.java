@@ -1,16 +1,14 @@
 package quanlybanhangmangdi.controller;
 
-
-import java.awt.DisplayMode;
 import java.io.IOException;
 import java.net.URL;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.HiddenAction;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,24 +19,41 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.ChiTietChi;
+import quanlybanhangmangdi.model.ChiTietChiTable;
+
 import quanlybanhangmangdi.model.PhieuChi;
 import quanlybanhangmangdi.database.*;
 
 public class GiaoDienQuanLyThuChiController implements Initializable{
-		
-	
-		//public static ObservableList<PhieuChi> listPhieuChi =  FXCollections.observableArrayList(DAO.getCacPhieuChi());
+
+	    @FXML
+	    private TableColumn<ChiTietChiTable, String> nguyenlieuchitietchi;
+
+	    @FXML
+	    private TableColumn<ChiTietChiTable, Integer> giachitietchi;
+
+	    @FXML
+	    private TableColumn<ChiTietChiTable, Integer> soluongchitietchi;
+
+	    @FXML
+	    private TableColumn<ChiTietChiTable, Integer> tongtienchitietchi;
 		
 		
 		@FXML
@@ -90,9 +105,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    @FXML
 	    private Label UserIDLabel;
 	    
-	    
-	 
-	    /*Các trường input dữ liệu*/
+
 	    @FXML
 	    private ComboBox<String> chonkieuxem;
 
@@ -104,6 +117,9 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 
 	    @FXML
 	    private Button xemphieuchi;
+	    
+	    @FXML
+	    private Button xemphieuchian;
 
 	    @FXML
 	    private Button themphieuchi;
@@ -115,7 +131,10 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    private Button inphieuchi;
 	    
 	    @FXML
-	    private TableView<PhieuChi> table;
+	    private TableView<PhieuChi> tablephieuchi;
+	    
+	    @FXML
+	    private TableView<ChiTietChiTable> tablechitietchi;
 	    
 	    @FXML
 	    private TableColumn<PhieuChi, Integer> manhanvien;
@@ -124,7 +143,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    private TableColumn<PhieuChi, String> maphieuchi;
 
 	    @FXML
-	    private TableColumn<PhieuChi, String> ngaychi;
+	    private TableColumn<PhieuChi, Date> ngaychi;
 
 	    @FXML
 	    private TableColumn<PhieuChi, Integer> tongtien;
@@ -184,7 +203,6 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     }
     
     public void show720p() throws IOException {
-		
 		Stage primaryStage = new Stage();
 		chonkieuxemCombobox();
 		 
@@ -193,10 +211,8 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
-		
 		primaryStage.show();
     }
-
 
     @FXML
     private void moGiaoDienQuanLy(ActionEvent event) throws IOException {
@@ -205,59 +221,45 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 		menuQuanLy.show();
 	}
     
-    private void setThongTinTaiKhoan() {
-    	try {
-			// set thong tin tai khoan
-			Test.setLabelThongTinDangNhap(UserIDLabel, UserNameLabel, UserPermissionLabel);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    
-    //bat su kien button action
     @FXML
     private void action_anphieuchi(ActionEvent event) {
-    	System.out.print("hello an phieu chi");
+    }
+    
+    @FXML
+    void action_xemphieuchian(ActionEvent event) {
     }
 
     @FXML
     private  void action_inphieuchi(ActionEvent event) {
-    	System.out.print("hello in phieu chi");
     }
 
     @FXML
-    private void action_themphieuchi(ActionEvent event) {
-    	System.out.print("hello them phieu chi");
+    private void action_themphieuchi(ActionEvent event) throws IOException {
+			ThemPhieuChiController themPhieuChi = new ThemPhieuChiController();
+			themPhieuChi.show();
     }
 
     @FXML
     private void action_xemphieuchi(ActionEvent event) {
-    	System.out.print("hello xem phieu chi");
     }
     
     @FXML
     void action_chonkieuxem(ActionEvent event) {
     	
-    	
     }
     
     @FXML
     void action_chonngay(ActionEvent event) {
-    		
     }
 
     @FXML
     void action_chonthang(ActionEvent event) {
-
     }
     
     private ObservableList<String> chonkieuxemCombobox(){
     	List<String> list = Arrays.asList("Theo Ngày","Theo Tháng");
      	return FXCollections.observableArrayList(list);
     }
-    
-    
     
     private ObservableList<Integer> chonthangCombobox(){
     	List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
@@ -271,26 +273,50 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     
     public void loadDataPhieuChi() {
     	ObservableList<PhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi());
-		table.getItems().setAll(listPhieuChi);
+    	tablephieuchi.getItems().setAll(listPhieuChi);
+    	if(listPhieuChi==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Thông báo");
+			alert.setHeaderText("Danh sách dữ liệu app bị trống");
+			alert.showAndWait();
+		}
 	}
-
+    
+    public void loadDataChiTietChi() {
+    	tablephieuchi.setOnMouseClicked((event) -> {
+    	    if (event.getButton().equals(MouseButton.PRIMARY)) {
+    	        String index = tablephieuchi.getSelectionModel().getSelectedItem().getMa();
+    	        ObservableList<ChiTietChiTable> listChiTietChi = FXCollections.observableArrayList(DAO.getChiTietChi(index));
+                tablechitietchi.getItems().setAll(listChiTietChi);
+    	    }
+    	});
+    }
+    
+    
  	private void initCol() {
  		manhanvien.setCellValueFactory(new PropertyValueFactory<PhieuChi, Integer>("manhanvien"));
  		maphieuchi.setCellValueFactory(new PropertyValueFactory<PhieuChi, String>("ma"));
- 		ngaychi.setCellValueFactory(new PropertyValueFactory<PhieuChi, String>("ngay"));
+ 		ngaychi.setCellValueFactory(new PropertyValueFactory<PhieuChi, Date>("ngay"));
  		tongtien.setCellValueFactory(new PropertyValueFactory<PhieuChi, Integer>("tonggia"));
  	}
     
+ 	private void initCol1() {
+ 		nguyenlieuchitietchi.setCellValueFactory(new PropertyValueFactory<ChiTietChiTable, String>("nguyenlieu"));
+ 		soluongchitietchi.setCellValueFactory(new PropertyValueFactory<ChiTietChiTable, Integer>("soluong"));
+ 		giachitietchi.setCellValueFactory(new PropertyValueFactory<ChiTietChiTable, Integer>("gia"));
+ 		tongtienchitietchi.setCellValueFactory(new PropertyValueFactory<ChiTietChiTable, Integer>("tongtien"));
+ 	}
+ 	
     private void setup() {
     	try {
     		initCol();
-    		loadDataPhieuChi();
+    		initCol1();
+    		loadDataChiTietChi();
+    		loadDataPhieuChi();	
+   
     		hienthiDropdown();
 			chonkieuxem.setItems(chonkieuxemCombobox());
-			
-			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -299,10 +325,4 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		setup();
 	}
-	
-	
-	
-
-
-
 }

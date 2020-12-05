@@ -23,7 +23,6 @@ public class Test720 extends Application{
 		
 	}
 	
-	
 	private void showLogin() throws IOException {
 		LoginController login = new LoginController();
 		login.show();
