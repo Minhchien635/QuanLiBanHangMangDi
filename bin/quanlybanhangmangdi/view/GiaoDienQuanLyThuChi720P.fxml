@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="619.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyThuChiController">
+   <children>
+      <AnchorPane layoutY="1.0" prefHeight="618.0" prefWidth="54.0" style="-fx-background-color: d5ebfc;">
+         <children>
+            <VBox layoutY="187.0" prefHeight="431.0" prefWidth="236.0" style="-fx-background-color: #d5ebfc;">
+               <children>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     ĐƠN HÀNG" textFill="#0101ee">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/DonHang.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     MENU" textFill="#0101ee">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/Menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      APP GIAO HÀNG" textFill="#0303ff">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/App.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="240.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      NHÂN VIÊN" textFill="#0303ff">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/NhanVien.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      THU - CHI" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/ThuChi.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      BÁO CÁO" textAlignment="CENTER" textFill="#0101ee">
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/BaoCao.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Line endX="143.2928924560547" endY="-1.2071068286895752" startX="-100.0" stroke="DODGERBLUE" />
+                  <AnchorPane prefHeight="113.0" prefWidth="245.0">
+                     <children>
+                        <Label layoutX="43.0" layoutY="15.0" text="Tên Nhân Viên: " />
+                        <Label layoutX="141.0" layoutY="14.0" text="Trần Phước An" />
+                        <Label layoutX="43.0" layoutY="39.0" text="Quyền: " />
+                        <Label layoutX="141.0" layoutY="38.0" text="Quản Lý" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/iconname.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="14.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/administrator.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="87.0" layoutY="70.0" mnemonicParsing="false" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <ImageView fitHeight="148.0" fitWidth="186.0" layoutX="49.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Logo-BAPK.png" />
+               </image>
+            </ImageView>
+            <Pane layoutY="125.0" prefHeight="63.0" prefWidth="244.0" style="-fx-background-color: #084675;">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="46.0" layoutY="14.0" text="MAIN MENU" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="243.0" layoutY="1.0" prefHeight="618.0" prefWidth="836.0">
+         <children>
+            <Pane fx:id="pane_ThuChi" layoutY="-6.0" prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
+               <children>
+                  <ComboBox fx:id="chonthang" disable="true" layoutX="173.0" layoutY="336.0" onAction="#action_chonthang" prefHeight="25.0" prefWidth="116.0" />
+                  <DatePicker fx:id="chonngaycombobox" layoutX="173.0" layoutY="336.0" onAction="#action_chonngay" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Ngày" />
+                  <Label layoutX="300.0" layoutY="14.0" text="Thu - Chi" />
+                  <TableView fx:id="table" layoutX="36.0" layoutY="370.0" prefHeight="239.0" prefWidth="396.0">
+                    <columns>
+                      <TableColumn fx:id="manhanvien" prefWidth="90.0" text="Mã nhân viên" />
+                      <TableColumn fx:id="maphieuchi" prefWidth="97.0" text="Mã phiếu chi" />
+                        <TableColumn fx:id="ngaychi" prefWidth="103.0" text="Ngày chi" />
+                        <TableColumn fx:id="tongtien" prefWidth="105.0" text="Tổng tiền" />
+                    </columns>
+                  </TableView>
+                  <TableView layoutX="36.0" layoutY="101.0" prefHeight="196.0" prefWidth="770.0">
+                    <columns>
+                      <TableColumn prefWidth="95.0" text="Mã Nhân Viên" />
+                      <TableColumn text="Mã Phiếu Chi" />
+                        <TableColumn prefWidth="387.0" text="Nguyên Liệu" />
+                        <TableColumn minWidth="0.0" prefWidth="44.0" text="Giá" />
+                        <TableColumn minWidth="0.0" prefWidth="67.0" text="Số Lượng" />
+                        <TableColumn minWidth="0.0" prefWidth="96.0" text="Tổng Tiền" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="36.0" layoutY="65.0" prefHeight="27.0" prefWidth="101.0" text="Chi Tiết Chi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="chonkieuxem" layoutX="34.0" layoutY="336.0" onAction="#action_chonkieuxem" prefHeight="25.0" prefWidth="127.0" promptText="Chọn Kiểu Xem" />
+                  <Button layoutX="308.0" layoutY="336.0" mnemonicParsing="false" onAction="#action_xemphieuchi" text="Xem" fx:id="xemphieuchi" />
+                  <Text layoutX="36.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phiếu Chi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="themphieuchi" layoutX="581.0" layoutY="370.0" mnemonicParsing="false" onAction="#action_themphieuchi" text="Thêm Phiếu Chi" />
+                  <Button fx:id="anphieuchi" layoutX="581.0" layoutY="429.0" mnemonicParsing="false" onAction="#action_anphieuchi" prefHeight="25.0" prefWidth="99.0" text="Ẩn Phiếu Chi" />
+                  <Button fx:id="inphieuchi" layoutX="581.0" layoutY="490.0" mnemonicParsing="false" onAction="#action_inphieuchi" prefHeight="25.0" prefWidth="99.0" text="In Phiếu Chi" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="506.0" layoutY="-216.0" prefHeight="263.0" prefWidth="310.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label fx:id="btn_Title" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="214.0" text="Thu Chi" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

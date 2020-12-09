@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/quanlybanhangmangdi/controller/AddBillController.java=UTF-8
 encoding//src/quanlybanhangmangdi/controller/GiaoDienNhanVien.java=UTF-8
 encoding//src/quanlybanhangmangdi/controller/GiaoDienQuanLyAppController.java=UTF-8
+encoding//src/quanlybanhangmangdi/controller/GiaoDienQuanLyBaoCaoAppController.java=UTF-8
 encoding//src/quanlybanhangmangdi/controller/GiaoDienQuanLyBaoCaoController.java=UTF-8
 encoding//src/quanlybanhangmangdi/controller/GiaoDienQuanLyDonHangController.java=UTF-8
 encoding//src/quanlybanhangmangdi/controller/GiaoDienQuanLyMenuAddController.java=UTF-8

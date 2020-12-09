@@ -4,11 +4,17 @@ package quanlybanhangmangdi.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.naming.spi.DirStateFactory.Result;
+
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,9 +34,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import quanlybanhangmangdi.database.DAO;
+import quanlybanhangmangdi.database.DataHelper;
 import quanlybanhangmangdi.main.Test;
+import quanlybanhangmangdi.model.AppGiaoHangTable;
+import quanlybanhangmangdi.model.BaoCaoAppTable;
+import quanlybanhangmangdi.model.DonHangTable;
 
-public class GiaoDienQuanLyBaoCaoController implements Initializable{
+public class GiaoDienQuanLyBaoCaoAppController implements Initializable{
 		
 
     @FXML
@@ -85,7 +96,24 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
     @FXML
     private Label btn_Title1;
 
-	    
+    @FXML
+    private TableView<BaoCaoAppTable> tbl_DoanhThuApp;
+
+    @FXML
+    private TableColumn<BaoCaoAppTable, String> col_MaApp;
+
+    @FXML
+    private TableColumn<BaoCaoAppTable, String> col_TenApp;
+
+    @FXML
+    private TableColumn<BaoCaoAppTable, Integer> col_PhiHoaHong;
+
+    @FXML
+    private TableColumn<BaoCaoAppTable, Integer> col_TongThu;
+    
+	public static ObservableList<BaoCaoAppTable> danhSachApp; 
+
+    
 	    
 	    @FXML
 	    private void handleButtonAction(ActionEvent event) throws IOException {
@@ -114,12 +142,12 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 				menu.show();
 				((Node)event.getSource()).getScene().getWindow().hide();
 			} 
-			else if(event.getSource() == btn_BaoCao1) {
-				GiaoDienQuanLyBaoCaoAppController menu = new GiaoDienQuanLyBaoCaoAppController();
+			else if(event.getSource() == btn_BaoCao) {
+				GiaoDienQuanLyBaoCaoController menu = new GiaoDienQuanLyBaoCaoController();
 				menu.show();
 				((Node)event.getSource()).getScene().getWindow().hide();
 			}
-			else if(event.getSource() == btn_BaoCao) {
+			else if(event.getSource() == btn_BaoCao1) {
 				return ;
 			} 
 		}
@@ -128,7 +156,7 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
     			
 		Stage primaryStage = new Stage();
 		 
-    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyBaoCao.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/GiaoDienQuanLyBaoCaoApp.fxml"));
 		Scene scene = new Scene(root,1920,1080);
 		scene.getStylesheets().add(getClass().getResource("../view/GiaoDienQuanLyStyle.css").toExternalForm());
 	    primaryStage.setResizable(false);
@@ -173,24 +201,17 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 		}
     }
     
-    private void setup() {
-    	cb_ChonKieuXem.getItems().setAll("Theo ngày", "Theo tháng");
-    	cb_ChonKieuXem.getSelectionModel().selectFirst();
-    	//cho chọn tháng ẩn
-    	
-    	LocalDate date = LocalDate.now();
-    	// Hiển thị ngày hiện tại(nếu người dùng chọn xem báo cáo theo ngày)
-    	dp_ChonNgay.setValue(date);
-    	ArrayList<String> danhSachThang = new ArrayList<String>();
-    	for(int i = 1;i<=date.getMonthValue();i++) {
-    		danhSachThang.add("Tháng "+i+"/"+date.getYear());
+    
+    
+    @FXML
+    private void xemBaoCao(ActionEvent event) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    	if(cb_ChonKieuXem.getSelectionModel().getSelectedIndex() == 0) {
+    		
     	}
-    	
-    	cb_ChonThang.getItems().setAll(FXCollections.observableArrayList(danhSachThang));
-    	cb_ChonThang.setVisible(false);
-    	
-    	
     }
+    
+    
     
     
     @FXML
@@ -203,10 +224,70 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
     		cb_ChonThang.setVisible(true);
     	}
     }
+    
+    private void iniCol() {
+    	col_MaApp.setCellValueFactory(new PropertyValueFactory<>("maApp"));
+    	col_TenApp.setCellValueFactory(new PropertyValueFactory<>("tenApp"));
+    	col_PhiHoaHong.setCellValueFactory(new PropertyValueFactory<>("phiHoaHong"));
+    	col_TongThu.setCellValueFactory(new PropertyValueFactory<>("tongThu"));
+    }
    
+    private void setup() {
+    	cb_ChonKieuXem.getItems().setAll("Theo ngày", "Theo tháng");
+    	cb_ChonKieuXem.getSelectionModel().selectFirst();
+    	//cho chọn tháng ẩn
+    	
+    	LocalDate date = LocalDate.now();
+    	// Hiển thị ngày hiện tại(nếu người dùng chọn xem báo cáo theo ngày)
+    	dp_ChonNgay.setValue(date);
+    	ArrayList<String> danhSachThang = new ArrayList<String>();
+    	for(int i = 1;i<=date.getMonthValue();i++) {
+    		danhSachThang.add("Tháng "+i+"/"+date.getYear());
+    	}
+    	//chọn danh sách tháng
+    	cb_ChonThang.getItems().setAll(FXCollections.observableArrayList(danhSachThang));
+    	cb_ChonThang.setVisible(false);
+    	iniCol();
+    	danhSachApp = FXCollections.observableArrayList(getDuLieuBaoCaoApp());
+    	tbl_DoanhThuApp.getItems().setAll(danhSachApp);
+    	
+    }
+    
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setup();
+		for(BaoCaoAppTable baoCao : danhSachApp) {
+			System.out.println(baoCao.getMaApp());
+			System.out.println(baoCao.getTenApp());
+			System.out.println(baoCao.getPhiHoaHong());
+			System.out.println(baoCao.getTongThu());
+			System.out.println("========");
+		}
+	}
+	
+	private static ArrayList<BaoCaoAppTable> getDuLieuBaoCaoApp() {
+		String sql = "SELECT a.ma,a.Ten,SUM(IFNULL(hd.PhiDichVu,0)) AS PhiDichVu,SUM(IFNULL(hd.TongTienThu, 0)) AS TongTienThu FROM App a\r\n" + 
+				"LEFT JOIN HoaDon hd ON a.ma = hd.MaApp\r\n" + 
+				"GROUP BY a.ma;";
+		ResultSet rs = DataHelper.execQuery(sql);
+		
+		ArrayList<BaoCaoAppTable> doanhThuTheoApp = new ArrayList<BaoCaoAppTable>();
+		try {
+			while(rs.next()) {
+				String maApp = rs.getString("a.ma");
+				String tenApp = rs.getString("a.ten");
+				Integer phiHoaHong = rs.getInt("PhiDichVu");
+				Integer tongThu = rs.getInt("TongTienThu");
+				doanhThuTheoApp.add(new BaoCaoAppTable(maApp, tenApp, phiHoaHong, tongThu));
+			}
+			return doanhThuTheoApp;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
+
+

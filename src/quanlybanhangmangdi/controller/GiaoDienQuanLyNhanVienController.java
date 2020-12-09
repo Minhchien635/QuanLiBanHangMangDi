@@ -56,6 +56,10 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 
 	    @FXML
 	    private Button btn_BaoCao;
+	    
+
+	    @FXML
+	    private Button btn_BaoCao1;
 
 	    @FXML
 	    private Pane pane_DonHang;
@@ -143,6 +147,11 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 			}
 			else if(event.getSource() == btn_BaoCao) {
 				GiaoDienQuanLyBaoCaoController menu = new GiaoDienQuanLyBaoCaoController();
+				menu.show();
+				((Node)event.getSource()).getScene().getWindow().hide();
+			}
+			else if(event.getSource() == btn_BaoCao1) {
+				GiaoDienQuanLyBaoCaoAppController menu = new GiaoDienQuanLyBaoCaoAppController();
 				menu.show();
 				((Node)event.getSource()).getScene().getWindow().hide();
 			}
