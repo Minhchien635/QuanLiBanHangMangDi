@@ -7,27 +7,30 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.mysql.cj.protocol.Resultset.Type;
+
 import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.AppGiaoHangTable;
+
+import quanlybanhangmangdi.model.ChiTietChi;
+import quanlybanhangmangdi.model.ChiTietChiTable;
 import quanlybanhangmangdi.model.ChiTietHoaDonDTO;
 import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
+import quanlybanhangmangdi.model.NguyenLieu;
 import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.PhieuChi;
 
 public class DAO {
 	
-	
 	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
-	public static ArrayList<NhanVienDTO> getDuLieuNhanVien() {
+	public static  ArrayList<NhanVienDTO> getDuLieuNhanVien() {
 		ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<NhanVienDTO>();
 		String sql = "SELECT * FROM nhanvien";
 		ResultSet rs = DataHelper.execQuery(sql);
-		
-		
 		
 		try {
 			while(rs.next()) {
@@ -40,7 +43,8 @@ public class DAO {
 				String diaChi = rs.getString("diachi");
 				String taiKhoan = rs.getString("taikhoan");
 				String matKhau = rs.getString("matkhau");
-				danhSachNhanVien.add(new NhanVienDTO(maNhanVien, maChucVu,hoTen, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
+				NhanVienDTO a = new NhanVienDTO(hoTen);
+				danhSachNhanVien.add(new NhanVienDTO(maNhanVien, maChucVu, hoTen, gioiTinh, ngaySinh, dienThoai, diaChi, taiKhoan, matKhau));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -192,18 +196,44 @@ public class DAO {
 			while(rs.next()) {
 				int manhanvien = rs.getInt("manhanvien");
 				String maphieuchi = rs.getString("ma");
-				String ngay = rs.getString("ngay");
+				Timestamp ngay = rs.getTimestamp("ngay");
 				int tongtien = rs.getInt("tonggia");
 				danhSach.add(new PhieuChi(maphieuchi,manhanvien,ngay,tongtien));
-			}
+			}																			
 			return danhSach;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
+	public  static ArrayList<ChiTietChiTable> getChiTietChi(String maphieuchi){
+    	ArrayList<ChiTietChiTable> list = new ArrayList<ChiTietChiTable>();
+	 	String sql = "SELECT * FROM ChiTietChi" + 
+			" WHERE maphieuchi = " + "\"" + maphieuchi +"\"";
+    	ResultSet rs = DataHelper.execQuery(sql);
+    	try {
+			
+    		while(rs.next()) {
+				String manguyenlieuchitietchi = rs.getString("manl");
+					String s = "SELECT * FROM NguyenLieu" + 
+							" WHERE ma = " + "\"" + manguyenlieuchitietchi +"\"";
+				    ResultSet r = DataHelper.execQuery(s);
+				    r.next();
+				    String tennl = r.getString("ten");
+				int soluongchitietchi = rs.getInt("soluong");
+				int giachitietchi = rs.getInt("gia");
+				int tongtien = soluongchitietchi * giachitietchi;
+				ChiTietChiTable chitiet = new ChiTietChiTable(tennl,giachitietchi,soluongchitietchi,tongtien);
+				list.add(chitiet);	
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return null;
+    	
+    }  
 	
 	static private String getTenAppTuMaApp(String maApp)  {
     	String sql = "SELECT ten FROM app\r\n" + 
@@ -240,7 +270,6 @@ public class DAO {
 			
 			return dsMon;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -249,8 +278,7 @@ public class DAO {
 	
 	public static ArrayList<AppGiaoHangTable> getDuLieuApp() {
 		ArrayList<AppGiaoHangTable> danhSachApp = new ArrayList<AppGiaoHangTable>();
-		String sql = "SELECT * FROM App";
-		
+		String sql = "SELECT * FROM App";		
 		ResultSet rs = DataHelper.execQuery(sql);
 		
 		try {
@@ -259,14 +287,30 @@ public class DAO {
 				String tenApp = rs.getString("ten");
 				Integer phiHoaHong = rs.getInt("phidichvu");
 				danhSachApp.add(new AppGiaoHangTable(maApp, tenApp, phiHoaHong));
-			}
-			
+			}		
 			return danhSachApp;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
+	public static ArrayList<NguyenLieu> getTenNguyenLieu() {
+		ArrayList<NguyenLieu>  listNguyenLieu = new ArrayList<NguyenLieu>();
+		String sql = "SELECT * FROM NguyenLieu";
+		ResultSet rs = DataHelper.execQuery(sql);
+		try {
+			while(rs.next()) {
+				String ma = rs.getString("ma");
+				String ten = rs.getString("ten");
+				int gia = rs.getInt("gia");
+				int soluong = rs.getInt("soluong");
+				listNguyenLieu.add(new NguyenLieu(ma, ten, gia,soluong));
+			}
+			return listNguyenLieu;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -2,9 +2,7 @@ package quanlybanhangmangdi.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 import quanlybanhangmangdi.database.DataHelper;
@@ -20,11 +18,8 @@ public class NhanVienDTO {
 	private String taiKhoan;
 	private String matKhau;
 	
+	public NhanVienDTO(int maChucVu, String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi, String taiKhoan, String matKhau) {
 	
-	
-	public NhanVienDTO(int maChucVu, String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
-			String taiKhoan, String matKhau) {
-		super();
 		this.hoTen = hoTen;
 		this.maChucVu = maChucVu;
 		this.gioiTinh = gioiTinh;
@@ -35,9 +30,7 @@ public class NhanVienDTO {
 		this.matKhau = matKhau;
 	}
 	
-	public NhanVienDTO(int maNhanVien, int maChucVu,String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi,
-			String taiKhoan, String matKhau) {
-		super();
+	 public  NhanVienDTO(int maNhanVien, int maChucVu,String hoTen, boolean gioiTinh, Date ngaySinh, String dienThoai, String diaChi, String taiKhoan, String matKhau) {
 		this.maNhanVien = maNhanVien;
 		this.maChucVu = maChucVu;
 		this.gioiTinh = gioiTinh;
@@ -62,14 +55,10 @@ public class NhanVienDTO {
 			}
 			return ten;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
-		
+		return null;	
 	}
-	
 	
 	public int getMaNhanVien() {
 		return maNhanVien;
@@ -142,10 +131,9 @@ public class NhanVienDTO {
 		return result;
 	}
 	
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {	
 	}
+	
 	static public int taoMaNhanVien() {
 		String sql = "SELECT ma FROM nhanvien\r\n" + 
 				"ORDER BY ma DESC\r\n" + 
@@ -160,8 +148,5 @@ public class NhanVienDTO {
 		} catch (SQLException e) {
 			return -1;
 		}
-	}
-	
-	
-	
+	}	
 }
