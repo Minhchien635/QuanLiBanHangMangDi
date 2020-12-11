@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `phieuchi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `phieuchi` (
-  `ma` varchar(5) NOT NULL,
+  `ma` varchar(15) NOT NULL,
   `manhanvien` int DEFAULT NULL,
   `ngay` date DEFAULT NULL,
   `tonggia` int DEFAULT NULL,
@@ -39,6 +39,7 @@ CREATE TABLE `phieuchi` (
 
 LOCK TABLES `phieuchi` WRITE;
 /*!40000 ALTER TABLE `phieuchi` DISABLE KEYS */;
+INSERT INTO `phieuchi` VALUES ('00000000',1,'2020-12-05',2070000),('00000001',1,'2020-12-11',600000);
 /*!40000 ALTER TABLE `phieuchi` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-13 22:12:57
+-- Dump completed on 2020-12-11 17:58:10
