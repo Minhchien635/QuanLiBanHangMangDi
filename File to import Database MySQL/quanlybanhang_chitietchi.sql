@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `chitietchi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chitietchi` (
-  `maphieuchi` varchar(5) NOT NULL,
-  `manl` varchar(5) DEFAULT NULL,
+  `maphieuchi` varchar(15) NOT NULL,
+  `manl` varchar(15) NOT NULL,
   `soluong` int DEFAULT NULL,
   `gia` int DEFAULT NULL,
-  PRIMARY KEY (`maphieuchi`),
+  PRIMARY KEY (`maphieuchi`,`manl`),
   KEY `FK_NguyenLieu` (`manl`),
   CONSTRAINT `FK_NguyenLieu` FOREIGN KEY (`manl`) REFERENCES `nguyenlieu` (`ma`),
   CONSTRAINT `FK_PhieuChi` FOREIGN KEY (`maphieuchi`) REFERENCES `phieuchi` (`ma`)
@@ -40,6 +40,7 @@ CREATE TABLE `chitietchi` (
 
 LOCK TABLES `chitietchi` WRITE;
 /*!40000 ALTER TABLE `chitietchi` DISABLE KEYS */;
+INSERT INTO `chitietchi` VALUES ('00000000','1',4,40000),('00000000','2',4,50000),('00000000','3',57,30000),('00000001','2',3,50000),('00000001','3',15,30000);
 /*!40000 ALTER TABLE `chitietchi` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-13 22:12:57
+-- Dump completed on 2020-12-11 17:58:10
