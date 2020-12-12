@@ -1,13 +1,12 @@
 package quanlybanhangmangdi.database;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.sql.ResultSet; 
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import com.mysql.cj.protocol.Resultset.Type;
 
 import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;

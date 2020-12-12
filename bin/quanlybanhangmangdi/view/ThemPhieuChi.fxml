@@ -12,8 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="523.0" prefWidth="739.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="551.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.ThemPhieuChiController">
    <children>
       <Pane layoutX="252.0" layoutY="-64.0" prefHeight="113.0" prefWidth="257.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
          <children>
@@ -24,28 +23,26 @@
             </Label>
          </children>
       </Pane>
-      <ComboBox layoutX="92.0" layoutY="67.0" prefHeight="25.0" prefWidth="176.0" promptText="Tên Nguyên Liệu" />
-      <ComboBox layoutX="92.0" layoutY="106.0" prefHeight="25.0" prefWidth="176.0" promptText="Số Lượng" />
-      <TextField layoutX="118.0" layoutY="144.0" prefHeight="25.0" prefWidth="150.0" />
-      <Text layoutX="92.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá:" />
-      <TableView layoutX="52.0" layoutY="254.0" prefHeight="208.0" prefWidth="641.0">
+      <ComboBox fx:id="soluong" layoutX="92.0" layoutY="106.0" prefHeight="25.0" prefWidth="176.0" promptText="Số Lượng" />
+      <ComboBox fx:id="tennguyenlieu" layoutX="92.0" layoutY="67.0" prefHeight="25.0" prefWidth="176.0" promptText="Tên Nguyên Liệu" />
+      <TableView fx:id="tablenguyenlieu" layoutX="52.0" layoutY="212.0" prefHeight="286.0" prefWidth="661.0">
         <columns>
-          <TableColumn prefWidth="78.0" text="Mã NL" />
-          <TableColumn prefWidth="304.0" text="Tên Nguyên Liệu" />
-            <TableColumn minWidth="6.0" prefWidth="99.0" text="Giá" />
-            <TableColumn minWidth="0.0" prefWidth="59.0" text="Số Lượng" />
-            <TableColumn prefWidth="100.0" text="Tổng Tiền" />
+          <TableColumn fx:id="tennl" prefWidth="304.0" text="Tên Nguyên Liệu" />
+            <TableColumn fx:id="gianl" minWidth="6.0" prefWidth="125.0" text="Giá" />
+            <TableColumn fx:id="soluongnl" minWidth="0.0" prefWidth="70.0" text="Số Lượng" />
+            <TableColumn fx:id="tongtiennl" prefWidth="161.0" text="Tổng Tiền" />
         </columns>
       </TableView>
-      <Button layoutX="370.0" layoutY="119.0" mnemonicParsing="false" text="Thêm Nguyên Liệu" />
-      <Text layoutX="91.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày Chi:" />
-      <DatePicker layoutX="148.0" layoutY="186.0" prefHeight="25.0" prefWidth="116.0" />
-      <TextField layoutX="277.0" layoutY="186.0" prefHeight="25.0" prefWidth="91.0" />
-      <Text layoutX="54.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh Sách Các Nguyên Liệu:">
+      <Button fx:id="themnguyenlieu" layoutX="378.0" layoutY="94.0" mnemonicParsing="false" onAction="#action_themnguyenlieu" text="Thêm Nguyên Liệu" />
+      <Text layoutX="92.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày Chi:" />
+      <DatePicker fx:id="ngaychi" layoutX="152.0" layoutY="144.0" prefHeight="25.0" prefWidth="116.0" />
+      <TextField fx:id="thoigian" layoutX="275.0" layoutY="144.0" prefHeight="25.0" prefWidth="79.0" />
+      <Text layoutX="52.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danh Sách Các Nguyên Liệu:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Button layoutX="57.0" layoutY="478.0" mnemonicParsing="false" text="Tạo Phiếu Chi" />
+      <Button fx:id="taophieuchi" layoutX="52.0" layoutY="502.0" mnemonicParsing="false" onAction="#action_taophieuchi" text="Tạo Phiếu Chi" />
+      <Button fx:id="taonguyenlieu" layoutX="607.0" layoutY="166.0" mnemonicParsing="false" onAction="#action_taonguyenlieu" text="Tạo Nguyên Liệu" />
    </children>
 </AnchorPane>
