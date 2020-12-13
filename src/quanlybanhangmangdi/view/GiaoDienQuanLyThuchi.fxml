@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyThuChiController">
    <children>
@@ -183,17 +184,6 @@
                         <Font name="System Bold" size="35.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="125.0" layoutY="202.0" prefHeight="800.0" prefWidth="1298.0">
-                    <columns>
-                      <TableColumn prefWidth="104.0" text="Mã nhân viên" />
-                      <TableColumn prefWidth="100.0" text="C2" />
-                        <TableColumn prefWidth="84.0" text="C2" />
-                        <TableColumn prefWidth="12.0" text="C2" />
-                        <TableColumn prefWidth="120.0" text="C2" />
-                    </columns>
-                  </TableView>
-                  <ComboBox layoutX="50.0" layoutY="132.0" prefHeight="33.0" prefWidth="196.0" promptText="Thu chi theo tháng" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
-                  <DatePicker layoutX="257.0" layoutY="132.0" prefHeight="34.0" prefWidth="214.0" promptText="Thu chi theo ngày" style="-fx-background-color: #96cdf7; -fx-font-size: 16px;" />
                    <Button layoutX="1490.0" layoutY="23.0" mnemonicParsing="false" onAction="#huy" style="-fx-border-color: blue;">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" smooth="false">
@@ -203,6 +193,39 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <DatePicker fx:id="chonngaycombobox" layoutX="459.0" layoutY="588.0" onAction="#action_chonngay" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Ngày" />
+                  <TableView fx:id="tablephieuchi" layoutX="208.0" layoutY="645.0" prefHeight="366.0" prefWidth="858.0">
+                     <columns>
+                        <TableColumn fx:id="manhanvien" prefWidth="115.0" text="Mã nhân viên" />
+                        <TableColumn fx:id="maphieuchi" prefWidth="103.0" text="Mã phiếu chi" />
+                        <TableColumn fx:id="ngaychi" prefWidth="127.0" text="Ngày chi" />
+                        <TableColumn fx:id="tongtien" prefWidth="144.0" text="Tổng tiền" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="tablechitietchi" layoutX="243.0" layoutY="163.0" prefHeight="293.0" prefWidth="1122.0">
+                     <columns>
+                        <TableColumn fx:id="nguyenlieuchitietchi" prefWidth="357.0" text="Nguyên Liệu" />
+                        <TableColumn fx:id="giachitietchi" minWidth="0.0" prefWidth="153.0" text="Giá" />
+                        <TableColumn fx:id="soluongchitietchi" minWidth="0.0" prefWidth="114.0" text="Số Lượng" />
+                        <TableColumn fx:id="tongtienchitietchi" minWidth="0.0" prefWidth="144.0" text="Tổng Tiền" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="103.0" layoutY="174.0" prefHeight="27.0" prefWidth="101.0" text="Chi Tiết Chi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="chonkieuxem" layoutX="309.0" layoutY="587.0" onAction="#action_chonkieuxem" prefHeight="25.0" prefWidth="127.0" promptText="Chọn Kiểu Xem" />
+                  <Button layoutX="640.0" layoutY="591.0" mnemonicParsing="false" onAction="#action_xemphieuchi" text="Xem" fx:id="xemphieuchi" />
+                  <Text layoutX="213.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phiếu Chi:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="themphieuchi" layoutX="1241.0" layoutY="620.0" mnemonicParsing="false" onAction="#action_themphieuchi" text="Thêm Phiếu Chi" />
+                  <Button fx:id="anphieuchi" layoutX="1241.0" layoutY="679.0" mnemonicParsing="false" onAction="#action_anphieuchi" prefHeight="25.0" prefWidth="99.0" text="Ẩn Phiếu Chi" />
+                  <Button fx:id="inphieuchi" layoutX="1241.0" layoutY="740.0" mnemonicParsing="false" onAction="#action_inphieuchi" prefHeight="25.0" prefWidth="99.0" text="In Phiếu Chi" />
+                  <Button layoutX="1224.0" layoutY="801.0" mnemonicParsing="false" onAction="#action_xemphieuchian" prefHeight="25.0" prefWidth="116.0" text="Xem phiếu chi ẩn" fx:id="xemphieuchian" />
                </children>
             </Pane>
          </children>

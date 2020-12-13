@@ -324,7 +324,6 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     		initCol1();
     		loadDataChiTietChi();
     		loadDataPhieuChi();	
-   
     		hienthiDropdown();
 			chonkieuxem.setItems(chonkieuxemCombobox());
 		} 
