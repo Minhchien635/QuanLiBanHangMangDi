@@ -137,7 +137,7 @@
                               <Image url="@image/administrator.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
+                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" onAction="#dangXuat" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font></Button>

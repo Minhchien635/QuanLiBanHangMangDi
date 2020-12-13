@@ -7,6 +7,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -18,12 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -123,7 +119,27 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 				return ;
 			} 
 		}
-    
+	@FXML
+	private void dangXuat(ActionEvent event) throws IOException {
+		if(alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn đăng xuất chứ?")) {
+			LoginController login = new LoginController();
+			login.show();
+			huy(event);
+		}
+	}
+
+	public boolean alertXacNhan(String title, String header) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		Optional<ButtonType> option = alert.showAndWait();
+		if(option.get() == null) {
+			return false;
+		} else if(option.get() == ButtonType.OK) {
+			return true;
+		}
+		return false;
+	}
     public void show() throws IOException {
     			
 		Stage primaryStage = new Stage();
@@ -208,5 +224,6 @@ public class GiaoDienQuanLyBaoCaoController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setup();
+		setThongTinTaiKhoan();
 	}
 }

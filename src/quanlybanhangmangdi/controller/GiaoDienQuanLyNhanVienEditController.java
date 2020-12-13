@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -18,15 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -172,12 +166,26 @@ public class GiaoDienQuanLyNhanVienEditController implements Initializable{
 		alert.setHeaderText(header);
 		alert.showAndWait();
 	}
-	
-	public void alertXacNhan(String title, String header) {
+	@FXML
+	private void dangXuat(ActionEvent event) throws IOException {
+		if(alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn đăng xuất chứ?")) {
+			LoginController login = new LoginController();
+			login.show();
+			huy(event);
+		}
+	}
+
+	public boolean alertXacNhan(String title, String header) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(header);
-		alert.showAndWait();
+		Optional<ButtonType> option = alert.showAndWait();
+		if(option.get() == null) {
+			return false;
+		} else if(option.get() == ButtonType.OK) {
+			return true;
+		}
+		return false;
 	}
 	
 	

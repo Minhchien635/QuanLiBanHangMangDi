@@ -275,10 +275,6 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
      	return FXCollections.observableArrayList(list);
     }
     
-    private void hienthiDropdown() {
-		chonthang.setVisibleRowCount(6);
-		chonthang.setItems(chonthangCombobox());
-	}
     
     public void loadDataPhieuChi() {
     	ObservableList<PhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi());
@@ -322,7 +318,6 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     		initCol1();
     		loadDataChiTietChi();
     		loadDataPhieuChi();	
-    		hienthiDropdown();
 			chonkieuxem.setItems(chonkieuxemCombobox());
 		} catch (Exception e) {
 			e.printStackTrace();

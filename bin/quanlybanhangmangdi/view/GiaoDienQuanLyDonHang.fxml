@@ -135,7 +135,7 @@
                               <Image url="@image/administrator.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
+                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" onAction="#dangXuat" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
@@ -254,7 +254,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="1103.0" layoutY="313.0" mnemonicParsing="false" onAction="#moDonHangAn" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="Xem Đơn Ẩn" textFill="WHITE">
+                  <Button id="windows2" layoutX="1103.0" layoutY="313.0" mnemonicParsing="false" onAction="#moDonHangAn" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="Khôi phục" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
