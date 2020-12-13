@@ -2,6 +2,7 @@ package quanlybanhangmangdi.controller;
 import java.io.IOException;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -93,15 +94,16 @@ public class ThemPhieuChiController implements Initializable{
     SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
 
     @FXML
-    void action_taophieuchi(ActionEvent event) throws ParseException {
+    void action_taophieuchi(ActionEvent event) throws ParseException, SQLException {
     	java.util.Date t = sdf.parse(ngaychi.getValue().format(DateTimeFormatter.ofPattern("dd/M/yyyy"))+" "+thoigian.getText());
+
     	int tongtiennl = 0;
     	ArrayList<ChiTietChi> e = new ArrayList<ChiTietChi>(); 
     	for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
 			tongtiennl = nguyenLieuTable.getTongtien() +tongtiennl;	
 		}
     	if(listNguyenlieu.isEmpty() == false) {
-	    	PhieuChi pc = new PhieuChi(1, t, tongtiennl,listNguyenlieu);
+	    	PhieuChi pc = new PhieuChi(1,t, tongtiennl,listNguyenlieu);
 	    	
 	    	if(pc.luuDatabase()) {	
 	    		Alert alert = new Alert(Alert.AlertType.INFORMATION);

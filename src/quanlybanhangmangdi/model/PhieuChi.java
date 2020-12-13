@@ -15,8 +15,9 @@ public class PhieuChi {
 		private Date ngay;
 		private int tonggia;
 		
-		private SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		private SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy/M/dd HH:mm:ss");
 		private ObservableList<NguyenLieuTable> chitietchi;
+
 		
 		public ObservableList<NguyenLieuTable> getChitietchi() {
 			return chitietchi;
@@ -87,7 +88,7 @@ public class PhieuChi {
 			return kq;
 		}
 
-		public boolean luuDatabase() {
+		public boolean luuDatabase() throws SQLException {
 			
 			try {
 				String mapc = taoMa();
@@ -104,22 +105,34 @@ public class PhieuChi {
 								"\"" + chiTiet.getManguyenlieu() + "\"," +
 								"\"" + chiTiet.getSoluong() + "\"," +
 								"\"" + chiTiet.getGia() + "\")";
-						exec = DataHelper.execAction(sql2);
-					}
-				}
-				
-				return exec;
-				
-				
-				
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return false;
+								exec = DataHelper.execAction(sql2);
+								if(exec == false) return exec;					
+						}
 					
+						ResultSet rs = DataHelper.execQuery("SELECT * FROM nguyenlieu") ;
+						if(exec) {
+							try {
+								while(rs.next()) {
+									String ma = rs.getString("ma");
+									int soluong = rs.getInt("soluong");	
+									for(NguyenLieuTable nguyenlieu : getChitietchi()) {
+										if(nguyenlieu.getManguyenlieu().equals(ma)) {
+											String sql4 = "UPDATE nguyenlieu SET soluong =" + (soluong  - nguyenlieu.getSoluong()) +" " + "WHERE ma =" + ma ;
+											exec = DataHelper.execAction(sql4);
+										}
+									}
+								}
+								return true;
+							} catch (Exception e) {
+								e.printStackTrace();							
+								return false;
+							}
+						}
+				}else return exec;			
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;	
 		}
 }
