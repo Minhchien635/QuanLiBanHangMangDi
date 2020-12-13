@@ -22,6 +22,7 @@ import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NguyenLieu;
 import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.PhieuChi;
+import quanlybanhangmangdi.model.TablePhieuChi;
 
 public class DAO {
 	
@@ -187,18 +188,23 @@ public class DAO {
 		return null;
 	}
 	
-	public static ArrayList<PhieuChi> getCacPhieuChi() {
-		ArrayList<PhieuChi> danhSach = new ArrayList<PhieuChi>();
+	public static ArrayList<TablePhieuChi> getCacPhieuChi() {
+		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
 		String query = "SELECT * FROM PhieuChi";
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
 			while(rs.next()) {
 				int manhanvien = rs.getInt("manhanvien");
+				String query1 =  "SELECT * FROM NhanVien" + 
+				" WHERE ma = " + "\"" + manhanvien +"\"";
+				ResultSet rs1 = DataHelper.execQuery(query1);
+				rs1.next();
+				String tennhanvien = rs1.getString("hoten");
 				String maphieuchi = rs.getString("ma");
 				Timestamp ngay = rs.getTimestamp("ngay");
 				int tongtien = rs.getInt("tonggia");
-				danhSach.add(new PhieuChi(maphieuchi,manhanvien,ngay,tongtien));
+				danhSach.add(new TablePhieuChi(maphieuchi, manhanvien, tennhanvien, ngay, tongtien));
 			}																			
 			return danhSach;
 		} catch (SQLException e) {

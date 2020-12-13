@@ -39,6 +39,7 @@ import quanlybanhangmangdi.model.ChiTietChi;
 import quanlybanhangmangdi.model.ChiTietChiTable;
 
 import quanlybanhangmangdi.model.PhieuChi;
+import quanlybanhangmangdi.model.TablePhieuChi;
 import quanlybanhangmangdi.database.*;
 
 public class GiaoDienQuanLyThuChiController implements Initializable{
@@ -135,22 +136,22 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    private Button inphieuchi;
 	    
 	    @FXML
-	    private TableView<PhieuChi> tablephieuchi;
+	    private TableView<TablePhieuChi> tablephieuchi;
 	    
 	    @FXML
 	    private TableView<ChiTietChiTable> tablechitietchi;
 	    
 	    @FXML
-	    private TableColumn<PhieuChi, Integer> manhanvien;
+	    private TableColumn<TablePhieuChi, String> tennhanvien;
 
 	    @FXML
-	    private TableColumn<PhieuChi, String> maphieuchi;
+	    private TableColumn<TablePhieuChi, String> maphieuchi;
 
 	    @FXML
-	    private TableColumn<PhieuChi, Date> ngaychi;
+	    private TableColumn<TablePhieuChi, Date> ngaychi;
 
 	    @FXML
-	    private TableColumn<PhieuChi, Integer> tongtien;
+	    private TableColumn<TablePhieuChi, Integer> tongtien;
 
 	    
 	    @FXML
@@ -246,6 +247,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     private void action_themphieuchi(ActionEvent event) throws IOException {
 			ThemPhieuChiController themPhieuChi = new ThemPhieuChiController();
 			themPhieuChi.show();
+			loadDataPhieuChi();
     }
 
     @FXML
@@ -281,7 +283,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	}
     
     public void loadDataPhieuChi() {
-    	ObservableList<PhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi());
+    	ObservableList<TablePhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi());
     	tablephieuchi.getItems().setAll(listPhieuChi);
     	if(listPhieuChi==null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -303,10 +305,10 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     
     
  	private void initCol() {
- 		manhanvien.setCellValueFactory(new PropertyValueFactory<PhieuChi, Integer>("manhanvien"));
- 		maphieuchi.setCellValueFactory(new PropertyValueFactory<PhieuChi, String>("ma"));
- 		ngaychi.setCellValueFactory(new PropertyValueFactory<PhieuChi, Date>("ngay"));
- 		tongtien.setCellValueFactory(new PropertyValueFactory<PhieuChi, Integer>("tonggia"));
+ 		tennhanvien.setCellValueFactory(new PropertyValueFactory<TablePhieuChi, String>("tennhanvien"));
+ 		maphieuchi.setCellValueFactory(new PropertyValueFactory<TablePhieuChi, String>("ma"));
+ 		ngaychi.setCellValueFactory(new PropertyValueFactory<TablePhieuChi, Date>("ngay"));
+ 		tongtien.setCellValueFactory(new PropertyValueFactory<TablePhieuChi, Integer>("tonggia"));
  	}
     
  	private void initCol1() {
@@ -325,7 +327,8 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
    
     		hienthiDropdown();
 			chonkieuxem.setItems(chonkieuxemCombobox());
-		} catch (Exception e) {
+		} 
+    		catch (Exception e) {
 			e.printStackTrace();
 		}
     }
