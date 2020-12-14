@@ -183,7 +183,27 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 				((Node)event.getSource()).getScene().getWindow().hide();
 			}
 		}
-    
+	@FXML
+	private void dangXuat(ActionEvent event) throws IOException {
+		if(alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn đăng xuất chứ?")) {
+			LoginController login = new LoginController();
+			login.show();
+			huy(event);
+		}
+	}
+
+	public boolean alertXacNhan(String title, String header) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		Optional<ButtonType> option = alert.showAndWait();
+		if(option.get() == null) {
+			return false;
+		} else if(option.get() == ButtonType.OK) {
+			return true;
+		}
+		return false;
+	}
     public void show() throws IOException {
     			
 		Stage primaryStage = new Stage();

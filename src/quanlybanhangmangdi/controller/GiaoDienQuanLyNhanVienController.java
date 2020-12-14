@@ -170,7 +170,16 @@ public class GiaoDienQuanLyNhanVienController implements Initializable{
 		
 		primaryStage.show();
     }
-    
+
+	@FXML
+	private void dangXuat(ActionEvent event) throws IOException {
+		if(alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn đăng xuất chứ?")) {
+			LoginController login = new LoginController();
+			login.show();
+			huy(event);
+		}
+	}
+
    
     @FXML
     private void huy(ActionEvent event) {

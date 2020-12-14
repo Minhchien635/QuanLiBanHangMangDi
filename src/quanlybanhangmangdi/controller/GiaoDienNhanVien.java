@@ -92,6 +92,26 @@ public class GiaoDienNhanVien implements Initializable{
 	    @FXML
 	    private Label btn_Title1;
 
+		@FXML
+		private Button btn_DonHang;
+
+		@FXML
+		private Button btn_Menu;
+
+		@FXML
+		private Button btn_App;
+
+		@FXML
+		private Button btn_NhanVien;
+
+		@FXML
+		private Button btn_ThuChi;
+
+		@FXML
+		private Button btn_BaoCaoDoanhThu;
+
+		@FXML
+		private Button btn_BaoCaoApp;
 	    
 	    
 
@@ -125,8 +145,42 @@ public class GiaoDienNhanVien implements Initializable{
 		
 		primaryStage.show();
     }
-    
- 
+
+
+	@FXML
+	private void handleButtonAction(ActionEvent event) throws IOException {
+		if(event.getSource() == btn_DonHang||event.getSource()==btn_App||event.getSource()==btn_BaoCaoApp||event.getSource()==btn_BaoCaoDoanhThu||event.getSource()==btn_Menu||event.getSource()==btn_NhanVien||event.getSource()==btn_ThuChi) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Thông báo");
+			alert.setHeaderText("Chức năng yêu cầu quyển quản lý để truy cập!!!");
+			alert.showAndWait();
+		}
+
+	}
+	@FXML
+	private void dangXuat(ActionEvent event) throws IOException {
+		if(alertXacNhan("Xác nhận", "Bạn có chắc chắn muốn đăng xuất chứ?")) {
+			LoginController login = new LoginController();
+			login.show();
+			huy(event);
+		}
+	}
+
+	public boolean alertXacNhan(String title, String header) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		Optional<ButtonType> option = alert.showAndWait();
+		if(option.get() == null) {
+			return false;
+		} else if(option.get() == ButtonType.OK) {
+			return true;
+		}
+		return false;
+	}
+
+
+
     @FXML
     private void moGiaoDienThemDonHang(ActionEvent event) throws IOException {
     	AddBillController addBill = new AddBillController();

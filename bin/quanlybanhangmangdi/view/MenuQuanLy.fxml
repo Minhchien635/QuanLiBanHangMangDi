@@ -39,7 +39,7 @@
                               <Image url="@image/administrator.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="90.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE" />
+                        <Button fx:id="dangXuat" layoutX="90.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE" />
                         <Label layoutX="45.0" layoutY="20.0" text="Tên Tài Khoản: " />
                      </children>
                   </AnchorPane>

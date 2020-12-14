@@ -137,7 +137,7 @@
                               <Image url="@image/administrator.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
+                        <Button layoutX="109.0" layoutY="146.0" mnemonicParsing="false" onAction="#dangXuat" prefHeight="44.0" prefWidth="122.0" style="-fx-background-color: #0f89e5;" text="Đăng Xuất" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
@@ -178,7 +178,7 @@
             <Pane fx:id="pane_BaoCao" prefHeight="1087.0" prefWidth="1539.0" style="-fx-background-color: #fff;">
                <children>
                   <ComboBox fx:id="cb_ChonThang" layoutX="241.0" layoutY="255.0" prefHeight="25.0" prefWidth="140.0" promptText="Chọn tháng" />
-                  <DatePicker fx:id="dp_ChonNgay" layoutX="241.0" layoutY="255.0" prefHeight="25.0" prefWidth="140.0" />
+                  <DatePicker fx:id="dp_ChonNgay" layoutX="241.0" layoutY="255.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #96cdf7;" />
                    <Button layoutX="1490.0" layoutY="23.0" mnemonicParsing="false" onAction="#huy" style="-fx-border-color: blue;">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" smooth="false">
@@ -190,15 +190,15 @@
                   </Button>
                   <TableView fx:id="tbl_DoanhThuApp" layoutX="63.0" layoutY="317.0" prefHeight="712.0" prefWidth="1420.0" style="-fx-font-size: 16px; -fx-background-color: #96cdf7; -fx-text-fill: blue;">
                      <columns>
-                        <TableColumn fx:id="col_MaApp" prefWidth="273.66668701171875" text="Mã App" />
-                        <TableColumn fx:id="col_TenApp" prefWidth="447.6666259765625" text="Tên App" />
-                        <TableColumn fx:id="col_PhiHoaHong" prefWidth="391.0" text="Phí Hoa Hồng(đ)" />
-                        <TableColumn fx:id="col_TongThu" prefWidth="309.0" text="Tổng Thu(đ)" />
+                        <TableColumn fx:id="col_MaApp" prefWidth="273.66668701171875" style="-fx-background-color: #96cdf7;" text="Mã App" />
+                        <TableColumn fx:id="col_TenApp" prefWidth="447.6666259765625" style="-fx-background-color: #d5ebfc;" text="Tên App" />
+                        <TableColumn fx:id="col_PhiHoaHong" prefWidth="391.0" style="-fx-background-color: #96cdf7;" text="Phí Hoa Hồng(đ)" />
+                        <TableColumn fx:id="col_TongThu" prefWidth="309.0" style="-fx-background-color: #d5ebfc;" text="Tổng Thu(đ)" />
                      </columns>
                   </TableView>
-                  <ComboBox fx:id="cb_ChonKieuXem" layoutX="91.0" layoutY="254.0" onAction="#chonKieuXem" promptText="Theo tháng" />
-                  <Button fx:id="btn_XemBaoCao" layoutX="420.0" layoutY="253.0" mnemonicParsing="false" text="Xem Báo Cáo" />
-                  <Button layoutX="1054.0" layoutY="210.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="252.0" text="Hiện biểu đồ">
+                  <ComboBox fx:id="cb_ChonKieuXem" layoutX="91.0" layoutY="254.0" onAction="#chonKieuXem" promptText="Theo tháng" style="-fx-background-color: #96cdf7; -fx-text-fill: white;" />
+                  <Button fx:id="btn_XemBaoCao" layoutX="420.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #96cdf7; -fx-text-fill: white;" text="Xem Báo Cáo" />
+                  <Button id="windows2" layoutX="1054.0" layoutY="210.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="252.0" stylesheets="@stylesheet/stylesheet.css" text="Hiện biểu đồ">
                      <font>
                         <Font size="25.0" />
                      </font></Button>
