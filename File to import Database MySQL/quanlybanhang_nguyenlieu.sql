@@ -37,7 +37,7 @@ CREATE TABLE `nguyenlieu` (
 
 LOCK TABLES `nguyenlieu` WRITE;
 /*!40000 ALTER TABLE `nguyenlieu` DISABLE KEYS */;
-INSERT INTO `nguyenlieu` VALUES ('1','gà',40000,27),('2','cá',50000,27),('3','trứng',30000,27);
+INSERT INTO `nguyenlieu` VALUES ('00000000','Chó',3,3),('00000001','Mèo',6,0),('00000002','Nai',67,0),('00000003','Chó',1,3);
 /*!40000 ALTER TABLE `nguyenlieu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-14 10:19:34
+-- Dump completed on 2020-12-19 14:31:20

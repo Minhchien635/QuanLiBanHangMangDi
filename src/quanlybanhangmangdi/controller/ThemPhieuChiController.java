@@ -44,7 +44,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import quanlybanhangmangdi.database.DAO;
-
+import quanlybanhangmangdi.main.Test;
 import quanlybanhangmangdi.model.ChiTietChi;
 
 import quanlybanhangmangdi.model.NguyenLieu;
@@ -54,6 +54,8 @@ import quanlybanhangmangdi.model.PhieuChi;
 public class ThemPhieuChiController implements Initializable{
 
 	ObservableList<NguyenLieuTable> listNguyenlieu =  FXCollections.observableArrayList();
+	
+	ObservableList<NguyenLieu> listTenNguyenLieu = FXCollections.observableArrayList();
 	
     @FXML
     private ComboBox<Integer> soluong;
@@ -81,9 +83,6 @@ public class ThemPhieuChiController implements Initializable{
 
     @FXML
     private Button themnguyenlieu;
-    
-    @FXML
-    private Button taonguyenlieu;
 
     @FXML
     private TextField thoigian;
@@ -91,43 +90,60 @@ public class ThemPhieuChiController implements Initializable{
     @FXML
     private Button taophieuchi;
     
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
+    @FXML
+    private Button quanlynguyenlieu;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    
+    @FXML
+    void action_quanlynguyenlieu(ActionEvent event) {
+    		QuanLyNguyenLieuController qlnl =new QuanLyNguyenLieuController();
+    		try {
+				qlnl.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    		chonTenNguyenLieuCombobox();
+    		chonSoLuongCombobox();
+    }
 
     @FXML
     void action_taophieuchi(ActionEvent event) throws ParseException, SQLException {
-    	java.util.Date t = sdf.parse(ngaychi.getValue().format(DateTimeFormatter.ofPattern("dd/M/yyyy"))+" "+thoigian.getText());
-
+    	java.util.Date t = sdf.parse(ngaychi.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+" "+thoigian.getText());
     	int tongtiennl = 0;
     	ArrayList<ChiTietChi> e = new ArrayList<ChiTietChi>(); 
     	for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
 			tongtiennl = nguyenLieuTable.getTongtien() +tongtiennl;	
 		}
     	if(listNguyenlieu.isEmpty() == false) {
-	    	PhieuChi pc = new PhieuChi(1,t, tongtiennl,listNguyenlieu);
-	    	
-	    	if(pc.luuDatabase()) {	
+	    	PhieuChi pc = new PhieuChi(1/*Test.nhanVien.getMaNhanVien()*/,t, tongtiennl,listNguyenlieu);
+	    	if(DAO.luuDatabase(pc)) {	
 	    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	    		alert.setHeaderText("Thông báo");
+	    		alert.setTitle("Thông báo");
+	    		alert.setHeaderText(null);
 	    		alert.setContentText("Thêm đơn hàng mới thành công");
 	    		alert.showAndWait();
 	    		((Node)event.getSource()).getScene().getWindow().hide();
 	    	} else {
 	    		Alert alert = new Alert(Alert.AlertType.ERROR);
-	    		alert.setHeaderText("Thông báo");
+	    		alert.setTitle("Lỗi");
+	    		alert.setHeaderText(null);
 	    		alert.setContentText("Thêm đơn hàng mới thất bại");
 	    		alert.showAndWait();
 	    	}
     	}
 	    else {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setHeaderText("Thông báo");
-    		alert.setContentText("Vui lòng chọn '' Thêm nguyên liệu '' ");
+    		alert.setTitle("Thông báo");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Vui lòng chọn ' Thêm nguyên liệu '");
     		alert.showAndWait();
 		}
     }
 
     @FXML
      private void action_themnguyenlieu(ActionEvent event) {
+    	
     	if(tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
     		String manl = tennguyenlieu.getSelectionModel().getSelectedItem().getMa();
     		String tennl = tennguyenlieu.getSelectionModel().getSelectedItem().getTen();
@@ -152,9 +168,11 @@ public class ThemPhieuChiController implements Initializable{
 	    		listNguyenlieu.add(nl);
 			}
     		tablenguyenlieu.getItems().setAll(listNguyenlieu);
+    		reloadTenNguyenLieu();
     	}else {
     		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setHeaderText("Thông báo");
+    		alert.setTitle("Thông báo");
+    		alert.setHeaderText(null);
     		alert.setContentText("Vui lòng chọn nguyên liệu và số lượng");
     		alert.showAndWait();
 		}
@@ -166,18 +184,31 @@ public class ThemPhieuChiController implements Initializable{
  		soluongnl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("soluong"));
  		tongtiennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("tongtien"));
  	}
+    
+    private void reloadTenNguyenLieu() {
+    	if(tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
+    		if(listNguyenlieu.isEmpty() == false) {  			
+    				int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong()  - soluong.getValue().intValue();
+    				tennguyenlieu.getSelectionModel().getSelectedItem().setSoluong(sl);		
+    				tennguyenlieu.getSelectionModel().clearSelection();
+    				soluong.getSelectionModel().clearSelection();
+    		}
+    	}   	
+    }
  
    private void  chonTenNguyenLieuCombobox(){
     	ObservableList<NguyenLieu> list = FXCollections.observableArrayList(DAO.getTenNguyenLieu());
     	tennguyenlieu.setVisibleRowCount(6);
     	tennguyenlieu.setItems(list);
+    	listTenNguyenLieu = list;
     }
    
    private void chonSoLuongCombobox(){
-	   tennguyenlieu.valueProperty().addListener(new ChangeListener<NguyenLieu>() {
+	   try {
+		tennguyenlieu.valueProperty().addListener(new ChangeListener<NguyenLieu>() {
 			@Override
 			public void changed(ObservableValue ov, NguyenLieu t, NguyenLieu t1) {
-				   if((tennguyenlieu.getSelectionModel().getSelectedItem().toString()) != null) {
+				   if(tennguyenlieu.getSelectionModel().isEmpty() == false) {
 					  int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong();
 					  List<Integer> ds =  new ArrayList<>();
 					  int i = 1;
@@ -188,8 +219,15 @@ public class ThemPhieuChiController implements Initializable{
 					  soluong.setVisibleRowCount(5);
 					 soluong.setItems(FXCollections.observableArrayList(ds));
 			   		}
+				   else {
+					return;
+				}
 			}
 		});
+	} catch (Exception e) {
+		return;
+	}
+	   
    }
    
    private void setDefaultDateTime() {
@@ -216,10 +254,6 @@ public class ThemPhieuChiController implements Initializable{
 			primaryStage.initModality(Modality.APPLICATION_MODAL);
 			primaryStage.showAndWait();
 	}
-	 
-	 	@FXML
-	    void action_taonguyenlieu(ActionEvent event) {
-	    }
 	 
 	 private void setup() {
 		 try {

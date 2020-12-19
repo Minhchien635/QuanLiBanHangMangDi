@@ -5,8 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.mysql.cj.protocol.a.TracingPacketReader;
 
 import javafx.collections.ObservableList;
 import quanlybanhangmangdi.main.Test;
@@ -19,6 +21,7 @@ import quanlybanhangmangdi.model.DanhSachMonTableQuanLyDonHang;
 import quanlybanhangmangdi.model.DonHangDTO;
 import quanlybanhangmangdi.model.DonHangTable;
 import quanlybanhangmangdi.model.NguyenLieu;
+import quanlybanhangmangdi.model.NguyenLieuTable;
 import quanlybanhangmangdi.model.NhanVienDTO;
 import quanlybanhangmangdi.model.PhieuChi;
 import quanlybanhangmangdi.model.TablePhieuChi;
@@ -187,9 +190,60 @@ public class DAO {
 		return null;
 	}
 	
-	public static ArrayList<TablePhieuChi> getCacPhieuChi() {
+	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoNgay(LocalDate ld) {
 		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
-		String query = "SELECT * FROM PhieuChi";
+		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '" + ld + "%' " + "AND " + "trangthai = 1" ;
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				int manhanvien = rs.getInt("manhanvien");
+				String query1 =  "SELECT * FROM NhanVien" + 
+				" WHERE ma = " + "\"" + manhanvien +"\"";
+				ResultSet rs1 = DataHelper.execQuery(query1);
+				rs1.next();
+				String tennhanvien = rs1.getString("hoten");
+				String maphieuchi = rs.getString("ma");
+				Timestamp ngay = rs.getTimestamp("ngay");
+				int tongtien = rs.getInt("tonggia");
+				danhSach.add(new TablePhieuChi(maphieuchi, manhanvien, tennhanvien, ngay, tongtien));
+			}																			
+			return danhSach;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoThang(int th) {
+		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
+		String fm = String.format("%02d", th);
+		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '%-" + fm + "-%' " + "AND " + "trangthai = 1" ;
+		ResultSet rs = DataHelper.execQuery(query);
+		
+		try {
+			while(rs.next()) {
+				int manhanvien = rs.getInt("manhanvien");
+				String query1 =  "SELECT * FROM NhanVien" + 
+				" WHERE ma = " + "\"" + manhanvien +"\"";
+				ResultSet rs1 = DataHelper.execQuery(query1);
+				rs1.next();
+				String tennhanvien = rs1.getString("hoten");
+				String maphieuchi = rs.getString("ma");
+				Timestamp ngay = rs.getTimestamp("ngay");
+				int tongtien = rs.getInt("tonggia");
+				danhSach.add(new TablePhieuChi(maphieuchi, manhanvien, tennhanvien, ngay, tongtien));
+			}																			
+			return danhSach;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<TablePhieuChi> getCacPhieuChi(int trangthai) {
+		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
+		String query = "SELECT * FROM PhieuChi WHERE trangthai = " + trangthai;
 		ResultSet rs = DataHelper.execQuery(query);
 		
 		try {
@@ -317,5 +371,143 @@ public class DAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+public static  boolean luuDatabase(PhieuChi pc) throws SQLException {
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		try {
+			ResultSet rs = DataHelper.execQuery("SELECT ma FROM PhieuChi \r\n" + 
+					"ORDER BY ma DESC\r\n" + 
+					"LIMIT 1;");
+			int stt = -1;
+			while(rs.next()) {
+					stt = Integer.parseInt(rs.getString("ma"));
+					System.out.print(stt);					
+			}
+			stt++;
+			String kq = Integer.toString(stt);
+			System.out.print(kq);
+			if(kq.length() < 8) {
+				while(kq.length() < 8) {
+					kq = "0" + kq;
+				}
+			}else {
+				int kq1 = Integer.parseInt(kq);
+				kq = Integer.toString(kq1);
+			}
+			
+			String mapc = kq;
+			String sql = "INSERT INTO PhieuChi(ma,manhanvien,ngay,tonggia) \r\n" + 
+					"VALUES (\"" + mapc + "\"," +
+					"\"" + pc.getManhanvien() + "\"," +
+					"\"" + sdf1.format(pc.getNgay()) + "\"," +
+					"\"" + pc.getTonggia() + "\")";
+			boolean exec = DataHelper.execAction(sql);
+			if(exec) {
+				for(NguyenLieuTable chiTiet : pc.getChitietchi()) {
+					String sql2 = "INSERT INTO ChiTietChi(maphieuchi, manl, soluong, gia) \r\n" + 
+							"VALUES (\"" + mapc + "\"," +
+							"\"" + chiTiet.getManguyenlieu() + "\"," +
+							"\"" + chiTiet.getSoluong() + "\"," +
+							"\"" + chiTiet.getGia() + "\")";
+							exec = DataHelper.execAction(sql2);
+							if(exec == false) return exec;					
+					}
+				
+					ResultSet rs1 = DataHelper.execQuery("SELECT * FROM nguyenlieu") ;
+					if(exec) {
+						try {
+							while(rs1.next()) {
+								String ma = rs1.getString("ma");
+								int soluong = rs1.getInt("soluong");	
+								for(NguyenLieuTable nguyenlieu : pc.getChitietchi()) {
+									if(nguyenlieu.getManguyenlieu().equals(ma)) {
+										String sql4 = "UPDATE nguyenlieu SET soluong =" + (soluong  - nguyenlieu.getSoluong()) +" " + "WHERE ma =" + ma ;
+										exec = DataHelper.execAction(sql4);
+									}
+								}
+							}
+							return true;
+						} catch (Exception e) {
+							e.printStackTrace();							
+							return false;
+						}
+					}
+			}else return exec;			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;	
+	}
+
+	public static  boolean suaNguyeLieu(NguyenLieu nl){
+		try {
+			String sql = "UPDATE nguyenlieu SET ten = '" + upperCaseFirst(nl.getTen()) + "', gia =  " + nl.getGia() + ", soluong = " + nl.getSoluong() + " " + "WHERE ma =" + nl.getMa() ;
+			DataHelper.execAction(sql);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public static boolean XoaPhieuChi (PhieuChi pc){
+		try {
+			String sql = "DELETE FROM chitietchi WHERE maphieuchi = " + pc.getMa();
+			DataHelper.execAction(sql);
+			if(DataHelper.execAction(sql)) {
+				sql = "DELETE FROM phieuchi WHERE ma = " + pc.getMa();
+				DataHelper.execAction(sql);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean XoaNguyenLieu(NguyenLieu nl) throws SQLException  {
+		try {
+			String sql = "DELETE FROM nguyenlieu WHERE ma = " + nl.getMa();
+			DataHelper.execAction(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public static String upperCaseFirst(String value) {
+        char[] array = value.toCharArray();
+        array[0] = Character.toUpperCase(array[0]);
+        return new String(array);
+    }
+	
+	public static boolean luuNguyenLieu(NguyenLieu nl) {
+		ResultSet rs = DataHelper.execQuery("SELECT ma FROM nguyenlieu \r\n" + 
+				"ORDER BY ma DESC\r\n" + 
+				"LIMIT 1;");
+		int stt = -1;
+		try {
+			while(rs.next()) {
+					stt = Integer.parseInt(rs.getString("ma").substring(0, 8));
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		stt++;
+		String kq = Integer.toString(stt);
+		while(kq.length() < 8) {
+			kq = "0" + kq;
+		}
+		
+		String manl = kq;
+		String tennl = upperCaseFirst(nl.getTen());
+		String sql = "INSERT INTO nguyenlieu(ma,ten,gia,soluong)" + " VALUE  ('" + manl + "', '" + tennl + "', " + nl.getGia() + ", " + nl.getSoluong() + ")";
+		DataHelper.execAction(sql);
+		return true;
 	}
 }

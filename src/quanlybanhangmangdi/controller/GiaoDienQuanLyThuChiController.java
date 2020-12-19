@@ -4,23 +4,28 @@ import java.io.IOException;
 import java.net.URL;
 
 import java.sql.SQLException;
-
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -32,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import quanlybanhangmangdi.main.Test;
@@ -115,7 +121,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	    private ComboBox<String> chonkieuxem;
 
 	    @FXML
-	    private DatePicker chonngay;
+	    private DatePicker chonngaycombobox;
 	    
 	    @FXML
 	    private ComboBox<Integer> chonthang;
@@ -232,18 +238,78 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 	}
     
     @FXML
-    private void action_anphieuchi(ActionEvent event) {
+    private void action_anphieuchi(ActionEvent event1) throws SQLException {
+    	try {
+			String index = tablephieuchi.getSelectionModel().getSelectedItem().getMa();
+    		Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Ẩn phiếu chi");
+            alert.setHeaderText("Xác nhận ẩn phiếu chi " + index);
+            
+            Optional<ButtonType> option = alert.showAndWait();
+            
+            if (option.get() == ButtonType.OK) {
+               PhieuChi pc = new PhieuChi(index);
+               if(pc.thayDoiTrangThai()) {
+            	     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+	   	    		 alert1.setTitle("Thông báo");
+	   	    		 alert1.setHeaderText(null);
+	   	    	 	 alert1.setContentText("Đã ẩn");
+	   	    		 alert1.showAndWait();
+	   	    		 loadDataPhieuChi();
+               }else {
+            	    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            	    alert1.setTitle("Lỗi");
+	   	    		alert1.setHeaderText(null);
+	   	    		alert1.setContentText("Ẩn thất bại");
+	   	    		alert1.showAndWait();
+	   	    		loadDataPhieuChi();
+			   }
+       
+            } else if (option.get() == ButtonType.CANCEL) {       
+            } 
+		} catch (Exception e) {
+			Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+    		alert1.setTitle("Thông báo");
+    		alert1.setHeaderText(null);
+    		alert1.setContentText("Chọn phiếu chi cần ẩn");
+    		alert1.showAndWait();
+		}
     }
     
     @FXML
     void action_xemphieuchian(ActionEvent event) {
+    	XemPhieuChiAnController phieuchian =new XemPhieuChiAnController();
+    	try {
+			phieuchian.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	loadDataPhieuChi();
     }
 
     @FXML
     private  void action_inphieuchi(ActionEvent event) {
+    	try {
+			String index = tablephieuchi.getSelectionModel().getSelectedItem().getMa();
+    		Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("In phiếu chi");
+            alert.setHeaderText("Xác nhận in phiếu chi " + index);
+            
+            Optional<ButtonType> option = alert.showAndWait();
+            
+            if (option.get() == ButtonType.OK) {                            
+            } else if (option.get() == ButtonType.CANCEL) {       
+            } 
+		} catch (Exception e) {
+				Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+				alert1.setTitle("Thông báo");
+	    		alert1.setHeaderText(null);
+	    		alert1.setContentText("Chọn phiếu chi cần in");
+	    		alert1.showAndWait();
+		}
     }
-
-    @FXML
+  
+	@FXML
     private void action_themphieuchi(ActionEvent event) throws IOException {
 			ThemPhieuChiController themPhieuChi = new ThemPhieuChiController();
 			themPhieuChi.show();
@@ -252,34 +318,64 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
 
     @FXML
     private void action_xemphieuchi(ActionEvent event) {
+    	try {
+    		if(chonngaycombobox.isVisible()) {
+					if((chonkieuxem.getSelectionModel().equals("Theo Ngày") && chonngaycombobox.getValue() != null) || chonngaycombobox.getValue() != null) {	
+						ObservableList<TablePhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChiTheoNgay(chonngaycombobox.getValue()));
+						tablephieuchi.getItems().setAll(listPhieuChi);
+				    	if(listPhieuChi==null) {
+							Alert alert = new Alert(AlertType.ERROR);
+							alert.setTitle("Thông báo");
+							alert.setHeaderText("Danh sách dữ liệu app bị trống");
+							alert.showAndWait();
+						}   		
+			    	}else {
+			    			Alert alert = new Alert(AlertType.INFORMATION);
+							alert.setTitle("Thông báo");
+							alert.setHeaderText("Vui lòng chọn ngày");
+							alert.showAndWait();
+			    	}
+    		}else {
+					if(chonthang.getValue() != null) {
+			    			int thang = chonthang.getValue();		
+			    			ObservableList<TablePhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChiTheoThang(thang));
+			    			tablephieuchi.getItems().setAll(listPhieuChi);
+			    	    	if(listPhieuChi ==null) {
+			    				Alert alert = new Alert(AlertType.ERROR);
+			    				alert.setTitle("Thông báo");
+			    				alert.setHeaderText("Danh sách dữ liệu app bị trống");
+			    				alert.showAndWait();
+			    			}     		
+			    		}else {
+								Alert alert = new Alert(AlertType.INFORMATION);
+			        			alert.setTitle("Thông báo");
+			        			alert.setHeaderText("Vui lòng chọn tháng");
+			        			alert.showAndWait();
+						}
+				}		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		  	
     }
     
     @FXML
     void action_chonkieuxem(ActionEvent event) {
-    	
-    }
-    
-    @FXML
-    void action_chonngay(ActionEvent event) {
-    }
-
-    @FXML
-    void action_chonthang(ActionEvent event) {
+    	if(chonkieuxem.getSelectionModel().getSelectedItem().equals("Theo Ngày")) {
+    		chonngaycombobox.setVisible(true);
+    		chonthang.setVisible(false);
+    	} else {
+    		chonngaycombobox.setVisible(false);
+    		chonthang.setVisible(true);
+    	}
     }
     
     private ObservableList<String> chonkieuxemCombobox(){
     	List<String> list = Arrays.asList("Theo Ngày","Theo Tháng");
      	return FXCollections.observableArrayList(list);
     }
-    
-    private ObservableList<Integer> chonthangCombobox(){
-    	List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-     	return FXCollections.observableArrayList(list);
-    }
-    
-    
+
     public void loadDataPhieuChi() {
-    	ObservableList<TablePhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi());
+    	ObservableList<TablePhieuChi> listPhieuChi = FXCollections.observableArrayList(DAO.getCacPhieuChi(1));
     	tablephieuchi.getItems().setAll(listPhieuChi);
     	if(listPhieuChi==null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -291,11 +387,14 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     
     public void loadDataChiTietChi() {
     	tablephieuchi.setOnMouseClicked((event) -> {
-    	    if (event.getButton().equals(MouseButton.PRIMARY)) {
+    		try {
+				if (event.getButton().equals(MouseButton.PRIMARY)) {
     	        String index = tablephieuchi.getSelectionModel().getSelectedItem().getMa();
     	        ObservableList<ChiTietChiTable> listChiTietChi = FXCollections.observableArrayList(DAO.getChiTietChi(index));
                 tablechitietchi.getItems().setAll(listChiTietChi);
     	    }
+			} catch (Exception e) {
+			}    	    
     	});
     }
     
@@ -314,6 +413,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
  		tongtienchitietchi.setCellValueFactory(new PropertyValueFactory<ChiTietChiTable, Integer>("tongtien"));
  	}
  	
+ 	
     private void setup() {
     	try {
     		initCol();
@@ -321,6 +421,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable{
     		loadDataChiTietChi();
     		loadDataPhieuChi();	
 			chonkieuxem.setItems(chonkieuxemCombobox());
+	    	chonthang.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12);
 		} 
     		catch (Exception e) {
 			e.printStackTrace();

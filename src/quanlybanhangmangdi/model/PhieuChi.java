@@ -14,8 +14,16 @@ public class PhieuChi {
 		private int manhanvien;
 		private Date ngay;
 		private int tonggia;
+		private int trangthai;
 		
-		private SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy/M/dd HH:mm:ss");
+		public int getTrangthai() {
+			return trangthai;
+		}
+
+		public void setTrangthai(int trangthai) {
+			this.trangthai = trangthai;
+		}
+		private SimpleDateFormat sdfDatabase = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		private ObservableList<NguyenLieuTable> chitietchi;
 
 		
@@ -38,6 +46,9 @@ public class PhieuChi {
 			this.manhanvien = manhanvien;
 			this.ngay = ngay;
 			this.tonggia = tonggia;
+		}
+		public PhieuChi(String ma) {
+			this.ma = ma;
 		}
 		
 		public String getMa() {
@@ -72,67 +83,18 @@ public class PhieuChi {
 			this.tonggia = tonggia;
 		}
 		
-		private String taoMa() throws NumberFormatException, SQLException {
-			ResultSet rs = DataHelper.execQuery("SELECT ma FROM PhieuChi \r\n" + 
-					"ORDER BY ma DESC\r\n" + 
-					"LIMIT 1;");
-			int stt = -1;
-			while(rs.next()) {
-					stt = Integer.parseInt(rs.getString("ma").substring(0, 8));
-			}
-			stt++;
-			String kq = Integer.toString(stt);
-			while(kq.length() < 8) {
-				kq = "0" + kq;
-			}
-			return kq;
-		}
-
-		public boolean luuDatabase() throws SQLException {
-			
+		public boolean thayDoiTrangThai() throws SQLException{
 			try {
-				String mapc = taoMa();
-				String sql = "INSERT INTO PhieuChi(ma,manhanvien,ngay,tonggia) \r\n" + 
-						"VALUES (\"" + mapc +"\","+
-						"\""+getManhanvien()+"\","+
-						"\""+sdfDatabase.format(getNgay())+ "\","+
-						"\""+getTonggia()+ "\")";
-				boolean exec = DataHelper.execAction(sql);
-				if(exec) {
-					for(NguyenLieuTable chiTiet : getChitietchi()) {
-						String sql2 = "INSERT INTO ChiTietChi(maphieuchi, manl, soluong, gia) \r\n" + 
-								"VALUES (\"" + mapc + "\"," +
-								"\"" + chiTiet.getManguyenlieu() + "\"," +
-								"\"" + chiTiet.getSoluong() + "\"," +
-								"\"" + chiTiet.getGia() + "\")";
-								exec = DataHelper.execAction(sql2);
-								if(exec == false) return exec;					
-						}
-					
-						ResultSet rs = DataHelper.execQuery("SELECT * FROM nguyenlieu") ;
-						if(exec) {
-							try {
-								while(rs.next()) {
-									String ma = rs.getString("ma");
-									int soluong = rs.getInt("soluong");	
-									for(NguyenLieuTable nguyenlieu : getChitietchi()) {
-										if(nguyenlieu.getManguyenlieu().equals(ma)) {
-											String sql4 = "UPDATE nguyenlieu SET soluong =" + (soluong  - nguyenlieu.getSoluong()) +" " + "WHERE ma =" + ma ;
-											exec = DataHelper.execAction(sql4);
-										}
-									}
-								}
-								return true;
-							} catch (Exception e) {
-								e.printStackTrace();							
-								return false;
-							}
-						}
-				}else return exec;			
-			} catch (NumberFormatException e) {
+				String sql = "SELECT * FROM phieuchi WHERE ma = " + this.ma;
+				ResultSet rs = DataHelper.execQuery(sql);
+				rs.next();
+				int trangthai = rs.getInt("trangthai");
+				String sql1 = "UPDATE phieuchi SET trangthai = " + (trangthai==1 ? 0:1) +" " + "WHERE ma =" + this.ma ;
+				DataHelper.execAction(sql1);
+			} catch (Exception e) {
 				e.printStackTrace();
 				return false;
 			}
-			return true;	
+			return true;
 		}
 }

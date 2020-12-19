@@ -12,6 +12,16 @@ public class NguyenLieu {
 				this.gia = gia;
 				this.soluong = soluong;
 			}
+			
+			public NguyenLieu(String ten, int gia, int soluong) {
+				this.ten = ten;
+				this.gia = gia;
+				this.soluong = soluong;
+			}
+			
+			public NguyenLieu(String ma) {
+				this.ma = ma;
+			}
 
 			public int getSoluong() {
 				return soluong;
