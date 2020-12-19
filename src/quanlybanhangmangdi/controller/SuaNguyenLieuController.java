@@ -20,90 +20,90 @@ import javafx.stage.StageStyle;
 import quanlybanhangmangdi.database.DAO;
 import quanlybanhangmangdi.model.NguyenLieu;
 
-public class SuaNguyenLieuController implements Initializable{
+public class SuaNguyenLieuController implements Initializable {
 
 	@FXML
-    private TextField tennguyenlieu;
+	private TextField tennguyenlieu;
 
-    @FXML
-    private Button luunguyenlieu;
+	@FXML
+	private Button luunguyenlieu;
 
-    @FXML
-    private TextField gia;
+	@FXML
+	private TextField gia;
 
-    @FXML
-    private TextField soluong;
+	@FXML
+	private TextField soluong;
 
 	private String manl;
-    
-    public boolean IsNumber(String str)
-    {
-    	return str.matches("-?\\d+(\\.\\d+)?"); 
-    }
 
-    @FXML
-    void action_luunguyenlieu(ActionEvent event) {
-    	if(!tennguyenlieu.getText().isEmpty() && !gia.getText().isEmpty() && !soluong.getText().isEmpty()) {
-			if(IsNumber(gia.getText()) == false) {
+	public boolean IsNumber(String str) {
+		return str.matches("-?\\d+(\\.\\d+)?");
+	}
+
+	@FXML
+	void action_luunguyenlieu(ActionEvent event) {
+		if (!tennguyenlieu.getText().isEmpty() && !gia.getText().isEmpty() && !soluong.getText().isEmpty()) {
+			if (IsNumber(gia.getText()) == false) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
-	    		alert.setTitle("Thông báo");
-	    		alert.setHeaderText(null);
-	    		alert.setContentText("Vui lòng nhập Giá là Số");
-	    		alert.showAndWait();
+				alert.setTitle("Thông báo");
+				alert.setHeaderText(null);
+				alert.setContentText("Vui lòng nhập Giá là Số");
+				alert.showAndWait();
 			}
-			if(IsNumber(soluong.getText()) == false) {
+			if (IsNumber(soluong.getText()) == false) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
-	    		alert.setTitle("Thông báo");
-	    		alert.setHeaderText(null);
-	    		alert.setContentText("Vui lòng nhập Số Lượng là Số");
-	    		alert.showAndWait();
+				alert.setTitle("Thông báo");
+				alert.setHeaderText(null);
+				alert.setContentText("Vui lòng nhập Số Lượng là Số");
+				alert.showAndWait();
 			}
-			if(IsNumber(gia.getText()) && IsNumber(soluong.getText())) {
-    			String tennl = tennguyenlieu.getText();
-    			int gianl = Integer.parseInt(gia.getText());
-    			int soluongnl = Integer.parseInt(soluong.getText());
- 
-    			NguyenLieu nl = new NguyenLieu(manl,tennl,gianl,soluongnl);
-    			if(DAO.suaNguyeLieu(nl)) {
-    				Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    	    		alert.setTitle("Thông báo");
-    	    		alert.setHeaderText(null);
-    	    		alert.setContentText("Đã sửa");
-    	    		alert.showAndWait();
-    	    		((Node)event.getSource()).getScene().getWindow().hide();
-    			}else {
-    				Alert alert = new Alert(Alert.AlertType.ERROR);
-    	    		alert.setTitle("Thông báo");
-    	    		alert.setHeaderText(null);
-    	    		alert.setContentText("Sửa thất bại");
-    	    		alert.showAndWait();
+			if (IsNumber(gia.getText()) && IsNumber(soluong.getText())) {
+				String tennl = tennguyenlieu.getText();
+				int gianl = Integer.parseInt(gia.getText());
+				int soluongnl = Integer.parseInt(soluong.getText());
+
+				NguyenLieu nl = new NguyenLieu(manl, tennl, gianl, soluongnl);
+				if (DAO.suaNguyeLieu(nl)) {
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Thông báo");
+					alert.setHeaderText(null);
+					alert.setContentText("Đã sửa");
+					alert.showAndWait();
+					((Node) event.getSource()).getScene().getWindow().hide();
+				} else {
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Thông báo");
+					alert.setHeaderText(null);
+					alert.setContentText("Sửa thất bại");
+					alert.showAndWait();
 				}
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
-    		alert.setTitle("Thông báo");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Vui lòng cung cấp đầy đủ thông tin nguyên liệu");
-    		alert.showAndWait();
+			alert.setTitle("Thông báo");
+			alert.setHeaderText(null);
+			alert.setContentText("Vui lòng cung cấp đầy đủ thông tin nguyên liệu");
+			alert.showAndWait();
 		}
-    }
-    
-    public void loadNguyenLieu(NguyenLieu nguyenlieu) {
-    	manl = nguyenlieu.getMa();
+	}
+
+	public void loadNguyenLieu(NguyenLieu nguyenlieu) {
+		manl = nguyenlieu.getMa();
 		tennguyenlieu.setText(nguyenlieu.getTen());
 		gia.setText(String.valueOf(nguyenlieu.getGia()));
-		soluong.setText(String.valueOf(nguyenlieu.getSoluong()));	
+		soluong.setText(String.valueOf(nguyenlieu.getSoluong()));
 	}
-    
-    public void show(NguyenLieu nl) throws IOException{
-    	try {
-			Stage primaryStage = new Stage();	
-	    	FXMLLoader loader = new FXMLLoader();
-	    	Parent root = loader.load(getClass().getResource("../view/SuaNguyenLieu.fxml").openStream());;
-	    	SuaNguyenLieuController snl = (SuaNguyenLieuController)loader.getController();
-	    	snl.loadNguyenLieu(nl);
-	    	Scene scene = new Scene(root,534,294);			
-		    primaryStage.setResizable(false);
+
+	public void show(NguyenLieu nl) throws IOException {
+		try {
+			Stage primaryStage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			Parent root = loader.load(getClass().getResource("../view/SuaNguyenLieu.fxml").openStream());
+			;
+			SuaNguyenLieuController snl = (SuaNguyenLieuController) loader.getController();
+			snl.loadNguyenLieu(nl);
+			Scene scene = new Scene(root, 534, 294);
+			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.DECORATED);
 			primaryStage.initModality(Modality.APPLICATION_MODAL);
@@ -111,13 +111,13 @@ public class SuaNguyenLieuController implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	
-    }
+
+	}
 
 	private void setup() {
-    	
-    }
-    
+
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setup();

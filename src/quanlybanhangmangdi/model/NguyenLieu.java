@@ -1,64 +1,63 @@
 package quanlybanhangmangdi.model;
 
 public class NguyenLieu {
-			private String ma;
-			private String ten;
-			private int gia;
-			private int soluong;
-			
-			public NguyenLieu(String ma, String ten, int gia, int soluong) {
-				this.ma = ma;
-				this.ten = ten;
-				this.gia = gia;
-				this.soluong = soluong;
-			}
-			
-			public NguyenLieu(String ten, int gia, int soluong) {
-				this.ten = ten;
-				this.gia = gia;
-				this.soluong = soluong;
-			}
-			
-			public NguyenLieu(String ma) {
-				this.ma = ma;
-			}
+	private String ma;
+	private String ten;
+	private int gia;
+	private int soluong;
 
-			public int getSoluong() {
-				return soluong;
-			}
+	public NguyenLieu(String ma, String ten, int gia, int soluong) {
+		this.ma = ma;
+		this.ten = ten;
+		this.gia = gia;
+		this.soluong = soluong;
+	}
 
-			public void setSoluong(int soluong) {
-				this.soluong = soluong;
-			}
+	public NguyenLieu(String ten, int gia, int soluong) {
+		this.ten = ten;
+		this.gia = gia;
+		this.soluong = soluong;
+	}
 
-			public String getMa() {
-				return ma;
-			}
-			
-			
-			@Override
-			public String toString() {
-			// TODO Auto-generated method stub
-			return getTen();
-			}
+	public NguyenLieu(String ma) {
+		this.ma = ma;
+	}
 
-			public void setMa(String ma) {
-				this.ma = ma;
-			}
+	public int getSoluong() {
+		return soluong;
+	}
 
-			public String getTen() {
-				return ten;
-			}
+	public void setSoluong(int soluong) {
+		this.soluong = soluong;
+	}
 
-			public void setTen(String ten) {
-				this.ten = ten;
-			}
+	public String getMa() {
+		return ma;
+	}
 
-			public int getGia() {
-				return gia;
-			}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getTen();
+	}
 
-			public void setGia(int gia) {
-				this.gia = gia;
-			}
+	public void setMa(String ma) {
+		this.ma = ma;
+	}
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
+	}
+
+	public int getGia() {
+		return gia;
+	}
+
+	public void setGia(int gia) {
+		this.gia = gia;
+	}
 }

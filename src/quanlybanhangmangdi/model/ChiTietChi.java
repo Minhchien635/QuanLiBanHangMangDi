@@ -1,49 +1,48 @@
 package quanlybanhangmangdi.model;
 
 public class ChiTietChi {
-		private String maphieuchi;
-		private String manl;
-		private int soluong;
-		private int gia;
-		
-		public ChiTietChi(String maphieuchi, String manl, int soluong, int gia) {
-			this.maphieuchi = maphieuchi;
-			this.manl = manl;
-			this.soluong = soluong;
-			this.gia = gia;
-		}
+	private String maphieuchi;
+	private String manl;
+	private int soluong;
+	private int gia;
 
-		public String getMaphieuchi() {
-			return maphieuchi;
-		}
+	public ChiTietChi(String maphieuchi, String manl, int soluong, int gia) {
+		this.maphieuchi = maphieuchi;
+		this.manl = manl;
+		this.soluong = soluong;
+		this.gia = gia;
+	}
 
-		public void setMaphieuchi(String maphieuchi) {
-			this.maphieuchi = maphieuchi;
-		}
+	public String getMaphieuchi() {
+		return maphieuchi;
+	}
 
-		public String getManl() {
-			return manl;
-		}
+	public void setMaphieuchi(String maphieuchi) {
+		this.maphieuchi = maphieuchi;
+	}
 
-		public void setManl(String manl) {
-			this.manl = manl;
-		}
+	public String getManl() {
+		return manl;
+	}
 
-		public int getSoluong() {
-			return soluong;
-		}
+	public void setManl(String manl) {
+		this.manl = manl;
+	}
 
-		public void setSoluong(int soluong) {
-			this.soluong = soluong;
-		}
+	public int getSoluong() {
+		return soluong;
+	}
 
-		public int getGia() {
-			return gia;
-		}
+	public void setSoluong(int soluong) {
+		this.soluong = soluong;
+	}
 
-		public void setGia(int gia) {
-			this.gia = gia;
-		}
-		
-		
+	public int getGia() {
+		return gia;
+	}
+
+	public void setGia(int gia) {
+		this.gia = gia;
+	}
+
 }

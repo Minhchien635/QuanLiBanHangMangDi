@@ -1,4 +1,5 @@
 package quanlybanhangmangdi.controller;
+
 import java.io.IOException;
 
 import java.net.URL;
@@ -51,220 +52,218 @@ import quanlybanhangmangdi.model.NguyenLieu;
 import quanlybanhangmangdi.model.NguyenLieuTable;
 import quanlybanhangmangdi.model.PhieuChi;
 
-public class ThemPhieuChiController implements Initializable{
+public class ThemPhieuChiController implements Initializable {
 
-	ObservableList<NguyenLieuTable> listNguyenlieu =  FXCollections.observableArrayList();
-	
+	ObservableList<NguyenLieuTable> listNguyenlieu = FXCollections.observableArrayList();
+
 	ObservableList<NguyenLieu> listTenNguyenLieu = FXCollections.observableArrayList();
-	
-    @FXML
-    private ComboBox<Integer> soluong;
 
-    @FXML
-    private ComboBox<NguyenLieu> tennguyenlieu;
-    
-    @FXML
-    private DatePicker ngaychi;
+	@FXML
+	private ComboBox<Integer> soluong;
 
-    @FXML
-    private TableView<NguyenLieuTable> tablenguyenlieu;
+	@FXML
+	private ComboBox<NguyenLieu> tennguyenlieu;
 
-    @FXML
-    private TableColumn<NguyenLieuTable, String> tennl;
+	@FXML
+	private DatePicker ngaychi;
 
-    @FXML
-    private TableColumn<NguyenLieuTable, Integer> gianl;
+	@FXML
+	private TableView<NguyenLieuTable> tablenguyenlieu;
 
-    @FXML
-    private TableColumn<NguyenLieuTable, Integer> soluongnl;
+	@FXML
+	private TableColumn<NguyenLieuTable, String> tennl;
 
-    @FXML
-    private TableColumn<NguyenLieuTable, Integer> tongtiennl;
+	@FXML
+	private TableColumn<NguyenLieuTable, Integer> gianl;
 
-    @FXML
-    private Button themnguyenlieu;
+	@FXML
+	private TableColumn<NguyenLieuTable, Integer> soluongnl;
 
-    @FXML
-    private TextField thoigian;
+	@FXML
+	private TableColumn<NguyenLieuTable, Integer> tongtiennl;
 
-    @FXML
-    private Button taophieuchi;
-    
-    @FXML
-    private Button quanlynguyenlieu;
+	@FXML
+	private Button themnguyenlieu;
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    
-    @FXML
-    void action_quanlynguyenlieu(ActionEvent event) {
-    		QuanLyNguyenLieuController qlnl =new QuanLyNguyenLieuController();
-    		try {
-				qlnl.show();
-			} catch (IOException e) {
-				e.printStackTrace();
+	@FXML
+	private TextField thoigian;
+
+	@FXML
+	private Button taophieuchi;
+
+	@FXML
+	private Button quanlynguyenlieu;
+
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+	@FXML
+	void action_quanlynguyenlieu(ActionEvent event) {
+		QuanLyNguyenLieuController qlnl = new QuanLyNguyenLieuController();
+		try {
+			qlnl.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		chonTenNguyenLieuCombobox();
+		chonSoLuongCombobox();
+	}
+
+	@FXML
+	void action_taophieuchi(ActionEvent event) throws ParseException, SQLException {
+		java.util.Date t = sdf
+				.parse(ngaychi.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " " + thoigian.getText());
+		int tongtiennl = 0;
+		ArrayList<ChiTietChi> e = new ArrayList<ChiTietChi>();
+		for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
+			tongtiennl = nguyenLieuTable.getTongtien() + tongtiennl;
+		}
+		if (listNguyenlieu.isEmpty() == false) {
+			PhieuChi pc = new PhieuChi(1/* Test.nhanVien.getMaNhanVien() */, t, tongtiennl, listNguyenlieu);
+			if (DAO.luuDatabase(pc)) {
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Thông báo");
+				alert.setHeaderText(null);
+				alert.setContentText("Thêm đơn hàng mới thành công");
+				alert.showAndWait();
+				((Node) event.getSource()).getScene().getWindow().hide();
+			} else {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Lỗi");
+				alert.setHeaderText(null);
+				alert.setContentText("Thêm đơn hàng mới thất bại");
+				alert.showAndWait();
 			}
-    		chonTenNguyenLieuCombobox();
-    		chonSoLuongCombobox();
-    }
-
-    @FXML
-    void action_taophieuchi(ActionEvent event) throws ParseException, SQLException {
-    	java.util.Date t = sdf.parse(ngaychi.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+" "+thoigian.getText());
-    	int tongtiennl = 0;
-    	ArrayList<ChiTietChi> e = new ArrayList<ChiTietChi>(); 
-    	for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
-			tongtiennl = nguyenLieuTable.getTongtien() +tongtiennl;	
+		} else {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Thông báo");
+			alert.setHeaderText(null);
+			alert.setContentText("Vui lòng chọn ' Thêm nguyên liệu '");
+			alert.showAndWait();
 		}
-    	if(listNguyenlieu.isEmpty() == false) {
-	    	PhieuChi pc = new PhieuChi(1/*Test.nhanVien.getMaNhanVien()*/,t, tongtiennl,listNguyenlieu);
-	    	if(DAO.luuDatabase(pc)) {	
-	    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	    		alert.setTitle("Thông báo");
-	    		alert.setHeaderText(null);
-	    		alert.setContentText("Thêm đơn hàng mới thành công");
-	    		alert.showAndWait();
-	    		((Node)event.getSource()).getScene().getWindow().hide();
-	    	} else {
-	    		Alert alert = new Alert(Alert.AlertType.ERROR);
-	    		alert.setTitle("Lỗi");
-	    		alert.setHeaderText(null);
-	    		alert.setContentText("Thêm đơn hàng mới thất bại");
-	    		alert.showAndWait();
-	    	}
-    	}
-	    else {
-    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setTitle("Thông báo");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Vui lòng chọn ' Thêm nguyên liệu '");
-    		alert.showAndWait();
-		}
-    }
+	}
 
-    @FXML
-     private void action_themnguyenlieu(ActionEvent event) {
-    	
-    	if(tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
-    		String manl = tennguyenlieu.getSelectionModel().getSelectedItem().getMa();
-    		String tennl = tennguyenlieu.getSelectionModel().getSelectedItem().getTen();
-    		int gianl = tennguyenlieu.getSelectionModel().getSelectedItem().getGia();
-    		int soluongnl = soluong.getSelectionModel().getSelectedItem();
-    		int tongtiennl = tennguyenlieu.getSelectionModel().getSelectedItem().getGia() * soluongnl;
-			if(listNguyenlieu.isEmpty() == false) {
+	@FXML
+	private void action_themnguyenlieu(ActionEvent event) {
+
+		if (tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
+			String manl = tennguyenlieu.getSelectionModel().getSelectedItem().getMa();
+			String tennl = tennguyenlieu.getSelectionModel().getSelectedItem().getTen();
+			int gianl = tennguyenlieu.getSelectionModel().getSelectedItem().getGia();
+			int soluongnl = soluong.getSelectionModel().getSelectedItem();
+			int tongtiennl = tennguyenlieu.getSelectionModel().getSelectedItem().getGia() * soluongnl;
+			if (listNguyenlieu.isEmpty() == false) {
 				int i = 0;
 				for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
-					if(tennl.equals(nguyenLieuTable.getTennguyenlieu())) {
+					if (tennl.equals(nguyenLieuTable.getTennguyenlieu())) {
 						nguyenLieuTable.setSoluong(soluongnl + nguyenLieuTable.getSoluong());
 						nguyenLieuTable.setTongtien(tongtiennl + nguyenLieuTable.getTongtien());
 						i = 1;
 					}
 				}
-	    		if(i == 0) {
-	    			NguyenLieuTable nl = new NguyenLieuTable(manl, tennl, gianl, soluongnl, tongtiennl);
-		    		listNguyenlieu.add(nl);
-	    		}
-			}else {
-				NguyenLieuTable nl = new NguyenLieuTable(manl, tennl, gianl, soluongnl, tongtiennl);
-	    		listNguyenlieu.add(nl);
-			}
-    		tablenguyenlieu.getItems().setAll(listNguyenlieu);
-    		reloadTenNguyenLieu();
-    	}else {
-    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    		alert.setTitle("Thông báo");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Vui lòng chọn nguyên liệu và số lượng");
-    		alert.showAndWait();
-		}
-    }
-     
-    private void initCol() {
- 		tennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, String>("tennguyenlieu"));
- 		gianl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("gia"));
- 		soluongnl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("soluong"));
- 		tongtiennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("tongtien"));
- 	}
-    
-    private void reloadTenNguyenLieu() {
-    	if(tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
-    		if(listNguyenlieu.isEmpty() == false) {  			
-    				int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong()  - soluong.getValue().intValue();
-    				tennguyenlieu.getSelectionModel().getSelectedItem().setSoluong(sl);		
-    				tennguyenlieu.getSelectionModel().clearSelection();
-    				soluong.getSelectionModel().clearSelection();
-    		}
-    	}   	
-    }
- 
-   private void  chonTenNguyenLieuCombobox(){
-    	ObservableList<NguyenLieu> list = FXCollections.observableArrayList(DAO.getTenNguyenLieu());
-    	tennguyenlieu.setVisibleRowCount(6);
-    	tennguyenlieu.setItems(list);
-    	listTenNguyenLieu = list;
-    }
-   
-   private void chonSoLuongCombobox(){
-	   try {
-		tennguyenlieu.valueProperty().addListener(new ChangeListener<NguyenLieu>() {
-			@Override
-			public void changed(ObservableValue ov, NguyenLieu t, NguyenLieu t1) {
-				   if(tennguyenlieu.getSelectionModel().isEmpty() == false) {
-					  int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong();
-					  List<Integer> ds =  new ArrayList<>();
-					  int i = 1;
-					  while(i <=sl) {
-						  ds.add(i);
-						  i++;
-					  }
-					  soluong.setVisibleRowCount(5);
-					 soluong.setItems(FXCollections.observableArrayList(ds));
-			   		}
-				   else {
-					return;
+				if (i == 0) {
+					NguyenLieuTable nl = new NguyenLieuTable(manl, tennl, gianl, soluongnl, tongtiennl);
+					listNguyenlieu.add(nl);
 				}
+			} else {
+				NguyenLieuTable nl = new NguyenLieuTable(manl, tennl, gianl, soluongnl, tongtiennl);
+				listNguyenlieu.add(nl);
 			}
-		});
-	} catch (Exception e) {
-		return;
+			tablenguyenlieu.getItems().setAll(listNguyenlieu);
+			reloadTenNguyenLieu();
+		} else {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Thông báo");
+			alert.setHeaderText(null);
+			alert.setContentText("Vui lòng chọn nguyên liệu và số lượng");
+			alert.showAndWait();
+		}
 	}
-	   
-   }
-   
-   private void setDefaultDateTime() {
+
+	private void initCol() {
+		tennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, String>("tennguyenlieu"));
+		gianl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("gia"));
+		soluongnl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("soluong"));
+		tongtiennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("tongtien"));
+	}
+
+	private void reloadTenNguyenLieu() {
+		if (tennguyenlieu.getSelectionModel().isEmpty() == false && soluong.getSelectionModel().isEmpty() == false) {
+			if (listNguyenlieu.isEmpty() == false) {
+				int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong()
+						- soluong.getValue().intValue();
+				tennguyenlieu.getSelectionModel().getSelectedItem().setSoluong(sl);
+				tennguyenlieu.getSelectionModel().clearSelection();
+				soluong.getSelectionModel().clearSelection();
+			}
+		}
+	}
+
+	private void chonTenNguyenLieuCombobox() {
+		ObservableList<NguyenLieu> list = FXCollections.observableArrayList(DAO.getTenNguyenLieu());
+		tennguyenlieu.setVisibleRowCount(6);
+		tennguyenlieu.setItems(list);
+		listTenNguyenLieu = list;
+	}
+
+	private void chonSoLuongCombobox() {
+		try {
+			tennguyenlieu.valueProperty().addListener(new ChangeListener<NguyenLieu>() {
+				@Override
+				public void changed(ObservableValue ov, NguyenLieu t, NguyenLieu t1) {
+					if (tennguyenlieu.getSelectionModel().isEmpty() == false) {
+						int sl = tennguyenlieu.getSelectionModel().getSelectedItem().getSoluong();
+						List<Integer> ds = new ArrayList<>();
+						int i = 1;
+						while (i <= sl) {
+							ds.add(i);
+							i++;
+						}
+						soluong.setVisibleRowCount(5);
+						soluong.setItems(FXCollections.observableArrayList(ds));
+					} else {
+						return;
+					}
+				}
+			});
+		} catch (Exception e) {
+			return;
+		}
+
+	}
+
+	private void setDefaultDateTime() {
 		ngaychi.setValue(LocalDate.now());
-		
-	   Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
-	        LocalTime currentTime = LocalTime.now();
-	        thoigian.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
-	    }),
-	         new KeyFrame(Duration.seconds(1))
-	    );
-	    clock.setCycleCount(Animation.INDEFINITE);
-	    clock.play();	
+
+		Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+			LocalTime currentTime = LocalTime.now();
+			thoigian.setText(currentTime.getHour() + ":" + currentTime.getMinute() + ":" + currentTime.getSecond());
+		}), new KeyFrame(Duration.seconds(1)));
+		clock.setCycleCount(Animation.INDEFINITE);
+		clock.play();
 	}
-	
-	 public void show() throws IOException {
-	    	Stage primaryStage = new Stage();	    	
-	    	Parent root = FXMLLoader.load(getClass().getResource("../view/ThemPhieuChi.fxml"));
-	    	Scene scene = new Scene(root,755,551);			
-	    	scene.getStylesheets().add(getClass().getResource("../view/ThemPhieuChiStyle.css").toExternalForm());
-		    primaryStage.setResizable(false);
-			primaryStage.setScene(scene);
-			primaryStage.initStyle(StageStyle.DECORATED);
-			primaryStage.initModality(Modality.APPLICATION_MODAL);
-			primaryStage.showAndWait();
+
+	public void show() throws IOException {
+		Stage primaryStage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("../view/ThemPhieuChi.fxml"));
+		Scene scene = new Scene(root, 755, 551);
+		scene.getStylesheets().add(getClass().getResource("../view/ThemPhieuChiStyle.css").toExternalForm());
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.initStyle(StageStyle.DECORATED);
+		primaryStage.initModality(Modality.APPLICATION_MODAL);
+		primaryStage.showAndWait();
 	}
-	 
-	 private void setup() {
-		 try {
-			 initCol();
-			 chonTenNguyenLieuCombobox();
-			 chonSoLuongCombobox();
+
+	private void setup() {
+		try {
+			initCol();
+			chonTenNguyenLieuCombobox();
+			chonSoLuongCombobox();
 			setDefaultDateTime();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	 }
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

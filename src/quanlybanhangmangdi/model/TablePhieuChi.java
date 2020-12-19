@@ -11,8 +11,7 @@ public class TablePhieuChi extends PhieuChi {
 		return tennhanvien;
 	}
 
-
-	public TablePhieuChi(String ma, int manhanvien,String tennhanvien, Date ngay, int tonggia) {
+	public TablePhieuChi(String ma, int manhanvien, String tennhanvien, Date ngay, int tonggia) {
 		super(ma, manhanvien, ngay, tonggia);
 		this.tennhanvien = tennhanvien;
 	}
@@ -20,5 +19,5 @@ public class TablePhieuChi extends PhieuChi {
 	public void setTennhanvien(String tennhanvien) {
 		this.tennhanvien = tennhanvien;
 	}
-		
+
 }
