@@ -341,9 +341,9 @@ public class DAO {
 		return null;
 	}
 
-	public static ArrayList<NguyenLieu> getTenNguyenLieu() {
+	public static ArrayList<NguyenLieu> getTenNguyenLieu(int trangthai) {
 		ArrayList<NguyenLieu> listNguyenLieu = new ArrayList<NguyenLieu>();
-		String sql = "SELECT * FROM NguyenLieu";
+		String sql = "SELECT * FROM NguyenLieu WHERE trangthai = " + trangthai;
 		ResultSet rs = DataHelper.execQuery(sql);
 		try {
 			while (rs.next()) {

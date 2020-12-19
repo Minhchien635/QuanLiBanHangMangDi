@@ -199,7 +199,7 @@ public class ThemPhieuChiController implements Initializable {
 	}
 
 	private void chonTenNguyenLieuCombobox() {
-		ObservableList<NguyenLieu> list = FXCollections.observableArrayList(DAO.getTenNguyenLieu());
+		ObservableList<NguyenLieu> list = FXCollections.observableArrayList(DAO.getTenNguyenLieu(1));
 		tennguyenlieu.setVisibleRowCount(6);
 		tennguyenlieu.setItems(list);
 		listTenNguyenLieu = list;
