@@ -107,6 +107,10 @@ public class ThemPhieuChiController implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+=======
+		
+>>>>>>> a8f3fc811bd42310bad824659f0c56ccb8592837
 	}
 
 	@FXML

@@ -39,7 +39,7 @@ CREATE TABLE `chitiethoadon` (
 
 LOCK TABLES `chitiethoadon` WRITE;
 /*!40000 ALTER TABLE `chitiethoadon` DISABLE KEYS */;
-INSERT INTO `chitiethoadon` VALUES ('00000000at','buhdo',3),('00000000at','cbhd2',2),('00000000at','cfsua',2),('00000001at','buhdo',1),('00000001at','cbhd2',2),('00000004at','buhki',4),('00000005at','cafe',1),('00000005at','cbhd1',1),('00000006at','buhdo',1),('00000008at','buhdo',2),('00000009at','buhdo',3),('00000010at','cafe',1),('00000011at','buhki',1),('00000011at','cbhd1',2),('00000011at','cbhd2',1),('00000012at','buhki',1),('00000013at','cbhd1',1),('00000015at','cbhd1',1),('00000016AT','cbhd1',5),('00000016AT','cbhd2',2),('00000017AT','buhdo',3),('00000017AT','cbhd1',1),('00000018AT','buhdo',1);
+INSERT INTO `chitiethoadon` VALUES ('00000000at','buhdo',3),('00000000at','cbhd2',2),('00000000at','cfsua',2),('00000001at','buhdo',1),('00000001at','cbhd2',2),('00000004at','buhki',4),('00000005at','cafe',1),('00000005at','cbhd1',1),('00000006at','buhdo',1),('00000008at','buhdo',2),('00000009at','buhdo',3),('00000010at','cafe',1),('00000011at','buhki',1),('00000011at','cbhd1',2),('00000011at','cbhd2',1),('00000012at','buhki',1),('00000013at','cbhd1',1),('00000015at','cbhd1',1),('00000016AT','cbhd1',5),('00000016AT','cbhd2',2),('00000017AT','buhdo',3),('00000017AT','cbhd1',1),('00000018AT','buhdo',1),('00000019AT','buhdo',1);
 /*!40000 ALTER TABLE `chitiethoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-19 23:51:26
+-- Dump completed on 2020-12-21 10:17:26

@@ -243,7 +243,18 @@ public class GiaoDienQuanLyDonHangController implements Initializable{
 		primaryStage.show();
     }
 
+    public void alertThongBao(String title, String header) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.showAndWait();
+	}
 
+    @FXML
+    private void inDonHang(ActionEvent event) {
+    	alertThongBao("Thông báo", "In đơn hàng thành công");
+    }
+    
     @FXML
     private void huy(ActionEvent event) {
     	((Node)event.getSource()).getScene().getWindow().hide();
