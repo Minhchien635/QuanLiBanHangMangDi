@@ -242,7 +242,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="windows2" layoutX="1103.0" layoutY="219.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="In Đơn" textFill="WHITE">
+                  <Button id="windows2" layoutX="1103.0" layoutY="219.0" mnemonicParsing="false" onAction="#inDonHang" prefHeight="55.0" prefWidth="223.0" stylesheets="@StyleSheet/stylesheet.css" text="In Đơn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

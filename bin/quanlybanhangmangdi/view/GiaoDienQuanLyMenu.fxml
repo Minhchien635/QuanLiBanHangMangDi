@@ -234,8 +234,8 @@
                   </Button>
                   <TableView fx:id="tbl_DanhSachMon" layoutX="98.0" layoutY="332.0" prefHeight="667.0" prefWidth="1340.0" style="-fx-font-size: 35px;">
                      <columns>
-                        <TableColumn fx:id="col_MaMon" prefWidth="285.0" style="-fx-background-color: #96cdf7;" text="Mã Món" />
-                        <TableColumn fx:id="col_LoaiMon" prefWidth="281.3333740234375" text="Loại Món" />
+                        <TableColumn fx:id="col_MaMon" prefWidth="285.0" style="-fx-background-color: #d5ebfc;" text="Mã Món" />
+                        <TableColumn fx:id="col_LoaiMon" prefWidth="281.3333740234375" style="-fx-background-color: #96cdf7;" text="Loại Món" />
                         <TableColumn fx:id="col_TenMon" prefWidth="450.6666259765625" style="-fx-background-color: #d5ebfc;" text="Tên Món" />
                         <TableColumn fx:id="col_GiaBan" prefWidth="324.3333740234375" style="-fx-background-color: #96cdf7;" text="Giá Bán / Phần(đ)" />
                      </columns>
