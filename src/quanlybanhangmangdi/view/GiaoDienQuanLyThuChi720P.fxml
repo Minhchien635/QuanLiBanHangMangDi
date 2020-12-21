@@ -144,8 +144,8 @@
          <children>
             <Pane fx:id="pane_ThuChi" layoutY="-6.0" prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
                <children>
-                  <ComboBox fx:id="chonthang" layoutX="174.0" layoutY="337.0" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Tháng" />
                   <DatePicker fx:id="chonngaycombobox" layoutX="174.0" layoutY="336.0" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Ngày" />
+                  <ComboBox fx:id="chonthang" layoutX="174.0" layoutY="337.0" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Tháng" />
                   <Label layoutX="300.0" layoutY="14.0" text="Thu - Chi" />
                   <TableView fx:id="tablephieuchi" layoutX="35.0" layoutY="370.0" prefHeight="239.0" prefWidth="491.0">
                     <columns>

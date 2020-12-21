@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,15 +17,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="619.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.GiaoDienQuanLyThuChiController">
+<AnchorPane prefHeight="619.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.BaoCaoController720p">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="618.0" prefWidth="54.0" style="-fx-background-color: d5ebfc;">
          <children>
             <VBox layoutY="187.0" prefHeight="431.0" prefWidth="236.0" style="-fx-background-color: #d5ebfc;">
                <children>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     ĐƠN HÀNG" textFill="#0101ee">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     ĐƠN HÀNG" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -38,7 +39,7 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     MENU" textFill="#0101ee">
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="     MENU" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,8 +49,9 @@
                      </graphic>
                      <VBox.margin>
                         <Insets left="20.0" />
-                     </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      APP GIAO HÀNG" textFill="#0303ff">
+                     </VBox.margin>
+                  </Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      APP GIAO HÀNG" textFill="#0303ff">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,8 +61,9 @@
                      </graphic>
                      <VBox.margin>
                         <Insets left="20.0" />
-                     </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="240.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      NHÂN VIÊN" textFill="#0303ff">
+                     </VBox.margin>
+                  </Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="240.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      NHÂN VIÊN" textFill="#0303ff">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,8 +73,9 @@
                      </graphic>
                      <VBox.margin>
                         <Insets left="20.0" />
-                     </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      THU - CHI" textFill="WHITE">
+                     </VBox.margin>
+                  </Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="334.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      THU - CHI" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -81,8 +85,9 @@
                      </graphic>
                      <VBox.margin>
                         <Insets left="20.0" />
-                     </VBox.margin></Button>
-                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      BÁO CÁO" textAlignment="CENTER" textFill="#0101ee">
+                     </VBox.margin>
+                  </Button>
+                  <Button id="windows" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="67.0" prefWidth="244.0" style="-fx-background-radius: 30 0 0 30;" stylesheets="@../StyleSheet/stylesheet.css" text="      BÁO CÁO" textAlignment="CENTER" textFill="#0101ee">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -140,52 +145,33 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="243.0" layoutY="1.0" prefHeight="618.0" prefWidth="836.0">
+      <AnchorPane layoutX="245.0" layoutY="1.0" prefHeight="618.0" prefWidth="836.0">
          <children>
-            <Pane fx:id="pane_ThuChi" layoutY="-6.0" prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
+            <Pane prefHeight="618.0" prefWidth="836.0" style="-fx-background-color: #fff;">
                <children>
-                  <DatePicker fx:id="chonngaycombobox" layoutX="174.0" layoutY="336.0" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Ngày" />
-                  <ComboBox fx:id="chonthang" layoutX="174.0" layoutY="337.0" prefHeight="25.0" prefWidth="116.0" promptText="Chọn Tháng" />
+                  <PieChart fx:id="piechart" layoutX="101.0" layoutY="141.0" prefHeight="465.0" prefWidth="629.0" title="Báo cáo theo biểu đồ phần trăm" />
+                  <TableView fx:id="tablebaocao" layoutX="173.0" layoutY="141.0" prefHeight="80.0" prefWidth="557.0">
+                    <columns>
+                      <TableColumn fx:id="doanhthu" prefWidth="203.0" text="Tổng Doanh Thu" />
+                        <TableColumn fx:id="chiphi" prefWidth="163.0" text="Tổng Chi Phí" />
+                        <TableColumn fx:id="loinhuan" prefWidth="192.0" text="Lợi Nhuận" />
+                    </columns>
+                  </TableView>
+                  <ComboBox fx:id="chonthang" layoutX="166.0" layoutY="75.0" prefWidth="150.0" promptText="Chọn Tháng" />
+                  <DatePicker fx:id="chonngay" layoutX="165.0" layoutY="75.0" prefWidth="150.0" />
                   <Label layoutX="300.0" layoutY="14.0" text="Thu - Chi" />
-                  <TableView fx:id="tablephieuchi" layoutX="35.0" layoutY="370.0" prefHeight="239.0" prefWidth="491.0">
-                    <columns>
-                      <TableColumn fx:id="tennhanvien" prefWidth="115.0" text="Tên nhân viên" />
-                      <TableColumn fx:id="maphieuchi" prefWidth="103.0" text="Mã phiếu chi" />
-                        <TableColumn fx:id="ngaychi" prefWidth="127.0" text="Ngày chi" />
-                        <TableColumn fx:id="tongtien" prefWidth="144.0" text="Tổng tiền" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="tablechitietchi" layoutX="36.0" layoutY="101.0" prefHeight="196.0" prefWidth="770.0">
-                    <columns>
-                        <TableColumn fx:id="nguyenlieuchitietchi" prefWidth="357.0" text="Nguyên Liệu" />
-                        <TableColumn fx:id="giachitietchi" minWidth="0.0" prefWidth="153.0" text="Giá" />
-                        <TableColumn fx:id="soluongchitietchi" minWidth="0.0" prefWidth="114.0" text="Số Lượng" />
-                        <TableColumn fx:id="tongtienchitietchi" minWidth="0.0" prefWidth="144.0" text="Tổng Tiền" />
-                    </columns>
-                  </TableView>
-                  <Label layoutX="36.0" layoutY="65.0" prefHeight="27.0" prefWidth="101.0" text="Chi Tiết Chi:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="chonkieuxem" layoutX="34.0" layoutY="336.0" onAction="#action_chonkieuxem" prefHeight="25.0" prefWidth="127.0" promptText="Chọn Kiểu Xem" />
-                  <Button layoutX="308.0" layoutY="336.0" mnemonicParsing="false" onAction="#action_xemphieuchi" text="Xem" fx:id="xemphieuchi" />
-                  <Text layoutX="36.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phiếu Chi:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="themphieuchi" layoutX="581.0" layoutY="370.0" mnemonicParsing="false" onAction="#action_themphieuchi" text="Thêm Phiếu Chi" />
-                  <Button fx:id="anphieuchi" layoutX="581.0" layoutY="429.0" mnemonicParsing="false" onAction="#action_anphieuchi" prefHeight="25.0" prefWidth="99.0" text="Ẩn Phiếu Chi" />
-                  <Button fx:id="inphieuchi" layoutX="581.0" layoutY="490.0" mnemonicParsing="false" onAction="#action_inphieuchi" prefHeight="25.0" prefWidth="99.0" text="In Phiếu Chi" />
-                  <Button layoutX="564.0" layoutY="551.0" mnemonicParsing="false" onAction="#action_xemphieuchian" prefHeight="25.0" prefWidth="116.0" text="Xem phiếu chi ẩn" fx:id="xemphieuchian" />
+                  <Button layoutX="342.0" layoutY="75.0" mnemonicParsing="false" onAction="#action_xembaocao" text="Xem Báo Cáo" fx:id="xembaocao" />
+                  <ComboBox fx:id="chonkieuxem" layoutX="32.0" layoutY="75.0" onAction="#action_chonkieuxem" prefHeight="25.0" prefWidth="121.0" promptText="Chọn kiểu xem" />
+                  <Button fx:id="phantram" layoutX="615.0" layoutY="75.0" mnemonicParsing="false" onAction="#action_phantram" text="Biểu đồ phần trăm" />
+                  <TextField fx:id="ngay" layoutX="32.0" layoutY="158.0" prefHeight="25.0" prefWidth="121.0" />
+                  <Label layoutX="34.0" layoutY="141.0" text="Thời gian:" />
                </children>
             </Pane>
          </children>
       </AnchorPane>
-      <Pane layoutX="506.0" layoutY="-216.0" prefHeight="263.0" prefWidth="310.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+      <Pane layoutX="506.0" layoutY="-216.0" prefHeight="263.0" prefWidth="293.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
          <children>
-            <Label fx:id="btn_Title" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="214.0" text="Thu Chi" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="214.0" text="Báo Cáo" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

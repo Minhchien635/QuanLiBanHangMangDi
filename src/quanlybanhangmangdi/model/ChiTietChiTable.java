@@ -1,18 +1,8 @@
 package quanlybanhangmangdi.model;
 
-public class ChiTietChiTable {
-	private String nguyenlieu;
-	private int gia;
-	private int soluong;
+public class ChiTietChiTable extends ChiTietChi {
 	private int tongtien;
-
-	public ChiTietChiTable(String nguyenlieu, int gia, int soluong, int tongtien) {
-		super();
-		this.nguyenlieu = nguyenlieu;
-		this.gia = gia;
-		this.soluong = soluong;
-		this.tongtien = tongtien;
-	}
+	private String nguyenlieu;
 
 	public String getNguyenlieu() {
 		return nguyenlieu;
@@ -22,20 +12,10 @@ public class ChiTietChiTable {
 		this.nguyenlieu = nguyenlieu;
 	}
 
-	public int getGia() {
-		return gia;
-	}
-
-	public void setGia(int gia) {
-		this.gia = gia;
-	}
-
-	public int getSoluong() {
-		return soluong;
-	}
-
-	public void setSoluong(int soluong) {
-		this.soluong = soluong;
+	public ChiTietChiTable(String nguyenlieu, int gia, int soluong, int tongtien) {
+		super(gia, soluong);
+		this.nguyenlieu = nguyenlieu;
+		this.tongtien = tongtien;
 	}
 
 	public int getTongtien() {

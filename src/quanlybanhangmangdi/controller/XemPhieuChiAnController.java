@@ -51,7 +51,7 @@ public class XemPhieuChiAnController implements Initializable {
 	private Button xoa;
 
 	@FXML
-	void action_khoiphuc(ActionEvent event) {
+	private void action_khoiphuc(ActionEvent event) {
 		try {
 			String index = tablephieuchi.getSelectionModel().getSelectedItem().getMa();
 			Alert alert = new Alert(AlertType.CONFIRMATION);

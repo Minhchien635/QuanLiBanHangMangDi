@@ -101,11 +101,12 @@ public class ThemPhieuChiController implements Initializable {
 		QuanLyNguyenLieuController qlnl = new QuanLyNguyenLieuController();
 		try {
 			qlnl.show();
+			listNguyenlieu.clear();
+			tablenguyenlieu.getItems().setAll(listNguyenlieu);
+			setup();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		chonTenNguyenLieuCombobox();
-		chonSoLuongCombobox();
 	}
 
 	@FXML
@@ -154,7 +155,7 @@ public class ThemPhieuChiController implements Initializable {
 			if (listNguyenlieu.isEmpty() == false) {
 				int i = 0;
 				for (NguyenLieuTable nguyenLieuTable : listNguyenlieu) {
-					if (tennl.equals(nguyenLieuTable.getTennguyenlieu())) {
+					if (tennl.equals(nguyenLieuTable.getTen())) {
 						nguyenLieuTable.setSoluong(soluongnl + nguyenLieuTable.getSoluong());
 						nguyenLieuTable.setTongtien(tongtiennl + nguyenLieuTable.getTongtien());
 						i = 1;
@@ -180,7 +181,7 @@ public class ThemPhieuChiController implements Initializable {
 	}
 
 	private void initCol() {
-		tennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, String>("tennguyenlieu"));
+		tennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, String>("ten"));
 		gianl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("gia"));
 		soluongnl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("soluong"));
 		tongtiennl.setCellValueFactory(new PropertyValueFactory<NguyenLieuTable, Integer>("tongtien"));

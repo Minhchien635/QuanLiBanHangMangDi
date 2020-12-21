@@ -103,6 +103,93 @@ public class DAO {
 		return null;
 	}
 
+	public static ArrayList<DonHangTable> getHoaDon(int trangthai) {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n"
+				+ "JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + "WHERE TRANGTHAI = " + trangthai;
+		ResultSet rs = DataHelper.execQuery(query);
+
+		try {
+			while (rs.next()) {
+				String maDon = rs.getString("ma");
+				Timestamp d = rs.getTimestamp("ThoiGian");
+				String tenNhanVien = rs.getString("hoten");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp),
+						maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static ArrayList<DonHangTable> getHoaDonTheoThang(int th, int trangthai) {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String fm = String.format("%02d", th);
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n"
+				+ "JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + "WHERE TRANGTHAI = " + trangthai
+				+ " AND hd.ThoiGian LIKE " + " '%-" + fm + "-%' ";
+		ResultSet rs = DataHelper.execQuery(query);
+
+		try {
+			while (rs.next()) {
+				String maDon = rs.getString("ma");
+				Timestamp d = rs.getTimestamp("ThoiGian");
+				String tenNhanVien = rs.getString("hoten");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp),
+						maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static ArrayList<DonHangTable> getHoaDonTheoNgay(LocalDate ld, int trangthai) {
+		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
+		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n"
+				+ "JOIN NhanVien nv ON hd.maNV = nv.ma\r\n" + "WHERE TRANGTHAI = " + trangthai + " AND hd.ThoiGian LIKE"
+				+ " '" + ld + "%'";
+		ResultSet rs = DataHelper.execQuery(query);
+
+		try {
+			while (rs.next()) {
+				String maDon = rs.getString("ma");
+				Timestamp d = rs.getTimestamp("ThoiGian");
+				String tenNhanVien = rs.getString("hoten");
+				String maApp = rs.getString("MaApp");
+				String maDonApp = rs.getString("MaDonTrenApp");
+				int chietKhau = rs.getInt("ChietKhau");
+				int tongGia = rs.getInt("TongGia");
+				int phiDichVu = rs.getInt("PhiDichVu");
+				int tongTienThu = rs.getInt("TongTienThu");
+				danhSachDonHang.add(new DonHangTable(maDon, tenNhanVien, sdf.format(d), getTenAppTuMaApp(maApp),
+						maDonApp, tongGia, chietKhau, phiDichVu, tongTienThu));
+			}
+			return danhSachDonHang;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static ArrayList<DonHangTable> getDuLieuDonHangTable() {
 		ArrayList<DonHangTable> danhSachDonHang = new ArrayList<DonHangTable>();
 		String query = "SELECT hd.ma, hd.ThoiGian, nv.hoten, hd.maApp, hd.madontrenapp, hd.chietkhau,hd.tonggia,hd.phidichvu,hd.tongtienthu FROM HoaDon hd\r\n"
@@ -186,9 +273,10 @@ public class DAO {
 		return null;
 	}
 
-	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoNgay(LocalDate ld) {
+	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoNgay(LocalDate ld, int trangthai) {
 		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
-		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '" + ld + "%' " + "AND " + "trangthai = 1";
+		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '" + ld + "%' " + "AND " + "trangthai = "
+				+ trangthai;
 		ResultSet rs = DataHelper.execQuery(query);
 
 		try {
@@ -210,10 +298,11 @@ public class DAO {
 		return null;
 	}
 
-	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoThang(int th) {
+	public static ArrayList<TablePhieuChi> getCacPhieuChiTheoThang(int th, int trangthai) {
 		ArrayList<TablePhieuChi> danhSach = new ArrayList<TablePhieuChi>();
 		String fm = String.format("%02d", th);
-		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '%-" + fm + "-%' " + "AND " + "trangthai = 1";
+		String query = "SELECT * FROM PhieuChi WHERE ngay LIKE " + " '%-" + fm + "-%' " + "AND " + "trangthai = "
+				+ trangthai;
 		ResultSet rs = DataHelper.execQuery(query);
 
 		try {
@@ -389,8 +478,8 @@ public class DAO {
 			if (exec) {
 				for (NguyenLieuTable chiTiet : pc.getChitietchi()) {
 					String sql2 = "INSERT INTO ChiTietChi(maphieuchi, manl, soluong, gia) \r\n" + "VALUES (\"" + mapc
-							+ "\"," + "\"" + chiTiet.getManguyenlieu() + "\"," + "\"" + chiTiet.getSoluong() + "\","
-							+ "\"" + chiTiet.getGia() + "\")";
+							+ "\"," + "\"" + chiTiet.getMa() + "\"," + "\"" + chiTiet.getSoluong() + "\"," + "\""
+							+ chiTiet.getGia() + "\")";
 					exec = DataHelper.execAction(sql2);
 					if (exec == false)
 						return exec;
@@ -403,7 +492,7 @@ public class DAO {
 							String ma = rs1.getString("ma");
 							int soluong = rs1.getInt("soluong");
 							for (NguyenLieuTable nguyenlieu : pc.getChitietchi()) {
-								if (nguyenlieu.getManguyenlieu().equals(ma)) {
+								if (nguyenlieu.getMa().equals(ma)) {
 									String sql4 = "UPDATE nguyenlieu SET soluong ="
 											+ (soluong - nguyenlieu.getSoluong()) + " " + "WHERE ma =" + ma;
 									exec = DataHelper.execAction(sql4);

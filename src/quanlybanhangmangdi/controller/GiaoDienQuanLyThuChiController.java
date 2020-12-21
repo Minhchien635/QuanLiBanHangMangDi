@@ -265,7 +265,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable {
 	}
 
 	@FXML
-	void action_xemphieuchian(ActionEvent event) {
+	private void action_xemphieuchian(ActionEvent event) {
 		XemPhieuChiAnController phieuchian = new XemPhieuChiAnController();
 		try {
 			phieuchian.show();
@@ -311,7 +311,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable {
 				if ((chonkieuxem.getSelectionModel().equals("Theo Ngày") && chonngaycombobox.getValue() != null)
 						|| chonngaycombobox.getValue() != null) {
 					ObservableList<TablePhieuChi> listPhieuChi = FXCollections
-							.observableArrayList(DAO.getCacPhieuChiTheoNgay(chonngaycombobox.getValue()));
+							.observableArrayList(DAO.getCacPhieuChiTheoNgay(chonngaycombobox.getValue(),1));
 					tablephieuchi.getItems().setAll(listPhieuChi);
 					if (listPhieuChi == null) {
 						Alert alert = new Alert(AlertType.ERROR);
@@ -329,7 +329,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable {
 				if (chonthang.getValue() != null) {
 					int thang = chonthang.getValue();
 					ObservableList<TablePhieuChi> listPhieuChi = FXCollections
-							.observableArrayList(DAO.getCacPhieuChiTheoThang(thang));
+							.observableArrayList(DAO.getCacPhieuChiTheoThang(thang,1));
 					tablephieuchi.getItems().setAll(listPhieuChi);
 					if (listPhieuChi == null) {
 						Alert alert = new Alert(AlertType.ERROR);
@@ -350,7 +350,7 @@ public class GiaoDienQuanLyThuChiController implements Initializable {
 	}
 
 	@FXML
-	void action_chonkieuxem(ActionEvent event) {
+	private void action_chonkieuxem(ActionEvent event) {
 		if (chonkieuxem.getSelectionModel().getSelectedItem().equals("Theo Ngày")) {
 			chonngaycombobox.setVisible(true);
 			chonthang.setVisible(false);

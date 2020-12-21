@@ -99,7 +99,6 @@ public class SuaNguyenLieuController implements Initializable {
 			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
 			Parent root = loader.load(getClass().getResource("../view/SuaNguyenLieu.fxml").openStream());
-			;
 			SuaNguyenLieuController snl = (SuaNguyenLieuController) loader.getController();
 			snl.loadNguyenLieu(nl);
 			Scene scene = new Scene(root, 534, 294);

@@ -12,6 +12,11 @@ public class ChiTietChi {
 		this.soluong = soluong;
 		this.gia = gia;
 	}
+	
+	public ChiTietChi(int soluong, int gia) {
+		this.soluong = soluong;
+		this.gia = gia;
+	}
 
 	public String getMaphieuchi() {
 		return maphieuchi;
