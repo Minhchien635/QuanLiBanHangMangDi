@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="294.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.TaoNguyenLieuController">
+   <children>
+      <Pane layoutX="139.0" layoutY="-67.0" prefHeight="113.0" prefWidth="257.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label layoutX="33.0" layoutY="70.0" text="Tạo Nguyên Liệu" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Text layoutX="43.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giá">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="43.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Số lượng">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="43.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên nguyên liệu">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tennguyenlieu" layoutX="158.0" layoutY="87.0" prefHeight="25.0" prefWidth="318.0" />
+      <Button fx:id="taonguyenlieu" layoutX="158.0" layoutY="242.0" mnemonicParsing="false" onAction="#action_taonguyenlieu" text="Tạo Nguyên Liệu" />
+      <TextField fx:id="gia" layoutX="158.0" layoutY="142.0" prefHeight="25.0" prefWidth="190.0" />
+      <TextField fx:id="soluong" layoutX="158.0" layoutY="197.0" prefHeight="25.0" prefWidth="105.0" />
+   </children>
+</AnchorPane>

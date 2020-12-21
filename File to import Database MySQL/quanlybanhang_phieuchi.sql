@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `phieuchi`;
 CREATE TABLE `phieuchi` (
   `ma` varchar(15) NOT NULL,
   `manhanvien` int DEFAULT NULL,
-  `ngay` date DEFAULT NULL,
+  `ngay` datetime DEFAULT NULL,
   `tonggia` int DEFAULT NULL,
+  `trangthai` int DEFAULT '1',
   PRIMARY KEY (`ma`),
   KEY `FK_NhanVien01` (`manhanvien`),
   CONSTRAINT `FK_NhanVien01` FOREIGN KEY (`manhanvien`) REFERENCES `nhanvien` (`ma`)
@@ -39,7 +40,7 @@ CREATE TABLE `phieuchi` (
 
 LOCK TABLES `phieuchi` WRITE;
 /*!40000 ALTER TABLE `phieuchi` DISABLE KEYS */;
-INSERT INTO `phieuchi` VALUES ('00000000',1,'2020-12-05',2070000),('00000001',1,'2020-12-11',600000);
+INSERT INTO `phieuchi` VALUES ('00000000',1,'2020-12-19 13:06:28',12,1),('00000001',1,'2020-12-19 13:07:26',12,1),('00000002',1,'2020-12-19 13:08:17',201,1),('00000003',1,'2020-12-19 14:25:12',6,1),('00000004',1,'2020-12-19 14:25:20',12,1);
 /*!40000 ALTER TABLE `phieuchi` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-11 17:58:10
+-- Dump completed on 2020-12-19 23:51:27

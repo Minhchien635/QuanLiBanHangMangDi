@@ -10,116 +10,93 @@ import javafx.collections.ObservableList;
 import quanlybanhangmangdi.database.DataHelper;
 
 public class PhieuChi {
-		private String ma;
-		private int manhanvien;
-		private Date ngay;
-		private int tonggia;
-		
-		private SimpleDateFormat sdfDatabase = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		private ObservableList<NguyenLieuTable> chitietchi;
-		
-		public ObservableList<NguyenLieuTable> getChitietchi() {
-			return chitietchi;
-		}
+	private String ma;
+	private int manhanvien;
+	private Date ngay;
+	private int tonggia;
+	private int trangthai;
 
-		public void setChitietchi(ObservableList<NguyenLieuTable> chitietchi) {
-			this.chitietchi = chitietchi;
-		}
+	public int getTrangthai() {
+		return trangthai;
+	}
 
-		public PhieuChi(int manhanvien, Date ngay, int tonggia, ObservableList<NguyenLieuTable> listNguyenlieu) {
-			this.manhanvien = manhanvien;
-			this.ngay = ngay;
-			this.tonggia = tonggia;
-			this.chitietchi = listNguyenlieu;
-		}
-		public PhieuChi(String ma,int manhanvien, Date ngay, int tonggia) {
-			this.ma = ma;
-			this.manhanvien = manhanvien;
-			this.ngay = ngay;
-			this.tonggia = tonggia;
-		}
-		
-		public String getMa() {
-			return ma;
-		}
+	public void setTrangthai(int trangthai) {
+		this.trangthai = trangthai;
+	}
 
-		public void setMa(String ma) {
-			this.ma = ma;
-		}
+	private SimpleDateFormat sdfDatabase = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	private ObservableList<NguyenLieuTable> chitietchi;
 
-		public int getManhanvien() {
-			return manhanvien;
-		}
+	public ObservableList<NguyenLieuTable> getChitietchi() {
+		return chitietchi;
+	}
 
-		public void setManhanvien(int manhanvien) {
-			this.manhanvien = manhanvien;
-		}
+	public void setChitietchi(ObservableList<NguyenLieuTable> chitietchi) {
+		this.chitietchi = chitietchi;
+	}
 
-		public Date getNgay() {
-			return ngay;
-		}
+	public PhieuChi(int manhanvien, Date ngay, int tonggia, ObservableList<NguyenLieuTable> listNguyenlieu) {
+		this.manhanvien = manhanvien;
+		this.ngay = ngay;
+		this.tonggia = tonggia;
+		this.chitietchi = listNguyenlieu;
+	}
 
-		public void setNgay(Date ngay) {
-			this.ngay = ngay;
-		}
+	public PhieuChi(String ma, int manhanvien, Date ngay, int tonggia) {
+		this.ma = ma;
+		this.manhanvien = manhanvien;
+		this.ngay = ngay;
+		this.tonggia = tonggia;
+	}
 
-		public int getTonggia() {
-			return tonggia;
-		}
+	public PhieuChi(String ma) {
+		this.ma = ma;
+	}
 
-		public void setTonggia(int tonggia) {
-			this.tonggia = tonggia;
-		}
-		
-		private String taoMa() throws NumberFormatException, SQLException {
-			ResultSet rs = DataHelper.execQuery("SELECT ma FROM PhieuChi \r\n" + 
-					"ORDER BY ma DESC\r\n" + 
-					"LIMIT 1;");
-			int stt = -1;
-			while(rs.next()) {
-					stt = Integer.parseInt(rs.getString("ma").substring(0, 8));
-			}
-			stt++;
-			String kq = Integer.toString(stt);
-			while(kq.length() < 8) {
-				kq = "0" + kq;
-			}
-			return kq;
-		}
+	public String getMa() {
+		return ma;
+	}
 
-		public boolean luuDatabase() {
-			
-			try {
-				String mapc = taoMa();
-				String sql = "INSERT INTO PhieuChi(ma,manhanvien,ngay,tonggia) \r\n" + 
-						"VALUES (\"" + mapc +"\","+
-						"\""+getManhanvien()+"\","+
-						"\""+sdfDatabase.format(getNgay())+ "\","+
-						"\""+getTonggia()+ "\")";
-				boolean exec = DataHelper.execAction(sql);
-				if(exec) {
-					for(NguyenLieuTable chiTiet : getChitietchi()) {
-						String sql2 = "INSERT INTO ChiTietChi(maphieuchi, manl, soluong, gia) \r\n" + 
-								"VALUES (\"" + mapc + "\"," +
-								"\"" + chiTiet.getManguyenlieu() + "\"," +
-								"\"" + chiTiet.getSoluong() + "\"," +
-								"\"" + chiTiet.getGia() + "\")";
-						exec = DataHelper.execAction(sql2);
-					}
-				}
-				
-				return exec;
-				
-				
-				
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	public void setMa(String ma) {
+		this.ma = ma;
+	}
+
+	public int getManhanvien() {
+		return manhanvien;
+	}
+
+	public void setManhanvien(int manhanvien) {
+		this.manhanvien = manhanvien;
+	}
+
+	public Date getNgay() {
+		return ngay;
+	}
+
+	public void setNgay(Date ngay) {
+		this.ngay = ngay;
+	}
+
+	public int getTonggia() {
+		return tonggia;
+	}
+
+	public void setTonggia(int tonggia) {
+		this.tonggia = tonggia;
+	}
+
+	public boolean thayDoiTrangThai() throws SQLException {
+		try {
+			String sql = "SELECT * FROM phieuchi WHERE ma = " + this.ma;
+			ResultSet rs = DataHelper.execQuery(sql);
+			rs.next();
+			int trangthai = rs.getInt("trangthai");
+			String sql1 = "UPDATE phieuchi SET trangthai = " + (trangthai == 1 ? 0 : 1) + " " + "WHERE ma =" + this.ma;
+			DataHelper.execAction(sql1);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
-					
 		}
+		return true;
+	}
 }

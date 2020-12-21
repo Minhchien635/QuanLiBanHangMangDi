@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="438.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.QuanLyNguyenLieuController">
+   <children>
+      <Pane layoutX="252.0" layoutY="-64.0" prefHeight="113.0" prefWidth="257.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label layoutX="60.0" layoutY="72.0" text="Nguyên liệu" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tablenguyenlieu" layoutX="50.0" layoutY="53.0" prefHeight="332.0" prefWidth="662.0">
+         <columns>
+            <TableColumn fx:id="tennguyenlieu" prefWidth="339.0" text="Tên Nguyên Liệu" />
+            <TableColumn fx:id="gia" minWidth="6.0" prefWidth="198.0" text="Giá" />
+            <TableColumn fx:id="soluong" minWidth="0.0" prefWidth="124.0" text="Số Lượng" />
+         </columns>
+      </TableView>
+      <Button fx:id="sua" layoutX="218.0" layoutY="392.0" mnemonicParsing="false" onAction="#action_sua" prefHeight="25.0" prefWidth="69.0" text="Sửa" />
+      <Button fx:id="taonguyenlieu" layoutX="64.0" layoutY="392.0" mnemonicParsing="false" onAction="#action_taonguyenlieu" prefHeight="25.0" prefWidth="125.0" text="Tạo Nguyên Liệu" />
+      <Button fx:id="annguyenlieu" layoutX="433.0" layoutY="392.0" mnemonicParsing="false" onAction="#action_annguyenlieu" prefHeight="25.0" prefWidth="125.0" text="Ẩn Nguyên Liệu" />
+      <Button layoutX="575.0" layoutY="392.0" mnemonicParsing="false" onAction="#action_xemnguyenlieuan" prefHeight="25.0" prefWidth="137.0" text="Xem Nguyên Liệu Ẩn" fx:id="xemnguyenlieuan" />
+   </children>
+</AnchorPane>

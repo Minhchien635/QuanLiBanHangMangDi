@@ -27,6 +27,7 @@ CREATE TABLE `nguyenlieu` (
   `ten` varchar(50) DEFAULT NULL,
   `gia` int DEFAULT NULL,
   `soluong` int DEFAULT NULL,
+  `trangthai` int DEFAULT '1',
   PRIMARY KEY (`ma`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `nguyenlieu` (
 
 LOCK TABLES `nguyenlieu` WRITE;
 /*!40000 ALTER TABLE `nguyenlieu` DISABLE KEYS */;
-INSERT INTO `nguyenlieu` VALUES ('1','gà',40000,40),('2','cá',50000,10),('3','trứng',30000,20);
+INSERT INTO `nguyenlieu` VALUES ('00000000','Chó',3,3,1),('00000001','Mèo',6,0,1),('00000002','Nai',67,0,1),('00000003','Chó',1,3,1);
 /*!40000 ALTER TABLE `nguyenlieu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-11 17:58:10
+-- Dump completed on 2020-12-19 23:51:27

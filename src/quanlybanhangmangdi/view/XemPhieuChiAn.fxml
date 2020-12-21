@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="438.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlybanhangmangdi.controller.XemPhieuChiAnController">
+   <children>
+      <Pane layoutX="252.0" layoutY="-64.0" prefHeight="113.0" prefWidth="257.0" style="-fx-background-color: #084675; -fx-background-radius: 70;">
+         <children>
+            <Label layoutX="60.0" layoutY="71.0" text="Phiếu chi ẩn" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tablephieuchi" layoutX="50.0" layoutY="59.0" prefHeight="332.0" prefWidth="661.0">
+         <columns>
+            <TableColumn fx:id="tennhanvien" prefWidth="202.0" text="Tên Nhân Viên" />
+            <TableColumn fx:id="maphieuchi" minWidth="6.0" prefWidth="148.0" text="Mã Phiếu Chi" />
+            <TableColumn fx:id="ngaychi" minWidth="0.0" prefWidth="136.0" text="Ngày Chi" />
+            <TableColumn fx:id="tongtien" prefWidth="174.0" text="Tổng Tiền" />
+         </columns>
+      </TableView>
+      <Button fx:id="khoiphuc" layoutX="169.0" layoutY="398.0" mnemonicParsing="false" onAction="#action_khoiphuc" prefHeight="25.0" prefWidth="83.0" text="Khôi Phục" />
+      <Button layoutX="509.0" layoutY="398.0" mnemonicParsing="false" onAction="#action_xoa" prefHeight="25.0" prefWidth="69.0" text="Xóa" fx:id="xoa" />
+   </children>
+</AnchorPane>

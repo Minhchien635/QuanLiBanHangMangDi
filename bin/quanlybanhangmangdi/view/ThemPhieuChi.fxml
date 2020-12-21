@@ -43,6 +43,6 @@
          </font>
       </Text>
       <Button fx:id="taophieuchi" layoutX="52.0" layoutY="502.0" mnemonicParsing="false" onAction="#action_taophieuchi" text="Tạo Phiếu Chi" />
-      <Button fx:id="taonguyenlieu" layoutX="607.0" layoutY="166.0" mnemonicParsing="false" onAction="#action_taonguyenlieu" text="Tạo Nguyên Liệu" />
+      <Button fx:id="quanlynguyenlieu" layoutX="583.0" layoutY="176.0" mnemonicParsing="false" onAction="#action_quanlynguyenlieu" text="Quản Lý Nguyên Liệu" />
    </children>
 </AnchorPane>
